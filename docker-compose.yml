@@ -1,0 +1,35 @@
+# docker-compose.yml file
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports: 
+      - "127.0.0.1:8080:80"
+    networks:
+      - internal
+    volumes:
+      - ./webdir:/var/www/html:z
+  php:
+    image: php:fpm-alpine
+    networks:
+      - internal
+    volumes:
+      - ./webdir:/var/www/html:z
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "127.0.0.1:8081:8080"
+
+networks:
+  internal:
+    driver: bridge
+    
