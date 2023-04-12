@@ -11,18 +11,19 @@ services:
     networks:
       - internal
     volumes:
-      - ./webdir:/var/www/html:z
+      - ./webdir:/var/www/html:Z
   php:
     image: php:fpm-alpine
     networks:
       - internal
     volumes:
-      - ./webdir:/var/www/html:z
+      - ./webdir:/var/www/html:Z
   db:
-    image: postgres
+    image: mariadb
     restart: always
     environment:
-      POSTGRES_PASSWORD: example
+      MARIADB_ROOT_PASSWORD: example
+
   adminer:
     image: adminer
     restart: always
