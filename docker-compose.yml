@@ -31,6 +31,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: example
     volumes:
+      - ./mariadb/etc/mysql:/etc/mysql/:Z
       - ./dev/docker_mysql_init:/docker-entrypoint-initdb.d/:Z
   adminer:
     image: adminer
