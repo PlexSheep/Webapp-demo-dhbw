@@ -8,12 +8,15 @@ services:
       dockerfile: nginx/Dockerfile
     ports: 
       - "127.0.0.1:8080:80"
+      - "127.0.0.1:80:80"
     networks:
       - internal
     volumes:
       - ./webdir:/var/www/html:Z
   php:
-    image: php:fpm-alpine
+    build:
+      context: .
+      dockerfile: php/Dockerfile
     networks:
       - internal
     volumes:
@@ -21,13 +24,13 @@ services:
   db:
     image: mariadb
     restart: always
+    networks:
+      - internal
     ports:
       - 127.0.0.1:3306:3306
     environment:
       MARIADB_ROOT_PASSWORD: example
     volumes:
-      - ./mariadb/etc/mysql:/etc/mysql/:Z
-      - ./mariadb/var/lib/mysql:/var/lib/mysql/:Z
       - ./dev/docker_mysql_init:/docker-entrypoint-initdb.d/:Z
   adminer:
     image: adminer
