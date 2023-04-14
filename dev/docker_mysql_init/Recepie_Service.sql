@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Erstellungszeit: 14. Apr 2023 um 15:17
+-- Erstellungszeit: 14. Apr 2023 um 17:42
 -- Server-Version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- PHP-Version: 8.1.17
 
@@ -52,17 +52,20 @@ INSERT INTO `countries` (`ID`, `name`, `short_name`) VALUES
 CREATE TABLE `recipies` (
   `title` varchar(40) DEFAULT NULL COMMENT 'title of the recipe',
   `country` int(11) DEFAULT NULL COMMENT 'id of the correspondin country',
-  `image_name` varchar(32) DEFAULT NULL COMMENT 'name of the image should be a md5 hex name, we dont keep the original name',
+  `image_path` varchar(32) DEFAULT NULL COMMENT 'name of the image should be a md5 hex name, we dont keep the original name',
   `description` text DEFAULT NULL COMMENT 'description',
-  `id` uuid NOT NULL DEFAULT uuid() COMMENT 'primary key'
+  `id` uuid NOT NULL DEFAULT uuid() COMMENT 'primary key',
+  `slug` varchar(40) DEFAULT uuid() COMMENT 'url for the detail page',
+  `score` float UNSIGNED NOT NULL DEFAULT 0 COMMENT '"Nutriscore", score of the recipe'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='stores the recipies';
 
 --
 -- Daten für Tabelle `recipies`
 --
 
-INSERT INTO `recipies` (`title`, `country`, `image_name`, `description`, `id`) VALUES
-('Leitungswasser', 3, NULL, 'Leckeres Wasser aus der Leitung.\r\n\r\nMan öffne den Hahn und zapfe dieses exquisite Gut.', '4e605ea3-dad7-11ed-9a45-0242ac130002');
+INSERT INTO `recipies` (`title`, `country`, `image_path`, `description`, `id`, `slug`, `score`) VALUES
+('Leitungswasser', 3, NULL, 'Leckeres Wasser aus der Leitung.\\n\\nMan öffne den Hahn und zapfe dieses exquisite Gut.', '4e605ea3-dad7-11ed-9a45-0242ac130002', '182e828c-dae9-11ed-89a6-0242ac150002', 0),
+('Müll', 3, NULL, 'Müll findet man überall, hat aber nicht so viel Nährwert.', 'f4446ad6-dae7-11ed-89a6-0242ac150002', '182e82ed-dae9-11ed-89a6-0242ac150002', 0);
 
 -- --------------------------------------------------------
 
