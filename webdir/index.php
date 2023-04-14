@@ -1,3 +1,7 @@
+<?php
+// require the common.php stuff
+require 'common.php';
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -40,6 +44,10 @@
         </div>
     </footer>
     <script>
+    <?php
+
+    ?>
+        /*
       const recipes = [
         {
           title: 'Spaghetti Carbonara',
@@ -93,6 +101,7 @@
 
         // Fügen Sie hier weitere Rezepte hinzu
       ];
+         */
 
       function displayRecipes() {
         const recipeGrid = document.querySelector('.recipe-grid');
