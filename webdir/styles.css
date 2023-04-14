@@ -36,7 +36,7 @@ nav ul li a {
 }
 
 .hero {
-    background-image: url(hintirezi.png);
+    background-image: url(img/hintirezi.png);
     background-repeat: no-repeat;
     background-size: cover;
     padding: 2rem;
@@ -75,7 +75,7 @@ input[type="search"] {
 }
     .baggi{
         
-        background-image: url(hkoch.png);
+        background-image: url(img/hkoch.png);
         background-repeat: no-repeat;
         background-size: cover;
     
