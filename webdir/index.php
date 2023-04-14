@@ -12,7 +12,7 @@ require 'common.php';
 </head>
 <body>
     <header>
-        <div class="logo">Globale Küchenreise</div>
+        <div class="logo"><a href = "http://localhost:8080">Rezepti</a></div>
         <nav>
             <ul>
                 <li><a href="recipes.html">Rezepte</a></li>
@@ -51,7 +51,7 @@ require 'common.php';
         foreach ($rows as $row) {
             echo "\t\t{
               title: '" . $row['title'] ."',
-              country: '" . $conn->get_country_with_id($row['country'])['name'] . "',
+              country: '" . $conn->get_country_by_id($row['country'])['name'] . "',
               imgUrl: 'img/useruploads/" . $row['image_path'] ."',
               description: '" . $row['description'] . "',
               id: '" . $row['id'] . "',
@@ -68,7 +68,7 @@ require 'common.php';
         
         recipes.forEach(recipe => {
           const recipeLink = document.createElement('a');
-          recipeLink.href = "detail.php?" + recipe.slug;
+          recipeLink.href = "detail.php?recipe=" + recipe.slug;
           const recipeCard = document.createElement('div');
           recipeCard.classList.add('recipe-card');
           
