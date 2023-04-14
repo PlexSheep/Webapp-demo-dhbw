@@ -1,23 +1,25 @@
 <?php
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 /*
  * Working php script, reads all entries of a test table
  *
  *
  * this file runs in a docker container, 127.0.0.1 is the dockercontainer itself.
  */
-$servername = "db:3306";
-$username = "test";
-$password = "test";
-$dbname = "test_db";
+$servername = $_ENV['DB_CONN'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASS'];
+$dbname = "Recepie_Service";
 
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
-  } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-  }
-  
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+
 ?>
