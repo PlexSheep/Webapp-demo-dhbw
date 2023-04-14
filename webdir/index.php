@@ -1,3 +1,7 @@
+<?php
+// require the common.php stuff
+require 'common.php';
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -15,6 +19,9 @@
                 <li><a href="region.html">Regionen</a></li>
                 <li><a href="#">Zutaten</a></li>
                 <li><a href="#">Konto</a></li>
+                <!-- TODO remove these links for the test environment for the final version! -->
+                <li><a href="test/index.php">Testpages</a></li>
+                <li><a href="http://localhost:8082">phpmyadmin</a></li>
             </ul>
         </nav>
     </header>
@@ -26,7 +33,6 @@
         <section class="featured-recipes">
             <h2>Beliebte Rezepte</h2>
             <div class="recipe-grid">
-                <!-- Hier können Sie Beispielrezepte einfügen -->
             </div>
         </section>
     </main>
@@ -38,63 +44,31 @@
     </footer>
     <script>
       const recipes = [
-        {
-          title: 'Spaghetti Carbonara',
-          country: 'Italien',
-          imgUrl: 'img/carbonara.png',
-          description: 'Ein klassisches italienisches Pasta-Gericht mit Speck, Eiern und Parmesan.',
-        },
-        {
-          title: 'Sushi',
-          country: 'Japan',
-          imgUrl: 'img/sushi.png',
-          description: 'Eine japanische Spezialität, bei der Reis mit rohem Fisch, Meeresfrüchten und Gemüse kombiniert wird.',
-        },
-          {
-        title: 'Chili con Carne',
-        country: 'Mexiko',
-        imgUrl: 'img/chilli.png',
-        description: 'Ein herzhaftes Gericht aus Hackfleisch, Bohnen, Tomaten und Gewürzen, das perfekt zu Reis oder Tortilla-Chips passt.',
-        },
-        {
-        title: 'Paella',
-        country: 'Spanien',
-        imgUrl: 'img/paella.png',
-        description: 'Ein klassisches spanisches Reisgericht mit Meeresfrüchten, Hühnerfleisch, Chorizo und Gemüse, gekocht in einer großen flachen Pfanne.',
-        },
-        {
-        title: 'Ratatouille',
-        country: 'Frankreich',
-        imgUrl: 'img/ratatouille-rezept-b3.png',
-        description: 'Ein herzhaftes Gemüsegericht aus der französischen Provence, das aus Zucchini, Auberginen, Paprika, Tomaten und Zwiebeln besteht.',
-        },
-        {
-        title: 'Pad Thai',
-        country: 'Thailand',
-        imgUrl: 'img/padthai.png',
-        description: 'Ein beliebtes thailändisches Nudelgericht mit Reisnudeln, Eiern, Tofu, Garnelen oder Hühnchen, Bohnensprossen und einer süß-sauren Tamarindensauce.',
-        },
-        {
-        title: 'Tacos',
-        country: 'Mexiko',
-        imgUrl: 'img/tacos.png',
-        description: 'Kleine gefüllte Tortillas, gefüllt mit einer Vielzahl von Zutaten wie gegrilltem Fleisch, Bohnen, Käse, Gemüse und scharfen Saucen.',
-        },
-        {
-        title: 'Currywurst',
-        country: 'Deutschland',
-        imgUrl: 'img/currywurst.png',
-        description: 'Eine deutsche Fast-Food-Spezialität, die aus gebratenen oder gegrillten Würstchen besteht, die in Scheiben geschnitten und mit einer würzigen Ketchup-Curry-Sauce serviert werden.',
-        },
+    <?php
+        $conn = new DatabaseConnection($ini_array);
+        $result = $conn->query_database("SELECT * FROM recipies");
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        foreach ($rows as $row) {
+            echo "\t\t{
+              title: '" . $row['title'] ."',
+              country: '" . $conn->get_country_with_id($row['country'])['name'] . "',
+              imgUrl: 'img/useruploads/" . $row['image_path'] ."',
+              description: '" . $row['description'] . "',
+              id: '" . $row['id'] . "',
+              slug: '" . $row['slug'] . "',
+              score: '" . $row['score'] . "',
+        },\n";
+        }
 
-
-        // Fügen Sie hier weitere Rezepte hinzu
+    ?>
       ];
 
       function displayRecipes() {
         const recipeGrid = document.querySelector('.recipe-grid');
         
         recipes.forEach(recipe => {
+          const recipeLink = document.createElement('a');
+          recipeLink.href = "detail.php?" + recipe.slug;
           const recipeCard = document.createElement('div');
           recipeCard.classList.add('recipe-card');
           
@@ -115,7 +89,8 @@
           recipeDescription.innerText = recipe.description;
           recipeCard.appendChild(recipeDescription);
           
-          recipeGrid.appendChild(recipeCard);
+          recipeLink.appendChild(recipeCard);
+          recipeGrid.appendChild(recipeLink);
         });
       }
 
