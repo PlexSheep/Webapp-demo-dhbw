@@ -53,9 +53,11 @@ require 'common.php';
             echo "\t\t{
               title: '" . $row['title'] ."',
               country: '" . $conn->get_country_with_id($row['country'])['name'] . "',
-              imgUrl: '" . $row['image_name'] ."',
+              imgUrl: 'img/useruploads/" . $row['image_path'] ."',
               description: '" . $row['description'] . "',
               id: '" . $row['id'] . "',
+              slug: '" . $row['slug'] . "',
+              score: '" . $row['score'] . "',
         },\n";
         }
 
