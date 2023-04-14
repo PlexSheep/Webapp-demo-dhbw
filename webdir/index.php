@@ -55,6 +55,7 @@ require 'common.php';
               country: '" . $conn->get_country_with_id($row['country'])['name'] . "',
               imgUrl: '" . $row['image_name'] ."',
               description: '" . $row['description'] . "',
+              id: '" . $row['id'] . "',
         },\n";
         }
 
