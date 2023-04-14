@@ -2,67 +2,88 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rezepte</title>
+    <title>Globale Küchenreise</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Rezepte</h1>
+        <div class="logo">Globale Küchenreise</div>
+        <nav>
+            <ul>
+                <li><a href="recipes.html">Rezepte</a></li>
+                <li><a href="region.html">Regionen</a></li>
+                <li><a href="#">Zutaten</a></li>
+                <li><a href="#">Konto</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
-        <div class="recipe-grid"></div>
+        <section class="hero">
+            <h1>Entdecke Rezepte aus der ganzen Welt und erlebe eine globale Küchenreise</h1>
+            <input type="search" placeholder="Suche nach Rezepten, Zutaten oder Ländern">
+        </section>
+        <section class="featured-recipes">
+            <h2>Beliebte Rezepte</h2>
+            <div class="recipe-grid">
+                <!-- Hier können Sie Beispielrezepte einfügen -->
+            </div>
+        </section>
     </main>
-
+    <footer>
+        <div class="footer-content">
+            <p>Impressum | Datenschutz | Nutzungsbedingungen</p>
+            <p>&copy; 2023 Globale Küchenreise. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
     <script>
       const recipes = [
         {
           title: 'Spaghetti Carbonara',
           country: 'Italien',
-          imgUrl: 'carbonara.png',
+          imgUrl: 'img/carbonara.png',
           description: 'Ein klassisches italienisches Pasta-Gericht mit Speck, Eiern und Parmesan.',
         },
         {
           title: 'Sushi',
           country: 'Japan',
-          imgUrl: 'sushi.png',
+          imgUrl: 'img/sushi.png',
           description: 'Eine japanische Spezialität, bei der Reis mit rohem Fisch, Meeresfrüchten und Gemüse kombiniert wird.',
         },
           {
         title: 'Chili con Carne',
         country: 'Mexiko',
-        imgUrl: 'chilli.png',
+        imgUrl: 'img/chilli.png',
         description: 'Ein herzhaftes Gericht aus Hackfleisch, Bohnen, Tomaten und Gewürzen, das perfekt zu Reis oder Tortilla-Chips passt.',
         },
         {
         title: 'Paella',
         country: 'Spanien',
-        imgUrl: 'paella.png',
+        imgUrl: 'img/paella.png',
         description: 'Ein klassisches spanisches Reisgericht mit Meeresfrüchten, Hühnerfleisch, Chorizo und Gemüse, gekocht in einer großen flachen Pfanne.',
         },
         {
         title: 'Ratatouille',
         country: 'Frankreich',
-        imgUrl: 'ratatouille-rezept-b3.png',
+        imgUrl: 'img/ratatouille-rezept-b3.png',
         description: 'Ein herzhaftes Gemüsegericht aus der französischen Provence, das aus Zucchini, Auberginen, Paprika, Tomaten und Zwiebeln besteht.',
         },
         {
         title: 'Pad Thai',
         country: 'Thailand',
-        imgUrl: 'padthai.png',
+        imgUrl: 'img/padthai.png',
         description: 'Ein beliebtes thailändisches Nudelgericht mit Reisnudeln, Eiern, Tofu, Garnelen oder Hühnchen, Bohnensprossen und einer süß-sauren Tamarindensauce.',
         },
         {
         title: 'Tacos',
         country: 'Mexiko',
-        imgUrl: 'tacos.png',
+        imgUrl: 'img/tacos.png',
         description: 'Kleine gefüllte Tortillas, gefüllt mit einer Vielzahl von Zutaten wie gegrilltem Fleisch, Bohnen, Käse, Gemüse und scharfen Saucen.',
         },
         {
         title: 'Currywurst',
         country: 'Deutschland',
-        imgUrl: 'currywurst.png',
+        imgUrl: 'img/currywurst.png',
         description: 'Eine deutsche Fast-Food-Spezialität, die aus gebratenen oder gegrillten Würstchen besteht, die in Scheiben geschnitten und mit einer würzigen Ketchup-Curry-Sauce serviert werden.',
         },
 
@@ -100,5 +121,7 @@
 
       displayRecipes();
     </script>
+    
+    
 </body>
 </html>
