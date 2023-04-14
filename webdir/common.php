@@ -37,7 +37,7 @@ class DatabaseConnection {
             $this->dbname
         );
         if ($this->connection->connect_error) {
-          die("Connection failed: " . $conn->connect_error);
+          die("Connection failed: " . $this->connection->connect_error);
         }
 
     }
@@ -51,6 +51,12 @@ class DatabaseConnection {
     function query_database(string $query) {
         $result = $this->connection->query($query);
         return $result;
+    }
+
+    function get_country_with_id(int $id) {
+        $query = ("SELECT * FROM countries WHERE ID = " . $id);
+        $result = $this->connection->query($query);
+        return $result->fetch_all(MYSQLI_BOTH)[0];
     }
 }
 ?>

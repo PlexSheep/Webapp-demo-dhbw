@@ -44,64 +44,22 @@ require 'common.php';
         </div>
     </footer>
     <script>
+      const recipes = [
     <?php
+        $conn = new DatabaseConnection($ini_array);
+        $result = $conn->query_database("SELECT * FROM recipies");
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        foreach ($rows as $row) {
+            echo "\t\t{
+              title: '" . $row['title'] ."',
+              country: '" . $conn->get_country_with_id($row['country'])['name'] . "',
+              imgUrl: '" . $row['image_name'] ."',
+              description: '" . $row['description'] . "',
+        },\n";
+        }
 
     ?>
-        /*
-      const recipes = [
-        {
-          title: 'Spaghetti Carbonara',
-          country: 'Italien',
-          imgUrl: 'img/carbonara.png',
-          description: 'Ein klassisches italienisches Pasta-Gericht mit Speck, Eiern und Parmesan.',
-        },
-        {
-          title: 'Sushi',
-          country: 'Japan',
-          imgUrl: 'img/sushi.png',
-          description: 'Eine japanische Spezialität, bei der Reis mit rohem Fisch, Meeresfrüchten und Gemüse kombiniert wird.',
-        },
-          {
-        title: 'Chili con Carne',
-        country: 'Mexiko',
-        imgUrl: 'img/chilli.png',
-        description: 'Ein herzhaftes Gericht aus Hackfleisch, Bohnen, Tomaten und Gewürzen, das perfekt zu Reis oder Tortilla-Chips passt.',
-        },
-        {
-        title: 'Paella',
-        country: 'Spanien',
-        imgUrl: 'img/paella.png',
-        description: 'Ein klassisches spanisches Reisgericht mit Meeresfrüchten, Hühnerfleisch, Chorizo und Gemüse, gekocht in einer großen flachen Pfanne.',
-        },
-        {
-        title: 'Ratatouille',
-        country: 'Frankreich',
-        imgUrl: 'img/ratatouille-rezept-b3.png',
-        description: 'Ein herzhaftes Gemüsegericht aus der französischen Provence, das aus Zucchini, Auberginen, Paprika, Tomaten und Zwiebeln besteht.',
-        },
-        {
-        title: 'Pad Thai',
-        country: 'Thailand',
-        imgUrl: 'img/padthai.png',
-        description: 'Ein beliebtes thailändisches Nudelgericht mit Reisnudeln, Eiern, Tofu, Garnelen oder Hühnchen, Bohnensprossen und einer süß-sauren Tamarindensauce.',
-        },
-        {
-        title: 'Tacos',
-        country: 'Mexiko',
-        imgUrl: 'img/tacos.png',
-        description: 'Kleine gefüllte Tortillas, gefüllt mit einer Vielzahl von Zutaten wie gegrilltem Fleisch, Bohnen, Käse, Gemüse und scharfen Saucen.',
-        },
-        {
-        title: 'Currywurst',
-        country: 'Deutschland',
-        imgUrl: 'img/currywurst.png',
-        description: 'Eine deutsche Fast-Food-Spezialität, die aus gebratenen oder gegrillten Würstchen besteht, die in Scheiben geschnitten und mit einer würzigen Ketchup-Curry-Sauce serviert werden.',
-        },
-
-
-        // Fügen Sie hier weitere Rezepte hinzu
       ];
-         */
 
       function displayRecipes() {
         const recipeGrid = document.querySelector('.recipe-grid');
