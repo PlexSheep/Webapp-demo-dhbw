@@ -33,7 +33,6 @@ require 'common.php';
         <section class="featured-recipes">
             <h2>Beliebte Rezepte</h2>
             <div class="recipe-grid">
-                <!-- Hier können Sie Beispielrezepte einfügen -->
             </div>
         </section>
     </main>
@@ -68,6 +67,8 @@ require 'common.php';
         const recipeGrid = document.querySelector('.recipe-grid');
         
         recipes.forEach(recipe => {
+          const recipeLink = document.createElement('a');
+          recipeLink.href = "detail.php?" + recipe.slug;
           const recipeCard = document.createElement('div');
           recipeCard.classList.add('recipe-card');
           
@@ -88,7 +89,8 @@ require 'common.php';
           recipeDescription.innerText = recipe.description;
           recipeCard.appendChild(recipeDescription);
           
-          recipeGrid.appendChild(recipeCard);
+          recipeLink.appendChild(recipeCard);
+          recipeGrid.appendChild(recipeLink);
         });
       }
 
