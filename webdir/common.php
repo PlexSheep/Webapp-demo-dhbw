@@ -53,10 +53,30 @@ class DatabaseConnection {
         return $result;
     }
 
-    function get_country_with_id(int $id) {
+    function get_country_by_id(int $id) {
         $query = ("SELECT * FROM countries WHERE ID = " . $id);
         $result = $this->connection->query($query);
-        return $result->fetch_all(MYSQLI_BOTH)[0];
+        $return = $result->fetch_all(MYSQLI_ASSOC);
+        if ($return) {
+            return $return[0];
+        }
+        else {
+            // no result
+            return false;
+        }
+    }
+
+    function get_recepe_by_id(string $id) {
+        $query = ("SELECT * FROM recipies WHERE slug = \"" . $id . "\"");
+        $result = $this->connection->query($query);
+        $return = $result->fetch_all(MYSQLI_ASSOC);
+        if ($return) {
+            return $return[0];
+        }
+        else {
+            // no result
+            return false;
+        }
     }
 }
 ?>
