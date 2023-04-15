@@ -24,9 +24,6 @@ services:
     container_name: composer.test
     #user: 1000:1000
     command: ["composer", "install"]
-    depends_on: 
-      php:
-        condition: service_healthy
   php:
     build:
       context: .

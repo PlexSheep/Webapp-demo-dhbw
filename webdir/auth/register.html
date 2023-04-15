@@ -6,8 +6,14 @@
 	</head>
     <body>
         <div>
-            <form action="register.php">
-
+            <form action="register.php" method="post">
+                <label for="MAIL">Email</label>
+                <input type="text" placeholder="Please enter an email" name="MAIL" required>
+                <label for="USER">Username</label>
+                <input type="text" placeholder="Please enter a username" name="USER" required>
+                <label for="PASS">Password</label>
+                <input type="text" placeholder="Please enter a username" name="PASS" required>
+                <button type="submit">Login</button>
             </form>
         </div>
     </body>

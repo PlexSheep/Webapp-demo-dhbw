@@ -3,14 +3,19 @@ require "../common.php";
 
 $conn = new DatabaseConnection($ini_array);
 
-if ($_POST['email'] == null || $_POST['username'] == null || $_POST['password']) {
+print_r($_POST['MAIL']);
+print_r($_POST['USER']);
+print_r($_POST['PASS']);
+
+
+if (strlen($_POST['MAIL']) == 0 || strlen($_POST['USER']) == 0 || strlen($_POST['PASS']) == 0 ) {
     print_r("param empty");
     return -1;
 }
 
-$email = $_POST['email'];
-$username = $_POST['username'];
-$password = $_POST['password'];
+$email = $_POST['MAIL'];
+$username = $_POST['USER'];
+$password = $_POST['PASS'];
 
 if($conn->query_database("SELECT `username` FROM `user_pass` WHERE `email` = '$email'") -> num_rows >= 1){
     print_r("User already exists");
