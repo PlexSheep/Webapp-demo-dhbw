@@ -62,6 +62,11 @@ require 'common.php';
                            "<br>" . 
                             $score_meter . 
                             "</div></div>"; 
+                        echo "<form action=\"upload.php\" method=\"post\" enctype=\"multipart/form-data\">
+                              Select image to upload:
+                              <input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\">
+                              <input type=\"submit\" value=\"Upload Image\" name=\"submit\">
+                              </form>";
                     }
                     else {
                         echo "<h3>Dieses Rezept konnte nicht gefunden werden.<br>:(</h3>";
