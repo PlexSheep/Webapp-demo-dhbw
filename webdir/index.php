@@ -99,7 +99,5 @@ require 'common.php';
 
       displayRecipes();
     </script>
-    
-    
 </body>
 </html>
