@@ -7,5 +7,5 @@
 require "../common.php";
 $conn = new DatabaseConnection($ini_array);
 $result = $conn->query_database("SELECT * FROM recipies");
-print_r($result);
+print_r($result->fetch_all(MYSQLI_ASSOC));
 ?>
