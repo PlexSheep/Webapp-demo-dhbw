@@ -22,7 +22,7 @@ if($result -> num_rows >= 1){
     //print_r($result -> fetch_object() -> username);
     $_SESSION['USER'] = $result -> fetch_object() -> username;
     //print_r($_SESSION['USER']);
-    header('Location: authSessTest.php');
+    header('Location: /index.php');
     //die();
 }
 
