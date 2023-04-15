@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Erstellungszeit: 15. Apr 2023 um 10:19
--- Server-Version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
--- PHP-Version: 8.1.17
+-- Generation Time: Apr 15, 2023 at 06:15 PM
+-- Server version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
+-- PHP Version: 8.1.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `Recepie_Service`
+-- Database: `Recepie_Service`
 --
 CREATE DATABASE IF NOT EXISTS `Recepie_Service` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `Recepie_Service`;
@@ -26,7 +26,7 @@ USE `Recepie_Service`;
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `countries`
+-- Table structure for table `countries`
 --
 
 CREATE TABLE `countries` (
@@ -36,7 +36,7 @@ CREATE TABLE `countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `countries`
+-- Dumping data for table `countries`
 --
 
 INSERT INTO `countries` (`ID`, `name`, `short_name`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `countries` (`ID`, `name`, `short_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `recipies`
+-- Table structure for table `recipies`
 --
 
 CREATE TABLE `recipies` (
@@ -60,7 +60,7 @@ CREATE TABLE `recipies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='stores the recipies';
 
 --
--- Daten für Tabelle `recipies`
+-- Dumping data for table `recipies`
 --
 
 INSERT INTO `recipies` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) VALUES
@@ -70,67 +70,68 @@ INSERT INTO `recipies` (`title`, `country`, `image_path`, `description`, `id`, `
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `user_pass`
+-- Table structure for table `user_pass`
 --
 
 CREATE TABLE `user_pass` (
   `ID` int(11) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
-  `password` text DEFAULT NULL
+  `password` text DEFAULT NULL,
+  `email` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `user_pass`
+-- Dumping data for table `user_pass`
 --
 
-INSERT INTO `user_pass` (`ID`, `username`, `password`) VALUES
-(1, 'admin', 'admin');
+INSERT INTO `user_pass` (`ID`, `username`, `password`, `email`) VALUES
+(1, 'admin', 'admin', '');
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `countries`
+-- Indexes for table `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indizes für die Tabelle `recipies`
+-- Indexes for table `recipies`
 --
 ALTER TABLE `recipies`
   ADD PRIMARY KEY (`id`),
   ADD KEY `country` (`country`);
 
 --
--- Indizes für die Tabelle `user_pass`
+-- Indexes for table `user_pass`
 --
 ALTER TABLE `user_pass`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `countries`
+-- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT für Tabelle `user_pass`
+-- AUTO_INCREMENT for table `user_pass`
 --
 ALTER TABLE `user_pass`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints der exportierten Tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Constraints der Tabelle `recipies`
+-- Constraints for table `recipies`
 --
 ALTER TABLE `recipies`
   ADD CONSTRAINT `country` FOREIGN KEY (`country`) REFERENCES `countries` (`ID`) ON DELETE SET NULL;
