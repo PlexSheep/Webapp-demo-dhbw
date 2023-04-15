@@ -13,14 +13,35 @@ services:
       - internal
     volumes:
       - ./webdir:/var/www/html:Z
+  composer:
+    image: composer/composer
+    networks:
+      - internal
+    #ports:
+    #  - "127.0.0.1:9001:9000"
+    volumes:
+      - ./composer:/app:Z
+    container_name: composer.test
+    #user: 1000:1000
+    command: ["composer", "install"]
+    depends_on: 
+      php:
+        condition: service_healthy
   php:
     build:
       context: .
       dockerfile: php/Dockerfile
     networks:
       - internal
+    #user: 1000:1000
     volumes:
       - ./webdir:/var/www/html:Z
+    #command: ["chown", "-R", "1000:1000", "./webdir"]
+    healthcheck:
+      test: ["CMD", "ls",]
+      interval: 10s
+      timeout: 1s
+      retries: 5
   db:
     image: mariadb
     restart: always
