@@ -19,7 +19,6 @@ services:
       dockerfile: php/Dockerfile
     networks:
       - internal
-    #user: 1000:1000
     volumes:
       - ./webdir:/var/www/html:Z
   db:
