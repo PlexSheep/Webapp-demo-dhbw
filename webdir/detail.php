@@ -34,8 +34,8 @@ require 'common.php';
             <center>
                 <div class="recipe-detail-card">
                 <?php 
-                    // TODO FIXME THIS IS VULNERABLE TO SQL INJECTION!!!
-                    // TODO FIXME THIS IS VULNERABLE TO HTML INJECTION AND PROBABLY XSS ASWELL!!!
+                    // TODO FIXME THIS IS LIKELY VULNERABLE TO SQL INJECTION!!!
+                    // TODO FIXME THIS IS LIKELY VULNERABLE TO HTML INJECTION AND PROBABLY XSS ASWELL!!!
                     $conn = new DatabaseConnection($ini_array);
                     $result = $conn->get_recepe_by_id($_GET['recipe']);
                     if ($result) {
@@ -65,8 +65,8 @@ require 'common.php';
                         echo "<form action=\"upload.php\" method=\"post\" enctype=\"multipart/form-data\">
                               Select image to upload:
                               <input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\">
-                              <input type=\"submit\" value=\"Upload Image\" name=\"submit\">
-                              </form>";
+                              <input type=\"hidden\" name=\"recipe\" id=\"recipe\" value=\"" . $result['slug'] ."\">
+                              <input type=\"submit\"></form>";
                     }
                     else {
                         echo "<h3>Dieses Rezept konnte nicht gefunden werden.<br>:(</h3>";
