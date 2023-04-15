@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Erstellungszeit: 14. Apr 2023 um 17:42
+-- Erstellungszeit: 15. Apr 2023 um 10:19
 -- Server-Version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- PHP-Version: 8.1.17
 
@@ -52,20 +52,20 @@ INSERT INTO `countries` (`ID`, `name`, `short_name`) VALUES
 CREATE TABLE `recipies` (
   `title` varchar(40) DEFAULT NULL COMMENT 'title of the recipe',
   `country` int(11) DEFAULT NULL COMMENT 'id of the correspondin country',
-  `image_path` varchar(32) DEFAULT NULL COMMENT 'name of the image should be a md5 hex name, we dont keep the original name',
+  `image_path` varchar(64) DEFAULT NULL COMMENT 'name of the image should be a md5 hex name, we dont keep the original name',
   `description` text DEFAULT NULL COMMENT 'description',
   `id` uuid NOT NULL DEFAULT uuid() COMMENT 'primary key',
-  `slug` varchar(40) DEFAULT uuid() COMMENT 'url for the detail page',
-  `score` float UNSIGNED NOT NULL DEFAULT 0 COMMENT '"Nutriscore", score of the recipe'
+  `score` float UNSIGNED NOT NULL DEFAULT 0 COMMENT '"Nutriscore", score of the recipe',
+  `slug` varchar(40) NOT NULL DEFAULT uuid() COMMENT 'referer for the detail.php view'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='stores the recipies';
 
 --
 -- Daten für Tabelle `recipies`
 --
 
-INSERT INTO `recipies` (`title`, `country`, `image_path`, `description`, `id`, `slug`, `score`) VALUES
-('Leitungswasser', 3, NULL, 'Leckeres Wasser aus der Leitung.\\n\\nMan öffne den Hahn und zapfe dieses exquisite Gut.', '4e605ea3-dad7-11ed-9a45-0242ac130002', '182e828c-dae9-11ed-89a6-0242ac150002', 0),
-('Müll', 3, NULL, 'Müll findet man überall, hat aber nicht so viel Nährwert.', 'f4446ad6-dae7-11ed-89a6-0242ac150002', '182e82ed-dae9-11ed-89a6-0242ac150002', 0);
+INSERT INTO `recipies` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) VALUES
+('Leitungswasser', 3, 'c3088096c996ba7286364497221155e5-1702189647_03d15f58b0_o.jpg', 'Leckeres Wasser aus der Leitung.<br><br>Man öffne den Hahn und zapfe dieses exquisite Gut.', '4e605ea3-dad7-11ed-9a45-0242ac130002', 5, '07bb53ee-daf0-11ed-90c5-0242ac1c0003'),
+('Müll', 3, 'd71bd869f724bd9bedb65b2490e1e1ee-mehr-muell-durch-corona-sel.jpg', 'Müll findet man überall, hat aber nicht so viel Nährwert.', 'f4446ad6-dae7-11ed-89a6-0242ac150002', 1.4, '07bb54a9-daf0-11ed-90c5-0242ac1c0003');
 
 -- --------------------------------------------------------
 
@@ -139,13 +139,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
---
--- CUSTOM ADDED, NOT BY PHPMYADMIN
---
-
--- Add the user, that is used by the webapp
-CREATE USER 'recipie_service'@'%' IDENTIFIED BY "example";
--- Grant it all privileges (change this for production FIXME)
-GRANT ALL PRIVILEGES ON `Recepie\_Service`.* TO 'recipie_service'@'%';
