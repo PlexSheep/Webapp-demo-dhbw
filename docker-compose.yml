@@ -32,6 +32,7 @@ services:
       MARIADB_ROOT_PASSWORD: example
     volumes:
       - ./dev/docker_mysql_init/Recepie_Service.sql:/docker-entrypoint-initdb.d/Recepie_Service.sql:Z
+      - ./dev/docker_mysql_init/custom.sql:/docker-entrypoint-initdb.d/custom.sql:Z
   phpmyadmin:
     image: phpmyadmin
     restart: always
