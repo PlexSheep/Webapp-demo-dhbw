@@ -12,7 +12,21 @@ services:
     networks:
       - internal
     volumes:
-      - ./webdir:/var/www/html:Z
+      - ./webdir:/var/www/html:z
+  composer:
+    image: composer/composer
+    networks:
+      - internal
+    #ports:
+    #  - "127.0.0.1:9001:9000"
+    volumes:
+      - ./composer:/app:z
+    container_name: composer.test
+    #user: 1000:1000
+    command: ["composer", "install"]
+    depends_on: 
+      php:
+        condition: service_healthy
   php:
     build:
       context: .
@@ -20,7 +34,8 @@ services:
     networks:
       - internal
     volumes:
-      - ./webdir:/var/www/html:Z
+      - ./composer:/composer:z
+      - ./webdir:/var/www/html:z
   db:
     image: mariadb
     restart: always
@@ -31,7 +46,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: example
     volumes:
-      - ./dev/docker_mysql_init/Recepie_Service.sql:/docker-entrypoint-initdb.d/Recepie_Service.sql:Z
+      - ./dev/docker_mysql_init/Recepie_Service.sql:/docker-entrypoint-initdb.d/Recepie_Service.sql:z
   phpmyadmin:
     image: phpmyadmin
     restart: always

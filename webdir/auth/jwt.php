@@ -1,5 +1,5 @@
 <?php
-require '../../composer/vendor/autoload.php';
+require '/composer/vendor/autoload.php';
 
 use Firebase\JWT\JWT;
 
