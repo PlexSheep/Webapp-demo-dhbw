@@ -16,7 +16,7 @@ else {
 }
 
 $conn = new DatabaseConnection($ini_array);
-$result = $conn->query_database("SELECT `password` FROM `user_pass` WHERE `email` = '$email'");
+$result = $conn->query_database("SELECT `ID`, `password` FROM `user_pass` WHERE `email` = '$email'");
 
 if(password_verify($password, $result -> fetch_object() -> password)){
     //print_r($result -> fetch_object() -> username);

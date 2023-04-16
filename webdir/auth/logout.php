@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_SESSION['USER'])) {
+if (isset($_SESSION['MAIL'])) {
     session_destroy();
 }
 else {

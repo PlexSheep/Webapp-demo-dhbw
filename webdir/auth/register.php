@@ -24,7 +24,7 @@ if(($conn->query_database("SELECT `username` FROM `user_pass` WHERE `email` = '$
     return -1;
 }
 
-$hash = password_hash($password, PASSWORD_DEFAULT);
+$hash = password_hash($password, PASSWORD_ARGON2ID);
 $conn->query_database("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES ('$username', '$hash', '$email')"); 
 
 ?>
