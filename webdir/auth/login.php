@@ -16,11 +16,18 @@ else {
 }
 
 $conn = new DatabaseConnection($ini_array);
-$result = $conn->query_database("SELECT `ID`, `password` FROM `user_pass` WHERE `email` = '$email'");
+$result = $conn->query_database("SELECT `username`, `password` FROM `user_pass` WHERE `email` = '$email'");
 
-if(password_verify($password, $result -> fetch_object() -> password)){
-    //print_r($result -> fetch_object() -> username);
+$data = $result -> fetch_object();
+$username = $data -> username;
+$dbPassword = $data -> password;
+
+//print_r($username);
+//print_r($dbPassword);
+
+if(password_verify($password, $dbPassword)){
     $_SESSION['MAIL'] = $email;
+    $_SESSION['USER'] = $username;
     //print_r($_SESSION['USER']);
     header('Location: /index.php');
     //die();

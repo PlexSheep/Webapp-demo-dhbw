@@ -3,9 +3,9 @@ require "../common.php";
 
 $conn = new DatabaseConnection($ini_array);
 
-print_r($_POST['MAIL']);
-print_r($_POST['USER']);
-print_r($_POST['PASS']);
+//print_r($_POST['MAIL']);
+//print_r($_POST['USER']);
+//print_r($_POST['PASS']);
 
 
 if (isset($_POST['USER']) && isset($_POST['PASS']) && isset($_POST['MAIL'])) {
@@ -26,5 +26,7 @@ if(($conn->query_database("SELECT `username` FROM `user_pass` WHERE `email` = '$
 
 $hash = password_hash($password, PASSWORD_ARGON2ID);
 $conn->query_database("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES ('$username', '$hash', '$email')"); 
+
+header('Location: /auth/login.html');
 
 ?>

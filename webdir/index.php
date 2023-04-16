@@ -1,6 +1,7 @@
 <?php
 // require the common.php stuff
 require 'common.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -18,7 +19,24 @@ require 'common.php';
                 <li><a href="recipes.html">Rezepte</a></li>
                 <li><a href="region.html">Regionen</a></li>
                 <li><a href="#">Zutaten</a></li>
-                <li><a href="#">Konto</a></li>
+                <li><a href="#">
+                    <?php 
+                    if (isset($_SESSION['USER'])) {
+                        echo $_SESSION['USER'];
+                    }
+                    else{
+                        echo "Konto";
+                    }
+                    ?>
+                </a></li>
+                <?php
+                if (isset($_SESSION['USER'])) {
+                    echo "<li><a href=\"auth/logout.php\">Logout</a></li>";
+                }
+                else {
+                    echo "<li><a href=\"auth/login.html\">Login</a></li>";
+                }
+                ?>
                 <!-- TODO remove these links for the test environment for the final version! -->
                 <li><a href="test/index.php">Testpages</a></li>
                 <li><a href="http://localhost:8082">phpmyadmin</a></li>
