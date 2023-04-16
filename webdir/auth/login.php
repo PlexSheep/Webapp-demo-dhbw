@@ -25,5 +25,8 @@ if($result -> num_rows >= 1){
     header('Location: /index.php');
     //die();
 }
+else {
+    header('Location: /auth/login.html');
+}
 
 ?>

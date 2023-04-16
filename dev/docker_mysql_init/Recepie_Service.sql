@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Apr 15, 2023 at 06:15 PM
+-- Generation Time: Apr 16, 2023 at 09:05 AM
 -- Server version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- PHP Version: 8.1.18
 
@@ -85,7 +85,8 @@ CREATE TABLE `user_pass` (
 --
 
 INSERT INTO `user_pass` (`ID`, `username`, `password`, `email`) VALUES
-(1, 'admin', 'admin', '');
+(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin'),
+(4, 'test', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 'test');
 
 --
 -- Indexes for dumped tables
@@ -124,7 +125,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `user_pass`
 --
 ALTER TABLE `user_pass`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
