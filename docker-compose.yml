@@ -20,7 +20,7 @@ services:
     #ports:
     #  - "127.0.0.1:9001:9000"
     #volumes:
-      - ./composer:/app:z
+     # - ./composer:/app:z
     #container_name: composer.test
     #user: 1000:1000
     #command: ["composer", "install"]
