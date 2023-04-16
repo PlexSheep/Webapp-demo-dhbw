@@ -13,17 +13,17 @@ services:
       - internal
     volumes:
       - ./webdir:/var/www/html:z
-  composer:
-    image: composer/composer
-    networks:
-      - internal
+  #composer:
+    #image: composer/composer
+    #networks:
+    #  - internal
     #ports:
     #  - "127.0.0.1:9001:9000"
-    volumes:
+    #volumes:
       - ./composer:/app:z
-    container_name: composer.test
+    #container_name: composer.test
     #user: 1000:1000
-    command: ["composer", "install"]
+    #command: ["composer", "install"]
   php:
     build:
       context: .
