@@ -8,7 +8,7 @@ session_start();
 
 if (isset($_POST['MAIL']) && isset($_POST['MAIL'])) {
     $email = $_POST['MAIL'];
-    $password = hash('sha256', $_POST['PASS']);
+    $password = $_POST['PASS'];
 }
 else {
     print_r("Missing parameter");
@@ -16,11 +16,11 @@ else {
 }
 
 $conn = new DatabaseConnection($ini_array);
-$result = $conn->query_database("SELECT `username` FROM `user_pass` WHERE `email` = '$email' AND `password` = '$password'");
+$result = $conn->query_database("SELECT `password` FROM `user_pass` WHERE `email` = '$email'");
 
-if($result -> num_rows >= 1){
+if(password_verify($password, $result -> fetch_object() -> password)){
     //print_r($result -> fetch_object() -> username);
-    $_SESSION['USER'] = $result -> fetch_object() -> username;
+    $_SESSION['MAIL'] = $email;
     //print_r($_SESSION['USER']);
     header('Location: /index.php');
     //die();
