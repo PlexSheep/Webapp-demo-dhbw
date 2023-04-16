@@ -34,6 +34,10 @@ require 'common.php';
             </form>
         </section>
         <section class="search-results">
+            <h2>Ergebnisse:</h2>
+            <div class="recipe-grid" id="recipe-grid0">
+            </div>
+            <br>
     <?php
         $conn = new DatabaseConnection($ini_array);
         // TODO FIXME PROBABLY VULNERABLE TO SQL INJECTION
@@ -46,7 +50,7 @@ require 'common.php';
         $result = $conn->query_database($query);
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         if ($rows) {
-            echo "<script>const recipes = [";
+            echo "<script>recipes = [";
             foreach ($rows as $row) {
                 echo "\t\t{
                   title: '" . $row['title'] ."',
@@ -63,7 +67,7 @@ require 'common.php';
       ];
 
       function displayRecipes() {
-        const recipeGrid = document.querySelector('.recipe-grid');
+        const recipeGrid = document.getElementById(\"recipe-grid0\");
         
         recipes.forEach(recipe => {
           const recipeLink = document.createElement('a');
@@ -102,9 +106,10 @@ require 'common.php';
         }
 
     ?>
+        </section>
         <section class="featured-recipes">
             <h2>Beliebte Rezepte</h2>
-            <div class="recipe-grid">
+            <div class="recipe-grid" id="recipe-grid1">
             </div>
         </section>
     </main>
@@ -115,7 +120,7 @@ require 'common.php';
         </div>
     </footer>
     <script>
-      const recipes = [
+      recipes = [
     <?php
         $conn = new DatabaseConnection($ini_array);
         $result = $conn->query_database("SELECT * FROM recipies");
@@ -136,7 +141,7 @@ require 'common.php';
       ];
 
       function displayRecipes() {
-        const recipeGrid = document.querySelector('.recipe-grid');
+        const recipeGrid = document.getElementById("recipe-grid1");
         
         recipes.forEach(recipe => {
           const recipeLink = document.createElement('a');
