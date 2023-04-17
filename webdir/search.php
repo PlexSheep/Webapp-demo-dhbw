@@ -45,9 +45,14 @@ require 'common.php';
             $query = "SELECT * FROM recipies";  
         }
         else {
+            // TODO make a query array, iterate over queries
+            // TODO add partial string matching
             $query = "SELECT * FROM recipies WHERE title ='". $_GET['search'] ."'";  
+            // TODO add country lookup
+            // TODO add cooking components
         }
         $result = $conn->query_database($query);
+        // TODO query all queries, join the arrays into a big atomic one.
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         if ($rows) {
             echo "<script>recipes = [";
