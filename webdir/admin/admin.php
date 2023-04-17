@@ -7,6 +7,7 @@ if (isset($_SESSION['USER'])) {
     }
 }
 else {
+    // Access control
     http_response_code(403); exit;
 }
 
