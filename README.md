@@ -5,7 +5,7 @@ We want to make a recipe sharing platform.
 
 # Technology Stack
 - PHP for Server Backend (requirement)
-- Bootstrap for CSS Framework (requirement)
+- Bootstrap for CSS Framework (requirement, verhandelbar?)
 - Nginx as Webserver
 - docker/podman for deployment
 - MariaDB (requirement)
