@@ -31,10 +31,10 @@ session_start();
                 </a></li>
                 <?php
                 if (isset($_SESSION['USER'])) {
-                    echo "<li><a href=\"auth/logout.php\">Logout</a></li>";
+                    echo "<li><a href=\"auth/konto.php\">Logout</a></li>";
                 }
                 else {
-                    echo "<li><a href=\"auth/login.html\">Login</a></li>";
+                    echo "<li><a href=\"auth/konto.html\">Login</a></li>";
                 }
                 ?>
                 <!-- TODO remove these links for the test environment for the final version! -->
