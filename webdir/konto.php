@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Globale Küchenreise - Konto</title>
+    <title>Rezepti</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">Globale Küchenreise</div>
+        <div class="logo"><a href = "http://localhost:8080">Rezepti</a></div>
         <nav>
             <ul>
                 <li><a href="recipes.html">Rezepte</a></li>
