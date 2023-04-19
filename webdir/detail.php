@@ -27,8 +27,11 @@ require 'common.php';
     </header>
     <main>
         <section class="hero">
-            <h1>Entdecke Rezepte aus der ganzen Welt und erlebe eine globale Küchenreise</h1>
-            <input type="search" placeholder="Suche nach Rezepten, Zutaten oder Ländern">
+            <form action="search.php" method="get">
+                <input type="search" name="search" id="search" placeholder="Suche nach Rezepten, Zutaten oder Ländern">
+                <input type="submit" value="Los">
+            </form>
+            <h1>Schmecke die Welt</h1>
         </section>
         <section class="recipe-detail-container">
             <center>
