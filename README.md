@@ -39,6 +39,7 @@ We want to make a recipe sharing platform.
 ## Eigene Features:
 - [ ] Tags und Ursprungsländer, vorschläge und suche dazu
 - [ ] Suche nach Rezepten
+- [ ] "Nutzer, die dieses Rezept sahen, sahen auch"
 
 # Documentation for Class (german)
 ## Kurzbeschreibung
@@ -55,3 +56,9 @@ Rezepti ist eine Sammlung von Rezepten, sortiert nach Zutaten, Ursprungsländern
 
 ## SCRUM Backlog
 -> siehe Github Project und issues list
+
+## Präsentation
+-> noch nicht notwendig
+
+## Abgabedatum
+-> Vermutlich zur letzten Vorlesung
