@@ -54,6 +54,7 @@
             </div>
             <div id="profile" class="profile-content" style="display: none;">
                 <h2>Willkommen, [Benutzername]!</h2>
+                <button id="createRecipeBtn">Neues Rezept erstellen</button>
                 <div id="newRecipeForm" class="form-content" style="display: none;">
     <form id="recipeForm">
         <label for="recipeTitle">Rezepttitel:</label>
