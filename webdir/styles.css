@@ -41,7 +41,7 @@ nav ul li a {
 }
 
 .hero {
-    background-image: url(img/img/hintirezi.png);
+    background-image: url(img/foods/hintirezi.png);
     background-repeat: no-repeat;
     background-size: cover;
     padding: 2rem;
@@ -63,9 +63,14 @@ input[type="search"] {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 2rem; /* Erhöhter Abstand zwischen Boxen */
+}
+
+.recipe-grid a {
+    display: grid;
     color: #000;
     text-decoration: none;
 }
+
 .recipe-card {
     background-color: #FFFFFF;
     border-radius: 5px;
@@ -76,17 +81,64 @@ input[type="search"] {
 }
 
 .recipe-card img {
-    height: auto;
-    max-width: 100%;
-    object-fit: cover;
+  height: 200px; /* Feste Höhe für Bilder */
+  width: 100%;
+  object-fit: cover;
 }
 
 .baggi{
-
-    background-image: url(img/hkoch.png);
+    background-image: url(hkoch.png);
     background-repeat: no-repeat;
     background-size: cover;
+}
 
+/* Konto-Seite Stile */
+.active {
+    font-weight: bold;
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 400px;
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #fc6508;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #e4550a;
 }
 
 .baggi{
@@ -213,6 +265,11 @@ input[type="submit"] {
     margin-top: 1rem;
     padding: 0.5rem;
     text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: black;
+    margin: 0 auto;
     width: 100%;
 }
 
