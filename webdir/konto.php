@@ -22,12 +22,13 @@
         <section class="account">
             <h1>Mein Konto</h1>
             <div class="account-choice">
+                <!--
                 <button class="choice-btn active-choice" id="loginChoice">Anmelden</button>
                 <button class="choice-btn" id="registerChoice">Registrieren</button>
             </div>
             <div class="form-container">
                 <div id="loginForm" class="form-content active-choice">
-                    <form><!--
+                    <form>
                         <label for="email">E-Mail-Adresse:</label>
                         <input type="email" id="email" name="email" required>
                         <br>
@@ -75,7 +76,7 @@
     </form>
 </div>
 
-         <button id="createRecipeBtn">Neues Rezept erstellen</button>
+ 
 
             </div>
         </section>
