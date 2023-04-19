@@ -66,6 +66,7 @@ input[type="search"] {
 }
 
 .recipe-grid a {
+    display: grid;
     color: #000;
     text-decoration: none;
 }
