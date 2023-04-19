@@ -39,6 +39,7 @@
                 </div>
                 <div id="registerForm" class="form-content">
                     <form>
+                        <!--
                         <label for="reg-email">E-Mail-Adresse:</label>
                         <input type="email" id="reg-email" name="reg-email" required>
                         <br>
@@ -49,7 +50,7 @@
                         <input type="password" id="reg-password-confirm" name="reg-password-confirm" required>
                         <br>
                         <input type="submit" value="Registrieren">
-                        <button id="createRecipeBtn">Neues Rezept erstellen</button>
+-->
                     </form>
                 </div>
             </div>
