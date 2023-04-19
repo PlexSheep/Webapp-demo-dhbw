@@ -18,22 +18,25 @@ else {
 $conn = new DatabaseConnection($ini_array);
 $result = $conn->query_database("SELECT `username`, `password` FROM `user_pass` WHERE `email` = '$email'");
 
-$data = $result -> fetch_object();
-$username = $data -> username;
-$dbPassword = $data -> password;
+if ($result -> num_rows > 0) {
+    $data = $result -> fetch_object();
+    $username = $data -> username;
+    $dbPassword = $data -> password;
+    //print_r($username);
+    //print_r($dbPassword);
 
-//print_r($username);
-//print_r($dbPassword);
-
-if(password_verify($password, $dbPassword)){
-    $_SESSION['MAIL'] = $email;
-    $_SESSION['USER'] = $username;
-    //print_r($_SESSION['USER']);
-    header('Location: /index.php');
-    //die();
+    if(password_verify($password, $dbPassword)){
+        $_SESSION['MAIL'] = $email;
+        $_SESSION['USER'] = $username;
+        //print_r($_SESSION['USER']);
+        header('Location: /index.php');
+        //die();
+    }
+    else {
+        header('Location: /auth/login.html');
+    }
 }
 else {
     header('Location: /auth/login.html');
 }
-
 ?>
