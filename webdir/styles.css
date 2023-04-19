@@ -62,13 +62,14 @@ input[type="search"] {
 .recipe-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: 1rem;
+    grid-gap: 2rem; /* Erhöhter Abstand zwischen Boxen */
 }
 
 .recipe-grid a {
     color: #000;
     text-decoration: none;
 }
+
 
 .recipe-card {
     background-color: #FFFFFF;
@@ -80,17 +81,64 @@ input[type="search"] {
 }
 
 .recipe-card img {
-    height: auto;
-    max-width: 100%;
-    object-fit: cover;
+  height: 200px; /* Feste Höhe für Bilder */
+  width: 100%;
+  object-fit: cover;
 }
 
 .baggi{
-
-    background-image: url(img/hkoch.png);
+    background-image: url(hkoch.png);
     background-repeat: no-repeat;
     background-size: cover;
+}
 
+/* Konto-Seite Stile */
+.active {
+    font-weight: bold;
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 400px;
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #fc6508;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #e4550a;
 }
 
 .recipe-detail-container {
