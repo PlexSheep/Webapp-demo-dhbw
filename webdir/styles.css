@@ -157,3 +157,7 @@ article {
 .score-inner img{
     max-width: 32px;
 }
+
+.search-results {
+    padding: 2rem;
+}
