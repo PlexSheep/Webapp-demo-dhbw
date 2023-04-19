@@ -160,8 +160,6 @@ article {
 
 .score-inner img{
     max-width: 32px;
-}
-=======
   height: 200px; /* Feste Höhe für Bilder */
   width: 100%;
   object-fit: cover;
@@ -221,4 +219,3 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #e4550a;
 }
->>>>>>> frontend-domme

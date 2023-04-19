@@ -5,7 +5,7 @@ We want to make a recipe sharing platform.
 
 # Technology Stack
 - PHP for Server Backend (requirement)
-- Bootstrap for CSS Framework (requirement)
+- Bootstrap for CSS Framework (requirement, verhandelbar?)
 - Nginx as Webserver
 - docker/podman for deployment
 - MariaDB (requirement)
@@ -22,8 +22,9 @@ We want to make a recipe sharing platform.
 - [ ] Verzeichnis- und Datenstruktur
 
 # Funktions Requirements
-- [ ] Sessionverwaltung
-- [ ] Login-Logout; automatisches Logout nach bestimmter Zeit
+## Vorgaben:
+- [X] Sessionverwaltung
+- [X] Login-Logout; automatisches Logout nach bestimmter Zeit
 - [ ] Admin-Bereich mit Useraccount-Verwaltung
 - [ ] Passwort-Verwaltung
 - [ ] Rechte-Verwaltung (Adminrechte-Userrechte)
@@ -35,3 +36,29 @@ We want to make a recipe sharing platform.
 - [ ] Meldungsfenster und Userbestätigungen mit jQuery und jQuery UI
 - [ ] Datenexport via JSON
 - [ ] Dynamische Menüstruktur mit responsive Webdesign
+## Eigene Features:
+- [ ] Tags und Ursprungsländer, vorschläge und suche dazu
+- [ ] Suche nach Rezepten
+- [ ] "Nutzer, die dieses Rezept sahen, sahen auch"
+
+# Documentation for Class (german)
+## Kurzbeschreibung
+Rezepti ist eine Sammlung von Rezepten, sortiert nach Zutaten, Ursprungsländern und vielem mehr.
+
+## Zielgruppenanalyse
+-> TODO
+
+## Kurze Beschreibung der geplanten Funkionalität
+-> siehe Funktions Requirements
+
+## Kurze Beschreibung der geplanten Technologien
+-> siehe Technology Stack
+
+## SCRUM Backlog
+-> siehe Github Project und issues list
+
+## Präsentation
+-> noch nicht notwendig
+
+## Abgabedatum
+-> Vermutlich zur letzten Vorlesung
