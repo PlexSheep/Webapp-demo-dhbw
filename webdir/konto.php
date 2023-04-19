@@ -49,6 +49,7 @@
                         <input type="password" id="reg-password-confirm" name="reg-password-confirm" required>
                         <br>
                         <input type="submit" value="Registrieren">
+                        <button id="createRecipeBtn">Neues Rezept erstellen</button>
                     </form>
                 </div>
             </div>
