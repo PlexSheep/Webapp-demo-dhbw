@@ -7,7 +7,7 @@ require 'common.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Globale Küchenreise</title>
+    <title>Rezepti</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
