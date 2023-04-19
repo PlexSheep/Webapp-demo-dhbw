@@ -27,6 +27,6 @@ if(($conn->query_database("SELECT `username` FROM `user_pass` WHERE `email` = '$
 $hash = password_hash($password, PASSWORD_ARGON2ID);
 $conn->query_database("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES ('$username', '$hash', '$email')"); 
 
-header('Location: /auth/login.html');
+header('Location: /konto.php');
 
 ?>

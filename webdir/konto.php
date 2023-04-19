@@ -27,23 +27,26 @@
             </div>
             <div class="form-container">
                 <div id="loginForm" class="form-content active-choice">
-                    <form>
+                    <form action="/auth/login.php" method="post">
                         <label for="email">E-Mail-Adresse:</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="MAIL" required>
                         <br>
                         <label for="password">Passwort:</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="PASS" required>
                         <br>
                         <input type="submit" value="Anmelden">
                     </form>
                 </div>
                 <div id="registerForm" class="form-content">
-                    <form>
+                    <form action="/auth/register.php" method="post">
+                        <label for="reg-user">Nutzername:</label>
+                        <input type="username" id="reg-email" name="USER" required>
+                        <br>
                         <label for="reg-email">E-Mail-Adresse:</label>
-                        <input type="email" id="reg-email" name="reg-email" required>
+                        <input type="email" id="reg-email" name="MAIL" required>
                         <br>
                         <label for="reg-password">Passwort:</label>
-                        <input type="password" id="reg-password" name="reg-password" required>
+                        <input type="password" id="reg-password" name="PASS" required>
                         <br>
                         <label for="reg-password-confirm">Passwort bestätigen:</label>
                         <input type="password" id="reg-password-confirm" name="reg-password-confirm" required>
@@ -119,6 +122,7 @@
         });
     }
 
+    /*
     const loginChoice = document.getElementById('loginChoice');
     const registerChoice = document.getElementById('registerChoice');
     const loginForm = document.getElementById('loginForm');
@@ -144,6 +148,7 @@
         choiceBtn.classList.add('active-choice');
         formContent.classList.add('active-choice');
     }
+    */
 </script>
 
 

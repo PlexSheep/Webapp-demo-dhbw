@@ -6,7 +6,7 @@ session_start();
 //print_r($_POST['MAIL']);
 //print_r($_POST['PASS']);
 
-if (isset($_POST['MAIL']) && isset($_POST['MAIL'])) {
+if (isset($_POST['MAIL']) && isset($_POST['PASS'])) {
     $email = $_POST['MAIL'];
     $password = $_POST['PASS'];
 }
@@ -37,6 +37,6 @@ if ($result -> num_rows > 0) {
     }
 }
 else {
-    header('Location: /auth/login.html');
+    header('Location: konto.php');
 }
 ?>
