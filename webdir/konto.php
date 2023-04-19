@@ -27,7 +27,7 @@
             </div>
             <div class="form-container">
                 <div id="loginForm" class="form-content active-choice">
-                    <form>
+                    <form><!--
                         <label for="email">E-Mail-Adresse:</label>
                         <input type="email" id="email" name="email" required>
                         <br>
@@ -39,7 +39,7 @@
                 </div>
                 <div id="registerForm" class="form-content">
                     <form>
-                        <!--
+                        
                         <label for="reg-email">E-Mail-Adresse:</label>
                         <input type="email" id="reg-email" name="reg-email" required>
                         <br>
