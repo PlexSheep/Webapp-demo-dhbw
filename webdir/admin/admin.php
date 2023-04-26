@@ -22,7 +22,20 @@ if (isset($_SESSION['USER'])) {
     echo "</tr>";
     echo "</table>";
 
+?>
 
+<body>
+    <div class="form-container">
+        <div style="display: block;" id="loginForm" class="form-content active-choice">
+            <form action="/admin/userDelete.php" method="post">
+                <label for="ID">User to delete:</label>
+                <input type="ID" id="ID" name="ID" required>
+                <input type="submit" value="Löschen">
+            </form>
+        </div>         
+</body>
+
+<?php
 }
 else {
     // Access control
