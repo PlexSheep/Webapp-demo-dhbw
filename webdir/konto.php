@@ -8,15 +8,7 @@
 </head>
 <body>
     <header>
-        <div class="logo"><a href = "http://localhost:8080">Rezepti</a></div>
-        <nav>
-            <ul>
-                <li><a href="recipes.html">Rezepte</a></li>
-                <li><a href="region.html">Regionen</a></li>
-                <li><a href="#">Zutaten</a></li>
-                <li><a href="konto.html" class="active">Konto</a></li>
-            </ul>
-        </nav>
+    <?php require 'templates/header.php' ?>
     </header>
     <main>
         <section class="account">
@@ -55,35 +47,30 @@
             <div id="profile" class="profile-content" style="display: none;">
                 <h2>Willkommen, [Benutzername]!</h2>
                 <div id="newRecipeForm" class="form-content" style="display: none;">
-    <form id="recipeForm">
-        <label for="recipeTitle">Rezepttitel:</label>
-        <input type="text" id="recipeTitle" name="recipeTitle" required>
-        <br>
-        <label for="recipeCountry">Land:</label>
-        <input type="text" id="recipeCountry" name="recipeCountry" required>
-        <br>
-        <label for="recipeIngredients">Zutaten:</label>
-        <textarea id="recipeIngredients" name="recipeIngredients" required></textarea>
-        <br>
-        <label for="recipeInstructions">Zubereitung:</label>
-        <textarea id="recipeInstructions" name="recipeInstructions" required></textarea>
-        <br>
-        <input type="submit" value="Rezept erstellen">
-    </form>
-</div>
-
-         <button id="createRecipeBtn">Neues Rezept erstellen</button>
-
+                    <form id="recipeForm">
+                        <label for="recipeTitle">Rezepttitel:</label>
+                        <input type="text" id="recipeTitle" name="recipeTitle" required>
+                        <br>
+                        <label for="recipeCountry">Land:</label>
+                        <input type="text" id="recipeCountry" name="recipeCountry" required>
+                        <br>
+                        <label for="recipeIngredients">Zutaten:</label>
+                        <textarea id="recipeIngredients" name="recipeIngredients" required></textarea>
+                        <br>
+                        <label for="recipeInstructions">Zubereitung:</label>
+                        <textarea id="recipeInstructions" name="recipeInstructions" required></textarea>
+                        <br>
+                        <input type="submit" value="Rezept erstellen">
+                    </form>
+                </div>
+             <button id="createRecipeBtn">Neues Rezept erstellen</button>
             </div>
         </section>
     </main>
     <footer>
-        <div class="footer-content">
-            <p>Impressum | Datenschutz | Nutzungsbedingungen</p>
-            <p>&copy; 2023 Globale Küchenreise. Alle Rechte vorbehalten.</p>
-        </div>
+    <?php require 'templates/footer.php' ?>
     </footer>
-<script>
+    <script>
     document.getElementById('createRecipeBtn').addEventListener('click', createRecipe);
 
     function createRecipe() {
@@ -144,6 +131,6 @@
         choiceBtn.classList.add('active-choice');
         formContent.classList.add('active-choice');
     }
-</script>
-
-
+    </script>
+</body>
+</html>
