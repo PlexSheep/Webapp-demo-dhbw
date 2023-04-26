@@ -31,12 +31,12 @@ require 'common.php';
         $conn = new DatabaseConnection($ini_array);
         // TODO FIXME PROBABLY VULNERABLE TO SQL INJECTION
         if ($_GET['search'] == "") {
-            $query = "SELECT * FROM recipies";  
+            $query = "SELECT * FROM recipie";  
         }
         else {
             // TODO make a query array, iterate over queries
             // TODO add partial string matching
-            $query = "SELECT * FROM recipies WHERE title ='". $_GET['search'] ."'";  
+            $query = "SELECT * FROM recipie WHERE title ='". $_GET['search'] ."'";  
             // TODO add country lookup
             // TODO add cooking components
         }

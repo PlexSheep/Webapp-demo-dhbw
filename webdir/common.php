@@ -54,7 +54,7 @@ class DatabaseConnection {
     }
 
     function get_country_by_id(int $id) {
-        $query = ("SELECT * FROM countries WHERE ID = " . $id);
+        $query = ("SELECT * FROM country WHERE ID = " . $id);
         $result = $this->connection->query($query);
         $return = $result->fetch_all(MYSQLI_ASSOC);
         if ($return) {
@@ -67,7 +67,7 @@ class DatabaseConnection {
     }
 
     function get_recepe_by_id(string $id) {
-        $query = ("SELECT * FROM recipies WHERE slug = \"" . $id . "\"");
+        $query = ("SELECT * FROM recipie WHERE slug = \"" . $id . "\"");
         $result = $this->connection->query($query);
         $return = $result->fetch_all(MYSQLI_ASSOC);
         if ($return) {

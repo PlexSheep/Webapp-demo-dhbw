@@ -26,7 +26,7 @@ session_start();
               const recipes = [
             <?php
                 $conn = new DatabaseConnection($ini_array);
-                $result = $conn->query_database("SELECT * FROM recipies");
+                $result = $conn->query_database("SELECT * FROM recipie");
                 $rows = $result->fetch_all(MYSQLI_ASSOC);
                 foreach ($rows as $row) {
                     echo "\t\t{
