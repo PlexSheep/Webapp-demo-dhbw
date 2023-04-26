@@ -1,0 +1,48 @@
+        {
+          title: 'Spaghetti Carbonara',
+          country: 'Italien',
+          imgUrl: 'carbonara.png',
+          description: 'Ein klassisches italienisches Pasta-Gericht mit Speck, Eiern und Parmesan.',
+        },
+        {
+          title: 'Sushi',
+          country: 'Japan',
+          imgUrl: 'sushi.png',
+          description: 'Eine japanische Spezialität, bei der Reis mit rohem Fisch, Meeresfrüchten und Gemüse kombiniert wird.',
+        },
+          {
+        title: 'Chili con Carne',
+        country: 'Mexiko',
+        imgUrl: 'chilli.png',
+        description: 'Ein herzhaftes Gericht aus Hackfleisch, Bohnen, Tomaten und Gewürzen, das perfekt zu Reis oder Tortilla-Chips passt.',
+        },
+        {
+        title: 'Paella',
+        country: 'Spanien',
+        imgUrl: 'paella.png',
+        description: 'Ein klassisches spanisches Reisgericht mit Meeresfrüchten, Hühnerfleisch, Chorizo und Gemüse, gekocht in einer großen flachen Pfanne.',
+        },
+        {
+        title: 'Ratatouille',
+        country: 'Frankreich',
+        imgUrl: 'ratatouille-rezept-b3.png',
+        description: 'Ein herzhaftes Gemüsegericht aus der französischen Provence, das aus Zucchini, Auberginen, Paprika, Tomaten und Zwiebeln besteht.',
+        },
+        {
+        title: 'Pad Thai',
+        country: 'Thailand',
+        imgUrl: 'padthai.png',
+        description: 'Ein beliebtes thailändisches Nudelgericht mit Reisnudeln, Eiern, Tofu, Garnelen oder Hühnchen, Bohnensprossen und einer süß-sauren Tamarindensauce.',
+        },
+        {
+        title: 'Tacos',
+        country: 'Mexiko',
+        imgUrl: 'tacos.png',
+        description: 'Kleine gefüllte Tortillas, gefüllt mit einer Vielzahl von Zutaten wie gegrilltem Fleisch, Bohnen, Käse, Gemüse und scharfen Saucen.',
+        },
+        {
+        title: 'Currywurst',
+        country: 'Deutschland',
+        imgUrl: 'currywurst.png',
+        description: 'Eine deutsche Fast-Food-Spezialität, die aus gebratenen oder gegrillten Würstchen besteht, die in Scheiben geschnitten und mit einer würzigen Ketchup-Curry-Sauce serviert werden.',
+        },
