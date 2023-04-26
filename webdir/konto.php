@@ -7,17 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo"><a href = "http://localhost:8080">Rezepti</a></div>
-        <nav>
-            <ul>
-                <li><a href="recipes.html">Rezepte</a></li>
-                <li><a href="region.html">Regionen</a></li>
-                <li><a href="#">Zutaten</a></li>
-                <li><a href="konto.html" class="active">Konto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php require 'templates/header.php' ?>
     <main>
         <section class="account">
             <h1>Mein Konto</h1>
