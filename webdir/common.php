@@ -49,6 +49,13 @@ class DatabaseConnection {
         $this->connection->close();
     }
 
+    function query_login($inEmail){
+        $stmt = $this-> connection -> prepare("SELECT `username`, `password` FROM `user_pass` WHERE email=?");
+        $stmt -> bind_param("s", $inEmail);
+        $stmt->execute();
+        return $stmt -> get_result();
+    }
+
     // query the db and display the result
     function query_database(string $query) {
         $result = $this->connection->query($query);

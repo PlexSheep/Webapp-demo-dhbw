@@ -1,9 +1,6 @@
 <?php
 require "../common.php";
 //require "jwt.php";
-require "../common.php";
-
-
 //print_r($_POST['MAIL']);
 //print_r($_POST['PASS']);
 
@@ -17,7 +14,9 @@ else {
 }
 
 $conn = new DatabaseConnection($ini_array);
-$result = $conn->query_database("SELECT `username`, `password` FROM `user_pass` WHERE `email` = '$email'");
+$result = $conn->query_login($email);
+
+//echo '<pre>'; print_r($result -> fetch_object()); echo '</pre>';
 
 if ($result -> num_rows > 0) {
     $data = $result -> fetch_object();
