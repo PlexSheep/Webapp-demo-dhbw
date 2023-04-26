@@ -1,7 +1,8 @@
 <?php
 require "../common.php";
 //require "jwt.php";
-session_start();
+require "../common.php";
+
 
 //print_r($_POST['MAIL']);
 //print_r($_POST['PASS']);

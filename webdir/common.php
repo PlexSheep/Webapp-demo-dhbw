@@ -4,6 +4,8 @@
  *
  */
 
+session_start();
+
 $ini_path = "php.ini";
 
 // Parse with sections
