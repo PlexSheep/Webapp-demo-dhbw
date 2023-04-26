@@ -37,6 +37,6 @@ if ($result -> num_rows > 0) {
     }
 }
 else {
-    header('Location: konto.php');
+    header('Location: /konto.php');
 }
 ?>
