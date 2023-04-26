@@ -12,18 +12,7 @@ require 'common.php';
 </head>
 <body>
     <header>
-        <div class="logo"><a href = "http://localhost:8080">Rezepti</a></div>
-        <nav>
-            <ul>
-                <li><a href="recipes.html">Rezepte</a></li>
-                <li><a href="region.html">Regionen</a></li>
-                <li><a href="#">Zutaten</a></li>
-                <li><a href="#">Konto</a></li>
-                <!-- TODO remove these links for the test environment for the final version! -->
-                <li><a href="test/index.php">Testpages</a></li>
-                <li><a href="http://localhost:8082">phpmyadmin</a></li>
-            </ul>
-        </nav>
+    <?php require 'templates/header.php' ?>
     </header>
     <main>
         <section class="hero">
@@ -81,10 +70,7 @@ require 'common.php';
         </section>
     </main>
     <footer>
-        <div class="footer-content">
-            <p>Impressum | Datenschutz | Nutzungsbedingungen</p>
-            <p>&copy; 2023 Globale Küchenreise. Alle Rechte vorbehalten.</p>
-        </div>
+    <?php require 'templates/footer.php' ?>
     </footer>
 </body>
 </html>

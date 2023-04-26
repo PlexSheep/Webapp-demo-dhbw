@@ -12,7 +12,9 @@ session_start();
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
     <?php require 'templates/header.php' ?>
+    </header>
     <main>
         <section class="hero">
             <form action="search.php" method="get">
@@ -28,10 +30,7 @@ session_start();
         </section>
     </main>
     <footer>
-        <div class="footer-content">
-            <p>Impressum | Datenschutz | Nutzungsbedingungen</p>
-            <p>&copy; 2023 Globale Küchenreise. Alle Rechte vorbehalten.</p>
-        </div>
+    <?php require 'templates/footer.php' ?>
     </footer>
     <script>
       const recipes = [

@@ -1,4 +1,3 @@
-    <header>
         <div class="logo"><a href = "http://localhost:8080">Rezepti</a></div>
         <nav>
             <ul>
@@ -11,4 +10,3 @@
                 <li><a href="http://localhost:8082">phpmyadmin</a></li>
             </ul>
         </nav>
-    </header>
