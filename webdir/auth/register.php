@@ -19,13 +19,18 @@ $email = $_POST['MAIL'];
 $username = $_POST['USER'];
 $password = $_POST['PASS'];
 
-if(($conn->query_database("SELECT `username` FROM `user_pass` WHERE `email` = '$email'") -> num_rows) >= 1){
+//query_database("SELECT `username` FROM `user_pass` WHERE `email` = '$email'")
+
+if(($conn-> query_login($email) -> num_rows) >= 1){
     print_r("User already exists");
     return -1;
 }
 
 $hash = password_hash($password, PASSWORD_ARGON2ID);
-$conn->query_database("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES ('$username', '$hash', '$email')"); 
+//$conn->query_database("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES ('$username', '$hash', '$email')"); 
+$stmt = $conn -> connection -> prepare("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES (?, ?, ?)");
+$stmt -> bind_param("sss", $username, $password, $email);
+$stmt->execute();
 
 header('Location: /konto.php');
 

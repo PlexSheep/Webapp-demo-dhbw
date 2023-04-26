@@ -58,6 +58,7 @@ if ($uploadOk == 0) {
     // add the file to the database, then upload.
     $conn = new DatabaseConnection($ini_array);
     $recipe = $conn->get_recepe_by_id($_POST['recipe']);
+    //TODO: SQLI?
     $query = "UPDATE `recipies` SET `image_path` = '" . $filename ."' WHERE `recipies`.`id` = '" . $recipe['id'] . "' ";
     $result = $conn->query_database($query);
     print_r($result);
