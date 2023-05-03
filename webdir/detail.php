@@ -5,34 +5,14 @@ require 'common.php';
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rezepti</title>
-    <link rel="stylesheet" href="styles.css">
+    <?php require 'templates/head.php' ?>
 </head>
 <body>
     <header>
-        <div class="logo"><a href = "http://localhost:8080">Rezepti</a></div>
-        <nav>
-            <ul>
-                <li><a href="recipes.html">Rezepte</a></li>
-                <li><a href="region.html">Regionen</a></li>
-                <li><a href="#">Zutaten</a></li>
-                <li><a href="#">Konto</a></li>
-                <!-- TODO remove these links for the test environment for the final version! -->
-                <li><a href="test/index.php">Testpages</a></li>
-                <li><a href="http://localhost:8082">phpmyadmin</a></li>
-            </ul>
-        </nav>
+    <?php require 'templates/header.php' ?>
     </header>
     <main>
-        <section class="hero">
-            <form action="search.php" method="get">
-                <input type="search" name="search" id="search" placeholder="Suche nach Rezepten, Zutaten oder Ländern">
-                <input type="submit" value="Los">
-            </form>
-            <h1>Schmecke die Welt</h1>
-        </section>
+        <?php require 'templates/hero.php' // load the search bar and so on ?>
         <section class="recipe-detail-container">
             <center>
                 <div class="recipe-detail-card">
@@ -81,10 +61,7 @@ require 'common.php';
         </section>
     </main>
     <footer>
-        <div class="footer-content">
-            <p>Impressum | Datenschutz | Nutzungsbedingungen</p>
-            <p>&copy; 2023 Globale Küchenreise. Alle Rechte vorbehalten.</p>
-        </div>
+    <?php require 'templates/footer.php' ?>
     </footer>
 </body>
 </html>

@@ -5,25 +5,11 @@ require 'common.php';
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Globale Küchenreise</title>
-    <link rel="stylesheet" href="styles.css">
+    <?php require 'templates/head.php' ?>
 </head>
 <body>
     <header>
-        <div class="logo"><a href = "http://localhost:8080">Rezepti</a></div>
-        <nav>
-            <ul>
-                <li><a href="recipes.html">Rezepte</a></li>
-                <li><a href="region.html">Regionen</a></li>
-                <li><a href="#">Zutaten</a></li>
-                <li><a href="#">Konto</a></li>
-                <!-- TODO remove these links for the test environment for the final version! -->
-                <li><a href="test/index.php">Testpages</a></li>
-                <li><a href="http://localhost:8082">phpmyadmin</a></li>
-            </ul>
-        </nav>
+    <?php require 'templates/header.php' ?>
     </header>
     <main>
         <section class="hero">
@@ -42,12 +28,12 @@ require 'common.php';
         $conn = new DatabaseConnection($ini_array);
         // TODO FIXME PROBABLY VULNERABLE TO SQL INJECTION
         if ($_GET['search'] == "") {
-            $query = "SELECT * FROM recipies";  
+            $query = "SELECT * FROM recipie";  
         }
         else {
             // TODO make a query array, iterate over queries
             // TODO add partial string matching
-            $query = "SELECT * FROM recipies WHERE title ='". $_GET['search'] ."'";  
+            $query = "SELECT * FROM recipie WHERE title ='". $_GET['search'] ."'";  
             // TODO add country lookup
             // TODO add cooking components
         }
@@ -119,10 +105,7 @@ require 'common.php';
         </section>
     </main>
     <footer>
-        <div class="footer-content">
-            <p>Impressum | Datenschutz | Nutzungsbedingungen</p>
-            <p>&copy; 2023 Globale Küchenreise. Alle Rechte vorbehalten.</p>
-        </div>
+    <?php require 'templates/footer.php' ?>
     </footer>
     <script>
       recipes = [
