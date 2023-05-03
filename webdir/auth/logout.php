@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+require "../common.php";
 
 if (isset($_SESSION['MAIL'])) {
     session_destroy();

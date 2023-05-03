@@ -1,7 +1,6 @@
 <?php
 // require the common.php stuff
 require 'common.php';
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="de">

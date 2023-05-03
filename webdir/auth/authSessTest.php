@@ -1,5 +1,6 @@
 <?php
-session_start();
+//session_start();
+require "../common.php";
 
 //print_r(hash('sha256', "admin"));
 //print_r($_SESSION['USER']);
