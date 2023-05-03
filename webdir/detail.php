@@ -21,6 +21,8 @@ require 'common.php';
                     // TODO FIXME THIS IS LIKELY VULNERABLE TO HTML INJECTION AND PROBABLY XSS ASWELL!!!
                     $conn = new DatabaseConnection($ini_array);
                     $result = $conn->get_recepe_by_id($_GET['recipe']);
+                    $ingridients = $conn -> query_ingridients($_GET['recipe']) -> get_result() -> fetch_all();
+                    echo '<pre>'; print_r($ingridients); echo '</pre>';
                     if ($result) {
                         echo "<h1>" . $result['title'] . "</h1>";
                         echo "<h4>" . $conn->get_country_by_id($result['country'])["name"] . "</h4>";
@@ -45,6 +47,20 @@ require 'common.php';
                            "<br>" . 
                             $score_meter . 
                             "</div></div>"; 
+                        //echo '<pre>'; print_r($ingridients -> get_result() -> fetch_all()); echo '</pre>';
+                        
+        echo "<table>";
+        echo "<tr>";
+        foreach ($ingridients as $key => $value) {
+            echo "<tr>";
+            echo "<td>$value[0]</td>";
+            echo "<td>$value[1]</td>";
+            echo "</tr>";
+        }
+        echo "</tr>";
+        echo "</table>";
+
+
                         echo "<form action=\"upload.php\" method=\"post\" enctype=\"multipart/form-data\">
                               Select image to upload:
                               <input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\">

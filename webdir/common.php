@@ -62,6 +62,18 @@ class DatabaseConnection {
         return $result;
     }
 
+    function query_ingridients(string $rec_id){
+        $stmt = $this-> connection -> prepare("SELECT `name`, `ingredient`.`description` 
+                                               FROM `ingredient`, `recipie_ingredient`, `recipie`  
+                                               WHERE ingredient.ID = recipie_ingredient.ingredigent 
+                                               AND recipie.ID = recipie_ingredient.recipie 
+                                               AND recipie.slug = ?"
+                                             );
+        $stmt -> bind_param("s", $rec_id);
+        $stmt->execute();
+        return $stmt;       
+    }
+
     function get_country_by_id(int $id) {
         $query = ("SELECT * FROM country WHERE ID = " . $id);
         $result = $this->connection->query($query);
