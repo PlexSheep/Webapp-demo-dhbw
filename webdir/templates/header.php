@@ -1,4 +1,7 @@
-        <div class="logo"><a href = "http://localhost:8080">Rezepti</a></div>
+        <div class="logo">
+            <img src="img/icons/rezepti.png"></img>
+            <a href = "http://localhost:8080">Rezepti</a>
+        </div>
         <nav>
             <ul>
                 <li><a href="recipes.html">Rezepte</a></li>
