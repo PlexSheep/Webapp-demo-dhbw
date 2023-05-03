@@ -23,13 +23,13 @@ require 'common.php';
         // TODO: FIXME PROBABLY VULNERABLE TO SQL INJECTION
         //TODO: yes
         if ($_GET['search'] == "") {
-            $stmt = $conn-> connection -> prepare("SELECT * FROM recipies");
+            $stmt = $conn-> connection -> prepare("SELECT * FROM recipie");
             $result = $stmt -> execute() -> get_result();  
         }
         else {
             // TODO make a query array, iterate over queries
             // TODO add partial string matching
-            $stmt = $conn-> connection -> prepare("SELECT * FROM recipies WHERE title = ?");
+            $stmt = $conn-> connection -> prepare("SELECT * FROM recipie WHERE title = ?");
             $stmt -> bind_param("s", $_GET['search']);
             $stmt->execute();
             $result = $stmt -> get_result();
