@@ -12,13 +12,7 @@ require 'common.php';
     <?php require 'templates/header.php' ?>
     </header>
     <main>
-        <section class="hero">
-            <form action="search.php" method="get">
-                <input type="search" name="search" id="search" placeholder="Suche nach Rezepten, Zutaten oder Ländern">
-                <input type="submit" value="Los">
-            </form>
-            <h1>Schmecke die Welt</h1>
-        </section>
+        <?php require 'templates/hero.php' // load the search bar and so on ?>
         <section class="search-results">
             <h2>Ergebnisse:</h2>
             <div class="recipe-grid" id="recipe-grid0">
