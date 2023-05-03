@@ -24,6 +24,12 @@ header {
     text-decoration: none;
 }
 
+.logo img {
+    width: 32px;
+    float: left;
+    margin: 4px;
+}
+
 nav ul {
     display: flex;
     list-style-type: none;
@@ -46,6 +52,15 @@ nav ul li a {
     background-size: cover;
     padding: 2rem;
     text-align: center;
+}
+
+.hero form {
+    float: right;
+    padding: 16px;
+}
+
+.hero h1 {
+    font-size: 300%;
 }
 
 input[type="search"] {
