@@ -29,8 +29,31 @@ require 'common.php';
         else {
             // TODO make a query array, iterate over queries
             // TODO add partial string matching
-            $stmt = $conn-> connection -> prepare("SELECT * FROM recipie WHERE title = ?");
-            $stmt -> bind_param("s", $_GET['search']);
+            /*
+SELECT * FROM `recipie` 
+WHERE title = "Ramen" OR 
+ID in (
+    SELECT recipie FROM recipie_ingedigent WHERE 
+    ingredigent in (SELECT ID FROM ingridigent WHERE name = "Ramen")
+) OR
+ID in (
+    SELECT recipie FROM recipie_category WHERE 
+    category in (SELECT ID FROM category WHERE name = "Ramen")
+);
+             */
+            $stmt = $conn-> connection -> prepare("
+SELECT * FROM `recipie` 
+WHERE title = ? OR 
+ID in (
+    SELECT recipie FROM recipie_ingedigent WHERE 
+    ingredigent in (SELECT ID FROM ingridigent WHERE name = ?)
+) OR
+ID in (
+    SELECT recipie FROM recipie_category WHERE 
+    category in (SELECT ID FROM category WHERE name = ?)
+);
+");
+            $stmt -> bind_param("sss", $_GET['search'], $_GET['search'], $_GET['search']);
             $stmt->execute();
             $result = $stmt -> get_result();
             //$query = "SELECT * FROM recipies WHERE title ='". $_GET['search'] ."'";  
