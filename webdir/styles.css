@@ -226,10 +226,9 @@ article {
 }
 
 .score-inner img{
-    max-width: 32px;
-  height: 200px; /* Feste Höhe für Bilder */
-  width: 100%;
+  max-width: 32px;
   object-fit: cover;
+  float: left;
 }
 
 .baggi{
