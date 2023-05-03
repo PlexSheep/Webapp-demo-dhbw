@@ -12,13 +12,7 @@ require 'common.php';
     <?php require 'templates/header.php' ?>
     </header>
     <main>
-        <section class="hero">
-            <form action="search.php" method="get">
-                <input type="search" name="search" id="search" placeholder="Suche nach Rezepten, Zutaten oder Ländern">
-                <input type="submit" value="Los">
-            </form>
-            <h1>Schmecke die Welt</h1>
-        </section>
+        <?php require 'templates/hero.php' // load the search bar and so on ?>
         <section class="search-results">
             <h2>Ergebnisse:</h2>
             <div class="recipe-grid" id="recipe-grid0">
@@ -29,14 +23,37 @@ require 'common.php';
         // TODO: FIXME PROBABLY VULNERABLE TO SQL INJECTION
         //TODO: yes
         if ($_GET['search'] == "") {
-            $stmt = $conn-> connection -> prepare("SELECT * FROM recipies");
+            $stmt = $conn-> connection -> prepare("SELECT * FROM recipie");
             $result = $stmt -> execute() -> get_result();  
         }
         else {
             // TODO make a query array, iterate over queries
             // TODO add partial string matching
-            $stmt = $conn-> connection -> prepare("SELECT * FROM recipies WHERE title = ?");
-            $stmt -> bind_param("s", $_GET['search']);
+            /*
+SELECT * FROM `recipie` 
+WHERE title = "Ramen" OR 
+ID in (
+    SELECT recipie FROM recipie_ingedigent WHERE 
+    ingredigent in (SELECT ID FROM ingridigent WHERE name = "Ramen")
+) OR
+ID in (
+    SELECT recipie FROM recipie_category WHERE 
+    category in (SELECT ID FROM category WHERE name = "Ramen")
+);
+             */
+            $stmt = $conn-> connection -> prepare("
+SELECT * FROM `recipie` 
+WHERE title = ? OR 
+ID in (
+    SELECT recipie FROM recipie_ingedigent WHERE 
+    ingredigent in (SELECT ID FROM ingridigent WHERE name = ?)
+) OR
+ID in (
+    SELECT recipie FROM recipie_category WHERE 
+    category in (SELECT ID FROM category WHERE name = ?)
+);
+");
+            $stmt -> bind_param("sss", $_GET['search'], $_GET['search'], $_GET['search']);
             $stmt->execute();
             $result = $stmt -> get_result();
             //$query = "SELECT * FROM recipies WHERE title ='". $_GET['search'] ."'";  
