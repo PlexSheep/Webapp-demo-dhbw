@@ -59,6 +59,7 @@ require 'common.php';
                 </div>
             </center>
         </section>
+        <?php require 'templates/featured-recipies.php' // show popular ?>
     </main>
     <footer>
     <?php require 'templates/footer.php' ?>
