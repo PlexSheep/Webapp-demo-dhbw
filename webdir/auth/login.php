@@ -1,12 +1,10 @@
 <?php
 require "../common.php";
 //require "jwt.php";
-session_start();
-
 //print_r($_POST['MAIL']);
 //print_r($_POST['PASS']);
 
-if (isset($_POST['MAIL']) && isset($_POST['MAIL'])) {
+if (isset($_POST['MAIL']) && isset($_POST['PASS'])) {
     $email = $_POST['MAIL'];
     $password = $_POST['PASS'];
 }
@@ -16,24 +14,29 @@ else {
 }
 
 $conn = new DatabaseConnection($ini_array);
-$result = $conn->query_database("SELECT `username`, `password` FROM `user_pass` WHERE `email` = '$email'");
+$result = $conn->query_login($email);
 
-$data = $result -> fetch_object();
-$username = $data -> username;
-$dbPassword = $data -> password;
+//echo '<pre>'; print_r($result -> fetch_object()); echo '</pre>';
 
-//print_r($username);
-//print_r($dbPassword);
+if ($result -> num_rows > 0) {
+    $data = $result -> fetch_object();
+    $username = $data -> username;
+    $dbPassword = $data -> password;
+    //print_r($username);
+    //print_r($dbPassword);
 
-if(password_verify($password, $dbPassword)){
-    $_SESSION['MAIL'] = $email;
-    $_SESSION['USER'] = $username;
-    //print_r($_SESSION['USER']);
-    header('Location: /index.php');
-    //die();
+    if(password_verify($password, $dbPassword)){
+        $_SESSION['MAIL'] = $email;
+        $_SESSION['USER'] = $username;
+        //print_r($_SESSION['USER']);
+        header('Location: /index.php');
+        //die();
+    }
+    else {
+        header('Location: /auth/login.html');
+    }
 }
 else {
-    header('Location: /auth/login.html');
+    header('Location: /konto.php');
 }
-
 ?>

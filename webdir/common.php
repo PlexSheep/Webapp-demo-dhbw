@@ -4,6 +4,8 @@
  *
  */
 
+session_start();
+
 $ini_path = "php.ini";
 
 // Parse with sections
@@ -45,6 +47,13 @@ class DatabaseConnection {
     // destructor
     function __destruct() {
         $this->connection->close();
+    }
+
+    function query_login(string $inEmail){
+        $stmt = $this-> connection -> prepare("SELECT `username`, `password` FROM `user_pass` WHERE email=?");
+        $stmt -> bind_param("s", $inEmail);
+        $stmt->execute();
+        return $stmt;
     }
 
     // query the db and display the result

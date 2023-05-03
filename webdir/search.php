@@ -20,19 +20,26 @@ require 'common.php';
             <br>
     <?php
         $conn = new DatabaseConnection($ini_array);
-        // TODO FIXME PROBABLY VULNERABLE TO SQL INJECTION
+        // TODO: FIXME PROBABLY VULNERABLE TO SQL INJECTION
+        //TODO: yes
         if ($_GET['search'] == "") {
-            $query = "SELECT * FROM recipie";  
+            $stmt = $conn-> connection -> prepare("SELECT * FROM recipies");
+            $result = $stmt -> execute() -> get_result();  
         }
         else {
             // TODO make a query array, iterate over queries
             // TODO add partial string matching
-            $query = "SELECT * FROM recipie WHERE title ='". $_GET['search'] ."'";  
+            $stmt = $conn-> connection -> prepare("SELECT * FROM recipies WHERE title = ?");
+            $stmt -> bind_param("s", $_GET['search']);
+            $stmt->execute();
+            $result = $stmt -> get_result();
+            //$query = "SELECT * FROM recipies WHERE title ='". $_GET['search'] ."'";  
             // TODO add country lookup
             // TODO add cooking components
         }
-        $result = $conn->query_database($query);
+        //$result = $conn->query_database($query);
         // TODO query all queries, join the arrays into a big atomic one.
+        //echo '<pre>'; print_r($result -> fetch_object()); echo '</pre>';
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         if ($rows) {
             echo "<script>recipes = [";
