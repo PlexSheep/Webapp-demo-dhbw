@@ -13,7 +13,7 @@ require 'common.php';
     </header>
     <main>
         <?php require 'templates/hero.php' // load the search bar and so on ?>
-        <section class="search-results">
+        <section class="recipes-cards-section ">
             <h2>Ergebnisse:</h2>
             <div class="recipe-grid" id="recipe-grid0">
             </div>
