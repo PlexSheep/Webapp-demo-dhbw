@@ -5,10 +5,7 @@ require 'common.php';
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Globale Küchenreise</title>
-    <link rel="stylesheet" href="styles.css">
+    <?php require 'templates/head.php' ?>
 </head>
 <body>
     <header>
@@ -31,12 +28,12 @@ require 'common.php';
         $conn = new DatabaseConnection($ini_array);
         // TODO FIXME PROBABLY VULNERABLE TO SQL INJECTION
         if ($_GET['search'] == "") {
-            $query = "SELECT * FROM recipies";  
+            $query = "SELECT * FROM recipie";  
         }
         else {
             // TODO make a query array, iterate over queries
             // TODO add partial string matching
-            $query = "SELECT * FROM recipies WHERE title ='". $_GET['search'] ."'";  
+            $query = "SELECT * FROM recipie WHERE title ='". $_GET['search'] ."'";  
             // TODO add country lookup
             // TODO add cooking components
         }

@@ -6,10 +6,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <a href="http://localhost:8080"><title>Rezepti</title></a>
-    <link rel="stylesheet" href="styles.css">
+    <?php require 'templates/head.php' ?>
 </head>
 <body>
     <header>
@@ -26,7 +23,7 @@ session_start();
               const recipes = [
             <?php
                 $conn = new DatabaseConnection($ini_array);
-                $result = $conn->query_database("SELECT * FROM recipies");
+                $result = $conn->query_database("SELECT * FROM recipie");
                 $rows = $result->fetch_all(MYSQLI_ASSOC);
                 foreach ($rows as $row) {
                     echo "\t\t{

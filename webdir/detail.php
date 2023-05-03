@@ -5,10 +5,7 @@ require 'common.php';
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rezepti</title>
-    <link rel="stylesheet" href="styles.css">
+    <?php require 'templates/head.php' ?>
 </head>
 <body>
     <header>
