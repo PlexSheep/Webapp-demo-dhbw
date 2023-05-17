@@ -21,7 +21,7 @@ $password = $_POST['PASS'];
 
 //query_database("SELECT `username` FROM `user_pass` WHERE `email` = '$email'")
 
-if(($conn-> query_login($email) -> num_rows) >= 1){
+if(($conn-> query_login($email) -> get_result() -> num_rows) >= 1){
     print_r("User already exists");
     return -1;
 }
