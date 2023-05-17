@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: May 03, 2023 at 02:04 PM
+-- Generation Time: May 17, 2023 at 02:09 PM
 -- Server version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- PHP Version: 8.1.18
 
@@ -135,14 +135,14 @@ INSERT INTO `recipie_category` (`ID`, `recipie`, `category`) VALUES
 CREATE TABLE `recipie_ingredient` (
   `ID` int(11) NOT NULL,
   `recipie` uuid NOT NULL,
-  `ingredigent` int(11) NOT NULL
+  `ingredient` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `recipie_ingredient`
 --
 
-INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredigent`) VALUES
+INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredient`) VALUES
 (1, '4e605ea3-dad7-11ed-9a45-0242ac130002', 1),
 (2, 'f4446ad6-dae7-11ed-89a6-0242ac150002', 1),
 (3, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1),
@@ -166,7 +166,8 @@ CREATE TABLE `user_pass` (
 --
 
 INSERT INTO `user_pass` (`ID`, `username`, `password`, `email`) VALUES
-(1, 'admin', '$argon2id$v=19$m=65536,t=4,p=1$bDA5S0JpVU9SUVVudFJWeA$2QDi4JZ2P9I33l0F166pxRfwvkC+eV4U3J0kUmBWg8o', 'admin@adm.de');
+(1, 'admin', '$argon2id$v=19$m=65536,t=4,p=1$bDA5S0JpVU9SUVVudFJWeA$2QDi4JZ2P9I33l0F166pxRfwvkC+eV4U3J0kUmBWg8o', 'admin@adm.de'),
+(10, 'test', '$argon2id$v=19$m=65536,t=4,p=1$Y211TmtmQW5xTGpiYXJ4NQ$5IL/WDyfETFvWEYLaSH7+qumSKxwXr/OnfPZ99qYtZo', 'test@t.de');
 
 --
 -- Indexes for dumped tables
@@ -211,7 +212,7 @@ ALTER TABLE `recipie_category`
 ALTER TABLE `recipie_ingredient`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `recipie` (`recipie`),
-  ADD KEY `ingredient` (`ingredigent`) USING BTREE;
+  ADD KEY `ingredient` (`ingredient`) USING BTREE;
 
 --
 -- Indexes for table `user_pass`
@@ -257,7 +258,7 @@ ALTER TABLE `recipie_ingredient`
 -- AUTO_INCREMENT for table `user_pass`
 --
 ALTER TABLE `user_pass`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
