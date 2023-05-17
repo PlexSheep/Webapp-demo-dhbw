@@ -34,6 +34,20 @@ if (isset($_SESSION['USER'])) {
             </form>
         </div>         
 </body>
+<body>
+    <div class="form-container">
+        <div style="display: block;" id="loginForm" class="form-content active-choice">
+            <form action="/admin/changePassword.php" method="post">
+                <label for="ID">User to update password:</label>
+                <input type="ID" id="ID" name="ID" required>
+                
+                <label for="ID">New Password:</label>
+                <input type="PASS" id="PASS" name="PASS" required>
+                
+                <input type="submit" value="Update Password">
+            </form>
+        </div>         
+</body>
 
 <?php
 }
