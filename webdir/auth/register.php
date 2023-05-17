@@ -29,7 +29,7 @@ if(($conn-> query_login($email) -> num_rows) >= 1){
 $hash = password_hash($password, PASSWORD_ARGON2ID);
 //$conn->query_database("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES ('$username', '$hash', '$email')"); 
 $stmt = $conn -> connection -> prepare("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES (?, ?, ?)");
-$stmt -> bind_param("sss", $username, $password, $email);
+$stmt -> bind_param("sss", $username, $hash, $email);
 $stmt->execute();
 
 header('Location: /konto.php');
