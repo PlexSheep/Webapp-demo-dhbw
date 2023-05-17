@@ -166,7 +166,7 @@ CREATE TABLE `user_pass` (
 --
 
 INSERT INTO `user_pass` (`ID`, `username`, `password`, `email`) VALUES
-(1, 'admin', '$argon2id$v=19$m=65536,t=4,p=1$bDA5S0JpVU9SUVVudFJWeA$2QDi4JZ2P9I33l0F166pxRfwvkC+eV4U3J0kUmBWg8o', 'admin');
+(1, 'admin', '$argon2id$v=19$m=65536,t=4,p=1$bDA5S0JpVU9SUVVudFJWeA$2QDi4JZ2P9I33l0F166pxRfwvkC+eV4U3J0kUmBWg8o', 'admin@adm.de');
 
 --
 -- Indexes for dumped tables
