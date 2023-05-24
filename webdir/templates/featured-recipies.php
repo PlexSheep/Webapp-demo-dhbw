@@ -1,5 +1,5 @@
         <section class="recipes-cards-section ">
-            <h2>Beliebte Rezepte</h2>
+            <h2 id="rezepte">Beliebte Rezepte</h2>
             <div class="recipe-grid" id="featured-recipies-grid">
             </div>
         </section>
