@@ -1,3 +1,7 @@
+<?php
+    die("alles kaputt");
+?>
+;
 ; This is the configuration file of the webapp
 ; It should not be accessible from outside, as it contains the credentials.
 ; For production, the credentials should be stored in a safer location.
