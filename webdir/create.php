@@ -46,18 +46,76 @@ if($_POST) {
                 <label for="tags">Tags:</label>
                 <input type="text" id="tags" placeholder="Tags" name="tags">
                 <label for="ingredient">Zutaten:</label>
-                <input type="text" id="ingredient" placeholder="Zutaten">
+                <input type="text" id="ingredient" placeholder="Zutaten" name="ingredient">
                 <label for="category">Kategorie:</label> 
-                <select>
-                    <option>test</option>
-                </select>
+                <input id="category" placeholder="Kategorie" name="category">
+                <div id="opetions-for-category" class="tagify-option-chooser"></div>
                 <input type="submit" value="Erstellen">
                 <script>
                     // The DOM element you wish to replace with Tagify
-                    var input = document.querySelector('input[name=tags]');
+                    var tags = document.querySelector('input[name=tags]');
+                    var ingredient = document.querySelector('input[name=ingredient]');
 
                     // initialize Tagify on the above input node reference
-                    new Tagify(input)
+                    new Tagify(tags)
+                    new Tagify(ingredient)
+
+                    var category = document.querySelector('input[name=category'),
+                    // init Tagify script on the above inputs
+                    tagify = new Tagify(category, {
+                    whitelist : [<?php 
+
+                        $conn = new DatabaseConnection($ini_array);
+
+                        $stmt = $conn-> connection -> prepare("SELECT * FROM category");
+                        $result = $stmt -> execute();
+                        $result = $stmt -> get_result();
+
+                        $rows = $result->fetch_all(MYSQLI_ASSOC);
+                        foreach ($rows as $row) {
+                            echo "\"" . $row['name'] . "\",";
+                        }
+                        ?>],
+                        dropdown: {
+                            position: "manual",
+                            maxItems: Infinity,
+                            enabled: 0,
+                            classname: "customSuggestionsList"
+                        },
+                        templates: {
+                            dropdownItemNoMatch() {
+                                return `<div class='empty'>Nothing Found</div>`;
+                            }
+                        },
+                        enforceWhitelist: true
+                    })
+
+                    tagify.on("dropdown:show", onSuggestionsListUpdate)
+                          .on("dropdown:hide", onSuggestionsListHide)
+                          .on('dropdown:scroll', onDropdownScroll)
+
+                    renderSuggestionsList()  // defined down below
+
+                    // ES2015 argument destructuring
+                    function onSuggestionsListUpdate({ detail:suggestionsElm }){
+                        console.log(  suggestionsElm  )
+                    }
+
+                    function onSuggestionsListHide(){
+                        console.log("hide dropdown")
+                    }
+
+                    function onDropdownScroll(e){
+                        console.log(e.detail)
+                      }
+
+                    // https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement
+                    function renderSuggestionsList(){
+                        tagify.dropdown.show() // load the list
+                        document.getElementById("opetions-for-category").appendChild(tagify.DOM.dropdown)
+                        console.log(document.getElementById("opetions-for-category"))
+                        //tagify.DOM.input.parentNode.appendChild(tagify.DOM.dropdown)
+                    }
                 </script>
             </form>
         </section>

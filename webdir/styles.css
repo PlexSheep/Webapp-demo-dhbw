@@ -293,3 +293,11 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #e4550a;
 }
+
+.tagify {
+    width: 200px;
+}
+
+.tagify-option-chooser {
+    width: 200px;
+}

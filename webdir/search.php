@@ -25,7 +25,8 @@ require 'common.php';
         //TODO: yes
         if ($_GET['search'] == "") {
             $stmt = $conn-> connection -> prepare("SELECT * FROM recipie");
-            $result = $stmt -> execute() -> get_result();  
+            $result = $stmt -> execute();
+            $result = $stmt -> get_result();
         }
         else {
             // TODO make a query array, iterate over queries
