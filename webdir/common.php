@@ -65,7 +65,7 @@ class DatabaseConnection {
     function query_ingridients(string $rec_id){
         $stmt = $this-> connection -> prepare("SELECT `name`, `ingredient`.`description` 
                                                FROM `ingredient`, `recipie_ingredient`, `recipie`  
-                                               WHERE ingredient.ID = recipie_ingredient.ingredigent 
+                                               WHERE ingredient.ID = recipie_ingredient.ingredient 
                                                AND recipie.ID = recipie_ingredient.recipie 
                                                AND recipie.slug = ?"
                                              );

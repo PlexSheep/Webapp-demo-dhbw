@@ -22,7 +22,7 @@ require 'common.php';
                     $conn = new DatabaseConnection($ini_array);
                     $result = $conn->get_recepe_by_id($_GET['recipe']);
                     $ingridients = $conn -> query_ingridients($_GET['recipe']) -> get_result() -> fetch_all();
-                    echo '<pre>'; print_r($ingridients); echo '</pre>';
+                    //echo '<pre>'; print_r($ingridients); echo '</pre>';
                     if ($result) {
                         echo "<h1>" . htmlspecialchars($result['title'] , ENT_QUOTES, 'UTF-8') . "</h1>";
                         echo "<h4>" . htmlspecialchars($conn->get_country_by_id($result['country'])["name"] , ENT_QUOTES, 'UTF-8') . "</h4>";
@@ -43,9 +43,9 @@ require 'common.php';
                             $score_meter = $score_meter . "<img src=\"img/icons/noscore.png\"></img> ";
                         }
                         echo "<div class=\"score\"><h4>Score</h4><br><div class=\"score-inner\">" . 
-                            htmlspecialchars($result['score'] , ENT_QUOTES, 'UTF-8') .
+                           $result['score'].
                            "<br>" . 
-                           htmlspecialchars($score_meter , ENT_QUOTES, 'UTF-8') . 
+                           $score_meter . 
                             "</div></div>"; 
                         //echo '<pre>'; print_r($ingridients -> get_result() -> fetch_all()); echo '</pre>';
                         
@@ -53,8 +53,8 @@ require 'common.php';
         echo "<tr>";
         foreach ($ingridients as $key => $value) {
             echo "<tr>";
-            echo "<td>htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8')</td>";
-            echo "<td>htmlspecialchars($value[1] , ENT_QUOTES, 'UTF-8')</td>";
+            echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
+            echo "<td>" . htmlspecialchars($value[1] , ENT_QUOTES, 'UTF-8') . "</td>";
             echo "</tr>";
         }
         echo "</tr>";
