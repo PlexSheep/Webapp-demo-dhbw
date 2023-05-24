@@ -4,7 +4,6 @@ define("rep", 1);
 require 'common.php';
 // process the form if it was sent
 if($_POST) {
-    print_r($_POST);
     // parse
     $tags = $_POST['tags'];
     $ingredient = $_POST['ingredient'];
@@ -30,11 +29,35 @@ $stmt -> bind_param("ssss",
     $country,
     $img_path,
     $_POST['description']
+
+    
+    $tmp = 3;
+
+    $conn = new DatabaseConnection($ini_array);
+    $stmt = $conn-> connection -> prepare("
+    INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) 
+    VALUES 
+    (
+        ?, 
+        ?, 
+        null, 
+        ?,
+        uuid(), 
+        '0', 
+        uuid()
+    )
+
+    ");
+    $stmt -> bind_param("sss", 
+    $_POST['name'],
+    $tmp,
+    $_POST['desc']
 );
 
     $result = $stmt -> execute();
     $result = $stmt -> get_result();
 
+    header("Location:".$_SERVER['HTTP_REFERER']);
     exit;
 }
 ?>
@@ -73,6 +96,9 @@ $stmt -> bind_param("ssss",
                 <label for="category">Kategorie:</label> 
                 <input id="category" placeholder="Kategorie" name="category">
                 <div id="opetions-for-category" class="tagify-option-chooser"></div>
+                <label for="country">Land:</label> 
+                <input id="country" placeholder="Land" name="country">
+                <div id="opetions-for-country" class="tagify-option-chooser"></div>
                 <input type="submit" value="Erstellen">
                 <script>
                     // The DOM element you wish to replace with Tagify
@@ -113,11 +139,45 @@ $stmt -> bind_param("ssss",
                         enforceWhitelist: true
                     })
 
+                    tagify.dropdown.show() // load the list
+                    document.getElementById("opetions-for-category").appendChild(tagify.DOM.dropdown)
+
+                    var country = document.querySelector('input[name=country'),
+                    // init Tagify script on the above inputs
+                    tagify = new Tagify(country, {
+                    whitelist : [<?php 
+
+                        $conn = new DatabaseConnection($ini_array);
+
+                        $stmt = $conn-> connection -> prepare("SELECT * FROM country");
+                        $result = $stmt -> execute();
+                        $result = $stmt -> get_result();
+
+                        $rows = $result->fetch_all(MYSQLI_ASSOC);
+                        foreach ($rows as $row) {
+                            echo "\"" . $row['name'] . "\",";
+                        }
+                        ?>],
+                        dropdown: {
+                            position: "manual",
+                            maxItems: Infinity,
+                            enabled: 0,
+                            classname: "customSuggestionsList"
+                        },
+                        templates: {
+                            dropdownItemNoMatch() {
+                                return `<div class='empty'>Nothing Found</div>`;
+                            }
+                        },
+                        enforceWhitelist: true
+                    })
+
                     tagify.on("dropdown:show", onSuggestionsListUpdate)
                           .on("dropdown:hide", onSuggestionsListHide)
                           .on('dropdown:scroll', onDropdownScroll)
 
-                    renderSuggestionsList()  // defined down below
+                    tagify.dropdown.show() // load the list
+                    document.getElementById("opetions-for-country").appendChild(tagify.DOM.dropdown)
 
                     // ES2015 argument destructuring
                     function onSuggestionsListUpdate({ detail:suggestionsElm }){
@@ -132,13 +192,6 @@ $stmt -> bind_param("ssss",
                         console.log(e.detail)
                       }
 
-                    // https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement
-                    function renderSuggestionsList(){
-                        tagify.dropdown.show() // load the list
-                        document.getElementById("opetions-for-category").appendChild(tagify.DOM.dropdown)
-                        console.log(document.getElementById("opetions-for-category"))
-                        //tagify.DOM.input.parentNode.appendChild(tagify.DOM.dropdown)
-                    }
                 </script>
             </form>
         </section>
