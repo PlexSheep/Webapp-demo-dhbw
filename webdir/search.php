@@ -31,7 +31,7 @@ require 'common.php';
             // TODO add partial string matching
             $stmt = $conn-> connection -> prepare("
 SELECT * FROM `recipie` 
-WHERE title = ? OR 
+WHERE title LIKE ? OR 
 ID in (
     SELECT recipie FROM recipie_ingedigent WHERE 
     ingredigent in (SELECT ID FROM ingridigent WHERE name = ?)
