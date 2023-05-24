@@ -9,7 +9,7 @@ if (!defined ("rep")) {
 
 session_start();
 
-$ini_path = "../php.ini.php";
+$ini_path = "php.ini";
 
 // Parse with sections
 $ini_array = parse_ini_file($ini_path, true);
