@@ -12,10 +12,25 @@ if($_POST) {
     
     $conn = new DatabaseConnection($ini_array);
     $stmt = $conn-> connection -> prepare("
-INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) VALUES ('title', '3', 'path', 'desc', uuid(), '0', 'uuid()')
+INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) 
+VALUES 
+(
+    'title', 
+    '3', 
+    'path', 
+    'desc', 
+    uuid(), 
+    '0', 
+    uuid()
+)
 
 ");
-    $stmt -> bind_param("sss", $_POST['search'], $_POST['search'], $_POST['search']);
+$stmt -> bind_param("ssss", 
+    $_POST['title'],
+    $country,
+    $img_path,
+    $_POST['description']
+);
 
     $result = $stmt -> execute();
     $result = $stmt -> get_result();
