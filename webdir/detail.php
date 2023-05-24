@@ -1,4 +1,5 @@
 <?php
+define("rep", 1);
 // require the common.php stuff
 require 'common.php';
 ?>

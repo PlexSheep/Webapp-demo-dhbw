@@ -1,4 +1,5 @@
 <?php
+define("rep", 1);
 require 'common.php';
 $target_dir = "img/useruploads/";
 // if the original image is foo.png, the uploaded name will be something like
