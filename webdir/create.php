@@ -10,7 +10,15 @@ if($_POST) {
     $ingredient = $_POST['ingredient'];
     $category = $_POST['category'];
     
-    //$conn = new DatabaseConnection($ini_array);
+    $conn = new DatabaseConnection($ini_array);
+    $stmt = $conn-> connection -> prepare("
+INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) VALUES ('title', '3', 'path', 'desc', uuid(), '0', 'uuid()')
+
+");
+    $stmt -> bind_param("sss", $_POST['search'], $_POST['search'], $_POST['search']);
+
+    $result = $stmt -> execute();
+    $result = $stmt -> get_result();
 
     exit;
 }
