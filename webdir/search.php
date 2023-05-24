@@ -24,23 +24,24 @@ require 'common.php';
         //TODO: yes
         if ($_GET['search'] == "") {
             $stmt = $conn-> connection -> prepare("SELECT * FROM recipie");
-            $result = $stmt -> execute() -> get_result();  
+            $stmt -> execute();
+            $result = $stmt -> get_result();
         }
         else {
             // TODO make a query array, iterate over queries
             // TODO add partial string matching
             $stmt = $conn-> connection -> prepare("
-SELECT * FROM `recipie` 
-WHERE title LIKE ? OR 
-ID in (
-    SELECT recipie FROM recipie_ingedigent WHERE 
-    ingredigent in (SELECT ID FROM ingridigent WHERE name = ?)
-) OR
-ID in (
-    SELECT recipie FROM recipie_category WHERE 
-    category in (SELECT ID FROM category WHERE name = ?)
-);
-");
+            SELECT * FROM `recipie` 
+            WHERE title LIKE ? OR 
+            ID in (
+                SELECT recipie FROM recipie_ingedigent WHERE 
+                ingredigent in (SELECT ID FROM ingridigent WHERE name = ?)
+            ) OR
+            ID in (
+                SELECT recipie FROM recipie_category WHERE 
+                category in (SELECT ID FROM category WHERE name = ?)
+            );
+            ")
             $stmt -> bind_param("sss", $_GET['search'], $_GET['search'], $_GET['search']);
             $stmt->execute();
             $result = $stmt -> get_result();
@@ -105,7 +106,7 @@ ID in (
 ";
         }
         else {
-            echo "<h1>Keine Rezepte für '" . $_GET['search'] . "' gefunden.</h1>";
+            echo "<h1>Keine Rezepte für '" . htmlspecialchars($_GET['search'], ENT_QUOTES, 'UTF-8') . "' gefunden.</h1>";
         }
 
     ?>

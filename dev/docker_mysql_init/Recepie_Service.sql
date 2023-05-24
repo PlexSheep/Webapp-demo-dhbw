@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Erstellungszeit: 26. Apr 2023 um 15:42
--- Server-Version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
--- PHP-Version: 8.1.17
+-- Generation Time: May 17, 2023 at 02:09 PM
+-- Server version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
+-- PHP Version: 8.1.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Datenbank: `Recepie_Service`
+-- Database: `Recepie_Service`
 --
 CREATE DATABASE IF NOT EXISTS `Recepie_Service` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `Recepie_Service`;
@@ -26,7 +26,7 @@ USE `Recepie_Service`;
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
@@ -35,7 +35,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`ID`, `name`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `category` (`ID`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `country`
+-- Table structure for table `country`
 --
 
 CREATE TABLE `country` (
@@ -54,7 +54,7 @@ CREATE TABLE `country` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `country`
+-- Dumping data for table `country`
 --
 
 INSERT INTO `country` (`ID`, `name`, `short_name`) VALUES
@@ -64,20 +64,20 @@ INSERT INTO `country` (`ID`, `name`, `short_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `ingridigent`
+-- Table structure for table `ingredient`
 --
 
-CREATE TABLE `ingridigent` (
+CREATE TABLE `ingredient` (
   `ID` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `ingridigent`
+-- Dumping data for table `ingredient`
 --
 
-INSERT INTO `ingridigent` (`ID`, `name`, `description`) VALUES
+INSERT INTO `ingredient` (`ID`, `name`, `description`) VALUES
 (1, 'Zwiebel', 'Zwiebel'),
 (2, 'Wasser', ''),
 (3, 'Müll', '');
@@ -85,7 +85,7 @@ INSERT INTO `ingridigent` (`ID`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `recipie`
+-- Table structure for table `recipie`
 --
 
 CREATE TABLE `recipie` (
@@ -99,7 +99,7 @@ CREATE TABLE `recipie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='stores the recipies';
 
 --
--- Daten für Tabelle `recipie`
+-- Dumping data for table `recipie`
 --
 
 INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) VALUES
@@ -110,7 +110,7 @@ INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `s
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `recipie_category`
+-- Table structure for table `recipie_category`
 --
 
 CREATE TABLE `recipie_category` (
@@ -120,7 +120,7 @@ CREATE TABLE `recipie_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `recipie_category`
+-- Dumping data for table `recipie_category`
 --
 
 INSERT INTO `recipie_category` (`ID`, `recipie`, `category`) VALUES
@@ -129,20 +129,20 @@ INSERT INTO `recipie_category` (`ID`, `recipie`, `category`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `recipie_ingedigent`
+-- Table structure for table `recipie_ingredient`
 --
 
-CREATE TABLE `recipie_ingedigent` (
+CREATE TABLE `recipie_ingredient` (
   `ID` int(11) NOT NULL,
   `recipie` uuid NOT NULL,
-  `ingredigent` int(11) NOT NULL
+  `ingredient` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `recipie_ingedigent`
+-- Dumping data for table `recipie_ingredient`
 --
 
-INSERT INTO `recipie_ingedigent` (`ID`, `recipie`, `ingredigent`) VALUES
+INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredient`) VALUES
 (1, '4e605ea3-dad7-11ed-9a45-0242ac130002', 1),
 (2, 'f4446ad6-dae7-11ed-89a6-0242ac150002', 1),
 (3, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1),
@@ -151,7 +151,7 @@ INSERT INTO `recipie_ingedigent` (`ID`, `recipie`, `ingredigent`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `user_pass`
+-- Table structure for table `user_pass`
 --
 
 CREATE TABLE `user_pass` (
@@ -162,43 +162,44 @@ CREATE TABLE `user_pass` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `user_pass`
+-- Dumping data for table `user_pass`
 --
 
 INSERT INTO `user_pass` (`ID`, `username`, `password`, `email`) VALUES
-(1, 'admin', '$argon2id$v=19$m=65536,t=4,p=1$bDA5S0JpVU9SUVVudFJWeA$2QDi4JZ2P9I33l0F166pxRfwvkC+eV4U3J0kUmBWg8o', 'admin');
+(1, 'admin', '$argon2id$v=19$m=65536,t=4,p=1$bDA5S0JpVU9SUVVudFJWeA$2QDi4JZ2P9I33l0F166pxRfwvkC+eV4U3J0kUmBWg8o', 'admin@adm.de'),
+(10, 'test', '$argon2id$v=19$m=65536,t=4,p=1$Y211TmtmQW5xTGpiYXJ4NQ$5IL/WDyfETFvWEYLaSH7+qumSKxwXr/OnfPZ99qYtZo', 'test@t.de');
 
 --
--- Indizes der exportierten Tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indizes für die Tabelle `category`
+-- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indizes für die Tabelle `country`
+-- Indexes for table `country`
 --
 ALTER TABLE `country`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indizes für die Tabelle `ingridigent`
+-- Indexes for table `ingredient`
 --
-ALTER TABLE `ingridigent`
+ALTER TABLE `ingredient`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indizes für die Tabelle `recipie`
+-- Indexes for table `recipie`
 --
 ALTER TABLE `recipie`
   ADD PRIMARY KEY (`id`),
   ADD KEY `country` (`country`);
 
 --
--- Indizes für die Tabelle `recipie_category`
+-- Indexes for table `recipie_category`
 --
 ALTER TABLE `recipie_category`
   ADD PRIMARY KEY (`ID`),
@@ -206,65 +207,65 @@ ALTER TABLE `recipie_category`
   ADD KEY `category` (`category`);
 
 --
--- Indizes für die Tabelle `recipie_ingedigent`
+-- Indexes for table `recipie_ingredient`
 --
-ALTER TABLE `recipie_ingedigent`
+ALTER TABLE `recipie_ingredient`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `recipie` (`recipie`),
-  ADD KEY `ingredigent` (`ingredigent`) USING BTREE;
+  ADD KEY `ingredient` (`ingredient`) USING BTREE;
 
 --
--- Indizes für die Tabelle `user_pass`
+-- Indexes for table `user_pass`
 --
 ALTER TABLE `user_pass`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT für exportierte Tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT für Tabelle `category`
+-- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT für Tabelle `country`
+-- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT für Tabelle `ingridigent`
+-- AUTO_INCREMENT for table `ingredient`
 --
-ALTER TABLE `ingridigent`
+ALTER TABLE `ingredient`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT für Tabelle `recipie_category`
+-- AUTO_INCREMENT for table `recipie_category`
 --
 ALTER TABLE `recipie_category`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT für Tabelle `recipie_ingedigent`
+-- AUTO_INCREMENT for table `recipie_ingredient`
 --
-ALTER TABLE `recipie_ingedigent`
+ALTER TABLE `recipie_ingredient`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT für Tabelle `user_pass`
+-- AUTO_INCREMENT for table `user_pass`
 --
 ALTER TABLE `user_pass`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Constraints der exportierten Tabellen
+-- Constraints for dumped tables
 --
 
 --
--- Constraints der Tabelle `recipie`
+-- Constraints for table `recipie`
 --
 ALTER TABLE `recipie`
   ADD CONSTRAINT `country` FOREIGN KEY (`country`) REFERENCES `country` (`ID`) ON DELETE SET NULL;
@@ -273,4 +274,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
