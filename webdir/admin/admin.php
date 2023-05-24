@@ -32,7 +32,29 @@ if (isset($_SESSION['USER'])) {
                 <input type="ID" id="ID" name="ID" required>
                 <input type="submit" value="Löschen">
             </form>
-        </div>         
+        </div>
+    </div>
+    <div class="form-container">
+        <div style="display: block;" id="loginForm" class="form-content active-choice">
+            <form action="/admin/changePassword.php" method="post">
+                <label for="ID">User to update password:</label>
+                <input type="ID" id="ID" name="ID" required>
+                
+                <label for="ID">New Password:</label>
+                <input type="PASS" id="PASS" name="PASS" required>
+                
+                <input type="submit" value="Update Password">
+            </form>
+        </div>
+    </div>
+    <div class="form-container">
+        <div style="display: block;" id="loginForm" class="form-content active-choice">
+            <form action="/admin/get_json.php" method="post">
+                <label for="ID">Export user data of ID:</label>
+                <input type="ID" id="ID" name="ID" required>
+            </form>
+        </div>
+    </div>
 </body>
 
 <?php
