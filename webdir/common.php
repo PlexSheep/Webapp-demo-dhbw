@@ -87,6 +87,13 @@ class DatabaseConnection {
         }
     }
 
+    function query_all_user_data(int $id){
+        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE ID=?");
+        $stmt -> bind_param("s", $id);
+        $stmt->execute();
+        return $stmt;
+    }
+
     function get_recepe_by_id(string $id) {
         $query = ("SELECT * FROM recipie WHERE slug = \"" . $id . "\"");
         $result = $this->connection->query($query);
