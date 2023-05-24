@@ -94,6 +94,14 @@ class DatabaseConnection {
         return $stmt;
     }
 
+    function query_all_user_data_email(String $id){
+        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ?");
+        $search = "%{$_POST['MAIL']}%";
+        $stmt -> bind_param("s", $search);
+        $stmt->execute();
+        return $stmt;
+    }
+
     function get_recepe_by_id(string $id) {
         $query = ("SELECT * FROM recipie WHERE slug = \"" . $id . "\"");
         $result = $this->connection->query($query);
