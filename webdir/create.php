@@ -9,28 +9,6 @@ if($_POST) {
     $ingredient = $_POST['ingredient'];
     $category = $_POST['category'];
     
-    $conn = new DatabaseConnection($ini_array);
-    $stmt = $conn-> connection -> prepare("
-INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) 
-VALUES 
-(
-    'title', 
-    '3', 
-    'path', 
-    'desc', 
-    uuid(), 
-    '0', 
-    uuid()
-)
-
-");
-$stmt -> bind_param("ssss", 
-    $_POST['title'],
-    $country,
-    $img_path,
-    $_POST['description']
-
-    
     $tmp = 3;
 
     $conn = new DatabaseConnection($ini_array);
