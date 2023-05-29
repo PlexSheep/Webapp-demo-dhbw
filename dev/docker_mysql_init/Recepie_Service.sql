@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Erstellungszeit: 29. Mai 2023 um 11:16
+-- Erstellungszeit: 29. Mai 2023 um 14:25
 -- Server-Version: 10.11.3-MariaDB-1:10.11.3+maria~ubu2204
 -- PHP-Version: 8.1.19
 
@@ -40,6 +40,8 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`ID`, `name`) VALUES
 (1, 'Ramen');
+(2, 'Nudeln');
+(3, 'Süßigkeiten');
 
 -- --------------------------------------------------------
 
@@ -60,27 +62,27 @@ CREATE TABLE `country` (
 INSERT INTO `country` (`ID`, `name`, `short_name`) VALUES
 (3, 'Deutschland', 'DE'),
 (4, 'Japan', 'JP');
+(5, 'Italien', 'IT');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `ingridigent`
+-- Tabellenstruktur für Tabelle `ingredient`
 --
 
-CREATE TABLE `ingridigent` (
+CREATE TABLE `ingredient` (
   `ID` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `description` text NOT NULL
+  `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `ingridigent`
+-- Daten für Tabelle `ingredient`
 --
 
-INSERT INTO `ingridigent` (`ID`, `name`, `description`) VALUES
-(1, 'Zwiebel', 'Zwiebel'),
-(2, 'Wasser', ''),
-(3, 'Müll', '');
+INSERT INTO `ingredient` (`ID`, `name`) VALUES
+(1, 'Zwiebel'),
+(2, 'Wasser'),
+(3, 'Müll'),
 
 -- --------------------------------------------------------
 
@@ -124,29 +126,41 @@ CREATE TABLE `recipie_category` (
 --
 
 INSERT INTO `recipie_category` (`ID`, `recipie`, `category`) VALUES
-(1, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1);
+(1, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1),
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `recipie_ingedigent`
+-- Tabellenstruktur für Tabelle `recipie_country`
 --
 
-CREATE TABLE `recipie_ingedigent` (
+CREATE TABLE `recipie_country` (
   `ID` int(11) NOT NULL,
   `recipie` uuid NOT NULL,
-  `ingredigent` int(11) NOT NULL
+  `country` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `recipie_ingredient`
+--
+
+CREATE TABLE `recipie_ingredient` (
+  `ID` int(11) NOT NULL,
+  `recipie` uuid NOT NULL,
+  `ingredient` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `recipie_ingedigent`
+-- Daten für Tabelle `recipie_ingredient`
 --
 
-INSERT INTO `recipie_ingedigent` (`ID`, `recipie`, `ingredigent`) VALUES
+INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredient`) VALUES
 (1, '4e605ea3-dad7-11ed-9a45-0242ac130002', 1),
 (2, 'f4446ad6-dae7-11ed-89a6-0242ac150002', 1),
 (3, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1),
-(4, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 2);
+(4, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 2),
 
 -- --------------------------------------------------------
 
@@ -160,6 +174,12 @@ CREATE TABLE `recipie_tag` (
   `tag` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Daten für Tabelle `recipie_tag`
+--
+
+INSERT INTO `recipie_tag` (`ID`, `recipie`, `tag`) VALUES
+
 -- --------------------------------------------------------
 
 --
@@ -170,6 +190,14 @@ CREATE TABLE `tag` (
   `ID` int(11) NOT NULL,
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `tag`
+--
+
+INSERT INTO `tag` (`ID`, `name`) VALUES
+(1, 'Scharf'),
+(2, 'Bitter'),
 
 -- --------------------------------------------------------
 
@@ -208,9 +236,9 @@ ALTER TABLE `country`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indizes für die Tabelle `ingridigent`
+-- Indizes für die Tabelle `ingredient`
 --
-ALTER TABLE `ingridigent`
+ALTER TABLE `ingredient`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -229,12 +257,30 @@ ALTER TABLE `recipie_category`
   ADD KEY `category` (`category`);
 
 --
--- Indizes für die Tabelle `recipie_ingedigent`
+-- Indizes für die Tabelle `recipie_country`
 --
-ALTER TABLE `recipie_ingedigent`
+ALTER TABLE `recipie_country`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indizes für die Tabelle `recipie_ingredient`
+--
+ALTER TABLE `recipie_ingredient`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `recipie` (`recipie`),
-  ADD KEY `ingredigent` (`ingredigent`) USING BTREE;
+  ADD KEY `ingredigent` (`ingredient`) USING BTREE;
+
+--
+-- Indizes für die Tabelle `recipie_tag`
+--
+ALTER TABLE `recipie_tag`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indizes für die Tabelle `tag`
+--
+ALTER TABLE `tag`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indizes für die Tabelle `user_pass`
@@ -259,22 +305,40 @@ ALTER TABLE `country`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT für Tabelle `ingridigent`
+-- AUTO_INCREMENT für Tabelle `ingredient`
 --
-ALTER TABLE `ingridigent`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `ingredient`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT für Tabelle `recipie_category`
 --
 ALTER TABLE `recipie_category`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT für Tabelle `recipie_ingedigent`
+-- AUTO_INCREMENT für Tabelle `recipie_country`
 --
-ALTER TABLE `recipie_ingedigent`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `recipie_country`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT für Tabelle `recipie_ingredient`
+--
+ALTER TABLE `recipie_ingredient`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT für Tabelle `recipie_tag`
+--
+ALTER TABLE `recipie_tag`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT für Tabelle `tag`
+--
+ALTER TABLE `tag`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT für Tabelle `user_pass`
