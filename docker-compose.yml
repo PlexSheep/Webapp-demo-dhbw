@@ -13,17 +13,6 @@ services:
       - internal
     volumes:
       - ./webdir:/var/www/html:z
-  #composer:
-    #image: composer/composer
-    #networks:
-    #  - internal
-    #ports:
-    #  - "127.0.0.1:9001:9000"
-    #volumes:
-     # - ./composer:/app:z
-    #container_name: composer.test
-    #user: 1000:1000
-    #command: ["composer", "install"]
   php:
     build:
       context: .
@@ -31,7 +20,6 @@ services:
     networks:
       - internal
     volumes:
-      - ./composer:/composer:z
       - ./webdir:/var/www/html:z
   db:
     image: mariadb
