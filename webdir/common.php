@@ -94,6 +94,20 @@ class DatabaseConnection {
         return $stmt;
     }
 
+    function query_all_user_data_email(String $id){
+        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ?");
+        $search = "{$_POST['MAIL']}%";
+        $stmt -> bind_param("s", $search);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    function create_category(){
+        $stmt = $conn -> connection -> prepare("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES (?, ?, ?)");
+        $stmt -> bind_param("sss", $username, $hash, $email);
+        $stmt->execute();
+    }
+
     function get_recepe_by_id(string $id) {
         $query = ("SELECT * FROM recipie WHERE slug = \"" . $id . "\"");
         $result = $this->connection->query($query);
