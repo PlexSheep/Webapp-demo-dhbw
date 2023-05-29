@@ -3,17 +3,15 @@ require "../common.php";
 
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER'] != "admin") {
-        http_response_code(403); 
+        http_response_code(403);
         exit;
     }
 
     $conn = new DatabaseConnection($ini_array);
-    if ($_POST['ID'] != 1) {
-        $result = $conn->query_database("DELETE FROM `user_pass` WHERE `user_pass`.`ID` =" . $_POST['ID']);  
-        echo "Deleted";  
-    }
-    else {
-        echo "No";
+    if (isset($_POST['NAME'])) {
+        $stmt = $conn -> connection -> prepare("INSERT INTO `category` (`name`) VALUES (?)");
+        $stmt -> bind_param("s", $_POST['NAME']);
+        $stmt->execute();
     }
 
 }

@@ -14,15 +14,16 @@ else {
 }
 
 $conn = new DatabaseConnection($ini_array);
-$result = $conn->query_login($email);
-
+//print_r($email);
+$result = $conn -> query_login($email) -> get_result();
+//print_r($result);
 //echo '<pre>'; print_r($result -> fetch_object()); echo '</pre>';
 
 if ($result -> num_rows > 0) {
     $data = $result -> fetch_object();
     $username = $data -> username;
     $dbPassword = $data -> password;
-    //print_r($username);
+    //($username);
     //print_r($dbPassword);
 
     if(password_verify($password, $dbPassword)){
@@ -33,10 +34,13 @@ if ($result -> num_rows > 0) {
         //die();
     }
     else {
+        $_SESSION['ERROR'] = "Invalid passowrd or username 1";
         header('Location: /auth/login.html');
     }
 }
 else {
+    //print_r($result);
+    $_SESSION['ERROR'] = "Invalid passowrd or username 2";
     header('Location: /konto.php');
 }
 ?>

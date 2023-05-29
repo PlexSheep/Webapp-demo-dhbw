@@ -48,6 +48,13 @@ require "common.php";
                         <input type="submit" value="Registrieren">
                     </form>
             </div>
+            <div>
+                <?php 
+                if (isset($_SESSION['ERROR'])) {
+                    echo($_SESSION['ERROR']);
+                }  
+                ?>
+            </div>
             <script>
                 var login = document.getElementById('loginForm');
                 var register = document.getElementById('registerForm');
