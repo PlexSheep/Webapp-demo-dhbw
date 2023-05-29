@@ -74,6 +74,16 @@ input[type="search"] {
     padding: 2rem;
 }
 
+.recipie-creator-container {
+    background-color: #F1F1F3;
+    padding: 2rem;
+}
+
+.recipie-creator-container #img-part {
+    position: absolute;
+    right: 2rem;
+}
+
 .recipe-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -282,4 +292,12 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #e4550a;
+}
+
+.tagify {
+    width: 200px;
+}
+
+.tagify-option-chooser {
+    width: 200px;
 }
