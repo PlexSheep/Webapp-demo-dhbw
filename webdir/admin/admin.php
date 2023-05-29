@@ -84,6 +84,20 @@ if (isset($_SESSION['USER'])) {
 
         });
         });
+
+     $(document).ready(function(){
+        $( "#cat" ).on( "submit", function( event ) {
+            event.preventDefault()
+            $.ajax({
+                type: "POST",
+                url: "/admin/add_category.php",
+                data: 'NAME=' + $("#NAME").val(),
+                success: function(data) {
+                    alert( "Category added" );
+                }
+                });
+            });
+        });
 </script>
 
 <!--<body> -->
@@ -118,10 +132,11 @@ if (isset($_SESSION['USER'])) {
         </div>
     </div>
     <div class="form-container">
-        <div style="display: block;" id="loginForm" class="form-content active-choice">
-            <form action="/admin/get_json.php" method="post">
-                <label for="ID">Enter name of new category</label>
-                <input type="ID" id="ID" name="ID" required>
+        <div style="display: block;" class="form-content active-choice">
+            <form id="cat">
+                <label for="ID">Enter name of new category: </label>
+                <input type="text" id="NAME" name="Name of category" required>
+                <input type="submit" value="add category">
             </form>
         </div>
     </div>

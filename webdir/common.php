@@ -102,6 +102,12 @@ class DatabaseConnection {
         return $stmt;
     }
 
+    function create_category(){
+        $stmt = $conn -> connection -> prepare("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES (?, ?, ?)");
+        $stmt -> bind_param("sss", $username, $hash, $email);
+        $stmt->execute();
+    }
+
     function get_recepe_by_id(string $id) {
         $query = ("SELECT * FROM recipie WHERE slug = \"" . $id . "\"");
         $result = $this->connection->query($query);
