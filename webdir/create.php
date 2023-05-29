@@ -6,23 +6,23 @@ require 'common.php';
 require 'upload.php';
 // process the form if it was sent
 if($_POST) {
-
+    if (
+        $_POST['name'] == NULL || 
+        $_POST['desc'] == NULL || 
+        $_POST['category'] == NULL || 
+        $_POST['ingredient'] == NULL || 
+        $_POST['tags'] == NULL || 
+        $_POST['country'] == NULL
+    ) {
+        http_response_code(400);
+        die("<br>Bad request.");
+    }
     // decode tagify json strings
     $categories = (array_column(json_decode($_POST['category']), 'value'));
     $ingredients = (array_column(json_decode($_POST['ingredient']), 'value'));
     $tags = (array_column(json_decode($_POST['tags']), 'value'));
     $country = (array_column(json_decode($_POST['country']), 'value'));
-    print_r($categories);
-    echo "<br>";
-    print_r($ingredients);
-    echo "<br>";
-    print_r($tags);
-    echo "<br>";
-    print_r($country);
-    echo "<br>";
     if (
-        $_POST['name'] == NULL || 
-        $_POST['desc'] == NULL || 
         $tags == NULL ||
         $ingredients == NULL ||
         $categories == NULL ||
