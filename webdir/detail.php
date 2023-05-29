@@ -1,4 +1,5 @@
 <?php
+define("rep", 1);
 // require the common.php stuff
 require 'common.php';
 ?>
@@ -17,7 +18,6 @@ require 'common.php';
             <center>
                 <div class="recipe-detail-card">
                 <?php 
-                    // TODO FIXME THIS IS LIKELY VULNERABLE TO SQL INJECTION!!!
                     // TODO FIXME THIS IS LIKELY VULNERABLE TO HTML INJECTION AND PROBABLY XSS ASWELL!!!
                     $conn = new DatabaseConnection($ini_array);
                     $result = $conn->get_recepe_by_id($_GET['recipe']);
@@ -37,7 +37,7 @@ require 'common.php';
                         // prepare the score images
                         $score_meter = " ";
                         for ($i = 0; $i < (int)$result['score']; $i++) {
-                            $score_meter = $score_meter . "<img src=\"img/icons/score.jpg\"></img> ";
+                            $score_meter = $score_meter . "<img  src=\"img/icons/score.jpg\"></img> ";
                         }
                         for ($i = 5; $i > (int)$result['score']; $i--) {
                             $score_meter = $score_meter . "<img src=\"img/icons/noscore.png\"></img> ";
@@ -54,7 +54,6 @@ require 'common.php';
         foreach ($ingridients as $key => $value) {
             echo "<tr>";
             echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
-            echo "<td>" . htmlspecialchars($value[1] , ENT_QUOTES, 'UTF-8') . "</td>";
             echo "</tr>";
         }
         echo "</tr>";

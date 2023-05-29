@@ -1,4 +1,5 @@
 <?php
+define("rep", 1);
 require "../common.php";
 //require "jwt.php";
 //print_r($_POST['MAIL']);

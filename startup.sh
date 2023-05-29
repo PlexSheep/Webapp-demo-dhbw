@@ -1,2 +1,4 @@
 #!/bin/bash
-docker compose down && docker volume prune && docker compose up -d --remove-orphans
+docker compose down
+docker compose up -d --remove-orphans
+docker compose logs -f

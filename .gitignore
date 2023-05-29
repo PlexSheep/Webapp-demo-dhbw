@@ -1,4 +1,3 @@
 mariadb/var/lib/mysql
-*.ini
 webdir/.env
 node_modules
