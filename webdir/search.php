@@ -32,16 +32,16 @@ require 'common.php';
             // TODO add partial string matching
             $stmt = $conn-> connection -> prepare("
             SELECT * FROM `recipie` 
-            WHERE title = ? OR 
+            WHERE title LIKE ? OR 
             ID in (
-                SELECT recipie FROM recipie_ingredient WHERE 
-                ingredient in (SELECT ID FROM `ingredient` WHERE name = ?)
+                SELECT recipie FROM recipie_ingedigent WHERE 
+                ingredigent in (SELECT ID FROM ingridigent WHERE name = ?)
             ) OR
             ID in (
                 SELECT recipie FROM recipie_category WHERE 
-                category in (SELECT ID FROM `category` WHERE name = ?)
+                category in (SELECT ID FROM category WHERE name = ?)
             );
-            ");
+            ")
             $stmt -> bind_param("sss", $_GET['search'], $_GET['search'], $_GET['search']);
             $stmt->execute();
             $result = $stmt -> get_result();

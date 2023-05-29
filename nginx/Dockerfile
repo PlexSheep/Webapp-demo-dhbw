@@ -5,4 +5,4 @@ WORKDIR /var/www/html
 
 RUN apk update
 RUN apk add npm
-RUN npm install jquery jquery-ui
+RUN npm install jquery jquery-ui @yaireo/tagify
