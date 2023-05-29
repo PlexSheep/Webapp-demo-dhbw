@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Erstellungszeit: 26. Apr 2023 um 15:42
--- Server-Version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
--- PHP-Version: 8.1.17
+-- Erstellungszeit: 29. Mai 2023 um 11:16
+-- Server-Version: 10.11.3-MariaDB-1:10.11.3+maria~ubu2204
+-- PHP-Version: 8.1.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -151,6 +151,29 @@ INSERT INTO `recipie_ingedigent` (`ID`, `recipie`, `ingredigent`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `recipie_tag`
+--
+
+CREATE TABLE `recipie_tag` (
+  `ID` int(11) NOT NULL,
+  `recipie` uuid NOT NULL,
+  `tag` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `tag`
+--
+
+CREATE TABLE `tag` (
+  `ID` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `user_pass`
 --
 
@@ -245,7 +268,7 @@ ALTER TABLE `ingridigent`
 -- AUTO_INCREMENT für Tabelle `recipie_category`
 --
 ALTER TABLE `recipie_category`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT für Tabelle `recipie_ingedigent`
@@ -273,4 +296,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
