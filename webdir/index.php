@@ -7,9 +7,9 @@ require_once 'common.php';
 <html lang="de">
 <head>
 
-    <?php require 'templates/head.php' ?>
+<?php require 'templates/head.php' ?>
 </head>
-<body  class="container-fluid">
+<body>
     <header>
     <?php require 'templates/header.php' ?>
     </header>
