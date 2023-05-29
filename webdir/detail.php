@@ -22,6 +22,8 @@ require 'common.php';
                     $conn = new DatabaseConnection($ini_array);
                     $result = $conn->get_recepe_by_id($_GET['recipe']);
                     $ingridients = $conn -> query_ingridients($_GET['recipe']) -> get_result() -> fetch_all();
+                    $categories = $conn -> query_categories($_GET['recipe']) -> get_result() -> fetch_all();
+                    $tags = $conn -> query_tags($_GET['recipe']) -> get_result() -> fetch_all();
                     //echo '<pre>'; print_r($ingridients); echo '</pre>';
                     if ($result) {
                         echo "<h1>" . htmlspecialchars($result['title'] , ENT_QUOTES, 'UTF-8') . "</h1>";
@@ -34,37 +36,55 @@ require 'common.php';
                         }
 
                         echo "<article>" . htmlspecialchars($result['description'] , ENT_QUOTES, 'UTF-8') . "</article>";
-                        // prepare the score images
-                        $score_meter = " ";
-                        for ($i = 0; $i < (int)$result['score']; $i++) {
-                            $score_meter = $score_meter . "<img  src=\"img/icons/score.jpg\"></img> ";
-                        }
-                        for ($i = 5; $i > (int)$result['score']; $i--) {
-                            $score_meter = $score_meter . "<img src=\"img/icons/noscore.png\"></img> ";
-                        }
-                        echo "<div class=\"score\"><h4>Score</h4><br><div class=\"score-inner\">" . 
-                           $result['score'].
-                           "<br>" . 
-                           $score_meter . 
-                            "</div></div>"; 
-                        //echo '<pre>'; print_r($ingridients -> get_result() -> fetch_all()); echo '</pre>';
                         
-        echo "<table>";
-        echo "<tr>";
-        foreach ($ingridients as $key => $value) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
-            echo "</tr>";
-        }
-        echo "</tr>";
-        echo "</table>";
+                        echo "<table class=\"ingredients infobox\">";
+                        echo "<caption>Zutaten</caption>";
+                        echo "<tr>";
+                        foreach ($ingridients as $key => $value) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
+                            echo "</tr>";
+                        }
+                        echo "</tr>";
+                        echo "</table>";
 
+                        echo "<table class=\"tags infobox\">";
+                        echo "<caption>Tags</caption>";
+                        echo "<tr>";
+                        foreach ($tags as $key => $value) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
+                            echo "</tr>";
+                        }
+                        echo "</tr>";
+                        echo "<caption>Kategorien</caption>";
+                        echo "</table>";
 
-                        echo "<form action=\"upload.php\" method=\"post\" enctype=\"multipart/form-data\">
-                              Select image to upload:
-                              <input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\">
-                              <input type=\"hidden\" name=\"recipe\" id=\"recipe\" value=\"" . $result['slug'] ."\">
-                              <input type=\"submit\"></form>";
+                        echo "<table class=\"categories infobox\">";
+                        echo "<caption>Kategorien</caption>";
+                        echo "<tr>";
+                        foreach ($categories as $key => $value) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
+                            echo "</tr>";
+                        }
+                        echo "</tr>";
+                        echo "</table>";
+
+                        //// prepare the score images
+                        //$score_meter = " ";
+                        //for ($i = 0; $i < (int)$result['score']; $i++) {
+                        //    $score_meter = $score_meter . "<img  src=\"img/icons/score.jpg\"></img> ";
+                        //}
+                        //for ($i = 5; $i > (int)$result['score']; $i--) {
+                        //    $score_meter = $score_meter . "<img src=\"img/icons/noscore.png\"></img> ";
+                        //}
+                        //echo "<div class=\"score\"><h4>Score</h4><br><div class=\"score-inner\">" . 
+                        //   $result['score'].
+                        //   "<br>" . 
+                        //   $score_meter . 
+                        //    "</div></div>"; 
+                        ////echo '<pre>'; print_r($ingridients -> get_result() -> fetch_all()); echo '</pre>';
                     }
                     else {
                         echo "<h3>Dieses Rezept konnte nicht gefunden werden.<br>:(</h3>";
