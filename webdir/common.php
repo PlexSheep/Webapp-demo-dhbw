@@ -77,6 +77,30 @@ class DatabaseConnection {
         return $stmt;       
     }
 
+    function query_tags(string $rec_id){
+        $stmt = $this-> connection -> prepare("SELECT `name`
+                                               FROM `tag`, `recipie_tag`, `recipie`  
+                                               WHERE tag.ID = recipie_tag.tag 
+                                               AND recipie.ID = recipie_tag.recipie 
+                                               AND recipie.slug = ?"
+                                             );
+        $stmt -> bind_param("s", $rec_id);
+        $stmt->execute();
+        return $stmt;       
+    }
+
+    function query_categories(string $rec_id){
+        $stmt = $this-> connection -> prepare("SELECT `name`
+                                               FROM `category`, `recipie_category`, `recipie`  
+                                               WHERE category.ID = recipie_category.category 
+                                               AND recipie.ID = recipie_category.recipie 
+                                               AND recipie.slug = ?"
+                                             );
+        $stmt -> bind_param("s", $rec_id);
+        $stmt->execute();
+        return $stmt;       
+    }
+
     function get_country_by_id(int $id) {
         $query = ("SELECT * FROM country WHERE ID = " . $id);
         $result = $this->connection->query($query);
