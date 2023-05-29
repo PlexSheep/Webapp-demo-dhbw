@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Erstellungszeit: 29. Mai 2023 um 14:25
+-- Erstellungszeit: 29. Mai 2023 um 14:41
 -- Server-Version: 10.11.3-MariaDB-1:10.11.3+maria~ubu2204
 -- PHP-Version: 8.1.19
 
@@ -82,7 +82,8 @@ CREATE TABLE `ingredient` (
 INSERT INTO `ingredient` (`ID`, `name`) VALUES
 (1, 'Zwiebel'),
 (2, 'Wasser'),
-(3, 'Müll');
+(3, 'Müll'),
+(8, 'Spaghetti Nudeln');
 
 -- --------------------------------------------------------
 
@@ -107,7 +108,8 @@ CREATE TABLE `recipie` (
 INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) VALUES
 ('Leitungswasser', 3, 'c3088096c996ba7286364497221155e5-1702189647_03d15f58b0_o.jpg', 'Leckeres Wasser aus der Leitung.Man öffne den Hahn und zapfe dieses exquisite Gut.', '4e605ea3-dad7-11ed-9a45-0242ac130002', 5, 'leitungswasser'),
 ('Zwiebelramen', 4, 'aa29a06b23357e9bb6d94bf4f11e863a-522_2PV2_Miso_Onion_Ramen_4.jpg', 'Zwiebelramen ist Ramen mit Zwiebeln.', 'd958a0b6-e446-11ed-9b5e-0242ac140005', 0, 'zwiebelramen'),
-('Müll', 3, 'd71bd869f724bd9bedb65b2490e1e1ee-mehr-muell-durch-corona-sel.jpg', 'Müll findet man überall, hat aber nicht so viel Nährwert.', 'f4446ad6-dae7-11ed-89a6-0242ac150002', 1.4, 'muell');
+('Müll', 3, 'd71bd869f724bd9bedb65b2490e1e1ee-mehr-muell-durch-corona-sel.jpg', 'Müll findet man überall, hat aber nicht so viel Nährwert.', 'f4446ad6-dae7-11ed-89a6-0242ac150002', 1.4, 'muell'),
+('Spaghetti mit Tomatensoße', 3, 'd03cefacf5fb4aae95e32a33f9e786d1-spaghetti-with-tomato-sauce.jpg', 'Die beste Form der Nudeln.', 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 0, 'bd76b524-fe2e-11ed-b25f-0242c0a87005');
 
 -- --------------------------------------------------------
 
@@ -126,7 +128,8 @@ CREATE TABLE `recipie_category` (
 --
 
 INSERT INTO `recipie_category` (`ID`, `recipie`, `category`) VALUES
-(1, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1);
+(1, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1),
+(24, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 2);
 
 -- --------------------------------------------------------
 
@@ -139,6 +142,13 @@ CREATE TABLE `recipie_country` (
   `recipie` uuid NOT NULL,
   `country` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `recipie_country`
+--
+
+INSERT INTO `recipie_country` (`ID`, `recipie`, `country`) VALUES
+(1, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 5);
 
 -- --------------------------------------------------------
 
@@ -160,7 +170,8 @@ INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredient`) VALUES
 (1, '4e605ea3-dad7-11ed-9a45-0242ac130002', 1),
 (2, 'f4446ad6-dae7-11ed-89a6-0242ac150002', 1),
 (3, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1),
-(4, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 2);
+(4, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 2),
+(69, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 8);
 
 -- --------------------------------------------------------
 
@@ -173,6 +184,14 @@ CREATE TABLE `recipie_tag` (
   `recipie` uuid NOT NULL,
   `tag` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `recipie_tag`
+--
+
+INSERT INTO `recipie_tag` (`ID`, `recipie`, `tag`) VALUES
+(12, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 12),
+(13, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 1);
 
 -- --------------------------------------------------------
 
@@ -191,7 +210,8 @@ CREATE TABLE `tag` (
 
 INSERT INTO `tag` (`ID`, `name`) VALUES
 (1, 'Scharf'),
-(2, 'Bitter');
+(2, 'Bitter'),
+(12, 'Spaghetti');
 
 -- --------------------------------------------------------
 
@@ -290,49 +310,49 @@ ALTER TABLE `user_pass`
 -- AUTO_INCREMENT für Tabelle `category`
 --
 ALTER TABLE `category`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `country`
 --
 ALTER TABLE `country`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT für Tabelle `ingredient`
 --
 ALTER TABLE `ingredient`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT für Tabelle `recipie_category`
 --
 ALTER TABLE `recipie_category`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT für Tabelle `recipie_country`
 --
 ALTER TABLE `recipie_country`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `recipie_ingredient`
 --
 ALTER TABLE `recipie_ingredient`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT für Tabelle `recipie_tag`
 --
 ALTER TABLE `recipie_tag`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT für Tabelle `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT für Tabelle `user_pass`
