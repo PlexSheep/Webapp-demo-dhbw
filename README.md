@@ -30,15 +30,15 @@ We want to make a recipe sharing platform.
 - [ ] Rechte-Verwaltung (Adminrechte-Userrechte)
 - [ ] Dateneingaben client- und serverseitig prüfen (RegExp)
 - [ ] Datensatzmanipulation in SQL-Server (speichern; auslesen/ausgeben; bearbeiten; löschen)
-- [ ] Konfigurationsdaten via Konfigurationsdatei einlesen
-- [ ] Einbindung von jQuery und jQuery UI
+- [X] Konfigurationsdaten via Konfigurationsdatei einlesen
+- [X] Einbindung von jQuery und jQuery UI
 - [ ] Dynamische laden/nachladen mit Hilfe von AJAX
 - [ ] Meldungsfenster und Userbestätigungen mit jQuery und jQuery UI
-- [ ] Datenexport via JSON
+- [X] Datenexport via JSON
 - [ ] Dynamische Menüstruktur mit responsive Webdesign
 ## Eigene Features:
 - [X] Tags und Ursprungsländer, vorschläge und suche dazu
-- [ ] Suche nach Rezepten
+- [X] Suche nach Rezepten
 - [ ] "Nutzer, die dieses Rezept sahen, sahen auch"
 
 # Documentation for Class (german)
