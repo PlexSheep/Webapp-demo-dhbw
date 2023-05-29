@@ -12,8 +12,8 @@ require "../common.php";
 </head>
 
 <?php
-if (isset($_SESSION['USER'])) {
-    if ($_SESSION['USER'] != "admin") {
+if (isset($_SESSION['ID'])) {
+    if ($_SESSION['ID'] != 1) {
         http_response_code(403); exit;
     }
 
@@ -38,7 +38,7 @@ if (isset($_SESSION['USER'])) {
         $.ajax({
             type: "POST",
             url: "/admin/get_user_data.php",
-            data: 'MAIL=' + $(this).val(),
+            data: 'ID=' + $(this).val(),
             beforeSend: function() {
                 $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
             },

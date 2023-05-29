@@ -27,7 +27,7 @@ if ($result -> num_rows > 0) {
     //print_r($dbPassword);
 
     if(password_verify($password, $dbPassword)){
-        $_SESSION['MAIL'] = $email;
+        $_SESSION['ID'] = $data -> ID;
         $_SESSION['USER'] = $username;
         //print_r($_SESSION['USER']);
         header('Location: /index.php');
