@@ -16,8 +16,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             foreach ($result as $user) {
                 ?>
     <li
-            onClick="selectCountry('<?php echo $user["username"]; ?>');">
-        <?php echo $user["username"]; ?>
+            onClick="selectCountry('<?php echo $user["username"].$user["ID"]?>');">
+        <?php echo $user["username"]." ID: ".$user["ID"]?>
         </li>
     <?php
             } // end for

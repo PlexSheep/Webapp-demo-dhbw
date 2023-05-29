@@ -96,7 +96,7 @@ class DatabaseConnection {
 
     function query_all_user_data_email(String $id){
         $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ?");
-        $search = "%{$_POST['MAIL']}%";
+        $search = "{$_POST['MAIL']}%";
         $stmt -> bind_param("s", $search);
         $stmt->execute();
         return $stmt;

@@ -1,3 +1,10 @@
-if (typeof jQuery != 'undefined' && /[1-9]\.[7-9].[1-9]/.test($.fn.jquery)) {
-    console.log("Jquery loaded")
-}
+$( "#delForm" ).on( "submit", function( event ) {
+alert( "Handler for `submit` called." );
+event.preventDefault();
+});
+
+$( "#other" ).on( "click", function() {
+$( "#target" ).trigger( "submit" );
+} );
+
+
