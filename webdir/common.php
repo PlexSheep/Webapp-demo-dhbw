@@ -90,5 +90,98 @@ class DatabaseConnection {
             return false;
         }
     }
+    function get_category_by_name(string $name) {
+        $stmt = $this -> connection -> prepare("
+        SELECT * FROM `category` WHERE name = ?;
+        ");
+        $stmt -> bind_param("s", 
+            $name,
+        );
+        $result = $stmt -> execute();
+        $result = $stmt -> get_result()->fetch_row();
+        if (!isset($result[0])) {
+            return NULL;
+        }
+        $stmt->close();
+        return $result;
+    }
+    function get_country_by_name(string $name) {
+        $stmt = $this -> connection -> prepare("
+        SELECT * FROM `country` WHERE name = ?;
+        ");
+        $stmt -> bind_param("s", 
+            $name,
+        );
+        $result = $stmt -> execute();
+        $result = $stmt -> get_result()->fetch_row();
+        if (!isset($result[0])) {
+            return NULL;
+        }
+        $stmt->close();
+        return $result;
+    }
+    function get_or_create_ingredient_by_name(string $name) {
+        $stmt = $this -> connection -> prepare("
+        SELECT * FROM `ingredient` WHERE name LIKE ?;
+        ");
+        $stmt -> bind_param("s", 
+            $name,
+        );
+        $result = $stmt -> execute();
+        $result = $stmt -> get_result()->fetch_row();
+        $stmt->close();
+        if (!isset($result[0])) {
+            // create tag
+            $stmt = $this -> connection -> prepare("
+                INSERT INTO `ingredient` (`ID`, `name`) VALUES (NULL, ?);
+            ");
+            $stmt -> bind_param("s", 
+                $name,
+            );
+            $result = $stmt -> execute();
+            $stmt->close();
+            $stmt = $this -> connection -> prepare("
+            SELECT * FROM `ingredient` WHERE name LIKE ?;
+            ");
+            $stmt -> bind_param("s", 
+                $name,
+            );
+            $result = $stmt -> execute();
+            $result = $stmt -> get_result()->fetch_row();
+        }
+        return $result;
+    }
+    function get_or_create_tag_by_name(string $name) {
+        $stmt = $this -> connection -> prepare("
+        SELECT * FROM `tag` WHERE name LIKE ?;
+        ");
+        $stmt -> bind_param("s", 
+            $name,
+        );
+        $result = $stmt -> execute();
+        $result = $stmt -> get_result()->fetch_row();
+        $stmt->close();
+        if (!isset($result[0])) {
+            // create tag
+            $stmt = $this -> connection -> prepare("
+                INSERT INTO `tag` (`ID`, `name`) VALUES (NULL, ?);
+            ");
+            $stmt -> bind_param("s", 
+                $name,
+            );
+            $result = $stmt -> execute();
+            $stmt->close();
+            $stmt = $this -> connection -> prepare("
+            SELECT * FROM `tag` WHERE name LIKE ?;
+            ");
+            $stmt -> bind_param("s", 
+                $name,
+            );
+            $result = $stmt -> execute();
+            $result = $stmt -> get_result()->fetch_row();
+            $stmt->close();
+        }
+        return $result;
+    }
 }
 ?>

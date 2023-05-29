@@ -39,8 +39,8 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`ID`, `name`) VALUES
-(1, 'Ramen');
-(2, 'Nudeln');
+(1, 'Ramen'),
+(2, 'Nudeln'),
 (3, 'Süßigkeiten');
 
 -- --------------------------------------------------------
@@ -61,7 +61,7 @@ CREATE TABLE `country` (
 
 INSERT INTO `country` (`ID`, `name`, `short_name`) VALUES
 (3, 'Deutschland', 'DE'),
-(4, 'Japan', 'JP');
+(4, 'Japan', 'JP'),
 (5, 'Italien', 'IT');
 
 -- --------------------------------------------------------
@@ -82,7 +82,7 @@ CREATE TABLE `ingredient` (
 INSERT INTO `ingredient` (`ID`, `name`) VALUES
 (1, 'Zwiebel'),
 (2, 'Wasser'),
-(3, 'Müll'),
+(3, 'Müll');
 
 -- --------------------------------------------------------
 
@@ -126,7 +126,7 @@ CREATE TABLE `recipie_category` (
 --
 
 INSERT INTO `recipie_category` (`ID`, `recipie`, `category`) VALUES
-(1, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1),
+(1, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1);
 
 -- --------------------------------------------------------
 
@@ -160,7 +160,7 @@ INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredient`) VALUES
 (1, '4e605ea3-dad7-11ed-9a45-0242ac130002', 1),
 (2, 'f4446ad6-dae7-11ed-89a6-0242ac150002', 1),
 (3, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1),
-(4, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 2),
+(4, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 2);
 
 -- --------------------------------------------------------
 
@@ -173,12 +173,6 @@ CREATE TABLE `recipie_tag` (
   `recipie` uuid NOT NULL,
   `tag` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Daten für Tabelle `recipie_tag`
---
-
-INSERT INTO `recipie_tag` (`ID`, `recipie`, `tag`) VALUES
 
 -- --------------------------------------------------------
 
@@ -197,7 +191,7 @@ CREATE TABLE `tag` (
 
 INSERT INTO `tag` (`ID`, `name`) VALUES
 (1, 'Scharf'),
-(2, 'Bitter'),
+(2, 'Bitter');
 
 -- --------------------------------------------------------
 

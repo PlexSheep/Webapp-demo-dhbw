@@ -2,38 +2,185 @@
 define("rep", 1);
 // require the common.php stuff
 require 'common.php';
+// include the upload function
+require 'upload.php';
 // process the form if it was sent
 if($_POST) {
-    // parse
-    $tags = $_POST['tags'];
-    $ingredient = $_POST['ingredient'];
-    $category = $_POST['category'];
-    
-    $tmp = 3;
 
+    // decode tagify json strings
+    $categories = (array_column(json_decode($_POST['category']), 'value'));
+    $ingredients = (array_column(json_decode($_POST['ingredient']), 'value'));
+    $tags = (array_column(json_decode($_POST['tags']), 'value'));
+    $country = (array_column(json_decode($_POST['country']), 'value'));
+    print_r($categories);
+    echo "<br>";
+    print_r($ingredients);
+    echo "<br>";
+    print_r($tags);
+    echo "<br>";
+    print_r($country);
+    echo "<br>";
+    if (
+        $_POST['name'] == NULL || 
+        $_POST['desc'] == NULL || 
+        $tags == NULL ||
+        $ingredients == NULL ||
+        $categories == NULL ||
+        count($categories) > 20 ||
+        $country == NULL ||
+        count($country) != 1
+    ) {
+        http_response_code(400);
+        die("<br>Bad request.");
+    }
+
+    if ((isset($_FILES['fileToUpload']['name'])) && (!$_FILES['fileToUpload']['tmp_name'] == NULL)) {
+        $filename = upload_img($_FILES);
+        if ($filename == "ERROR" || $filename == NULL) {
+            die("Upload of image broken.");
+        }
+    }
+    else {
+        $filename = NULL;
+    }
     $conn = new DatabaseConnection($ini_array);
-    $stmt = $conn-> connection -> prepare("
-    INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) 
-    VALUES 
-    (
-        ?, 
-        ?, 
-        null, 
-        ?,
-        uuid(), 
-        '0', 
-        uuid()
-    )
+    // get the uuid as a var, so we can use it after the initial thing is created to create its
+    // relationships.
+    $uuid = $conn ->query_database("SELECT UUID();")->fetch_row()[0];
 
+
+    $tmp = 3;
+    // create main entry
+    $stmt = $conn-> connection -> prepare("
+        INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) 
+        VALUES 
+        (
+            ?, 
+            ?, 
+            ?, 
+            ?, 
+            ?, 
+            '0', 
+            ?
+        );
     ");
-    $stmt -> bind_param("sss", 
-    $_POST['name'],
-    $tmp,
-    $_POST['desc']
-);
+    $stmt -> bind_param("ssssss", 
+        $_POST['name'],
+        $tmp,
+        $filename,
+        $_POST['desc'],
+        $uuid,
+        $uuid,
+    );
 
     $result = $stmt -> execute();
-    $result = $stmt -> get_result();
+
+    // map the category
+    foreach ($categories as $cat) {
+        $cat = $conn->get_category_by_name($cat);
+        if ($cat == NULL) {
+            die("category is null");
+        }
+        // cat[0] is the ID.
+        if (!isset($cat[0]) || $cat[0] == NULL) {
+            die("category broken");
+        }
+        $stmt = $conn-> connection -> prepare("
+            INSERT INTO `recipie_category` (`ID`, `recipie`, `category`)
+            VALUES 
+            (
+                NULL, 
+                ?, 
+                ?
+            );
+        ");
+        $stmt -> bind_param("ss", 
+            $uuid,
+            $cat[0]
+        );
+        $result = $stmt -> execute();
+        $stmt->close();
+    }
+
+
+    // map the ingredients
+    foreach ($ingredients as $ing) {
+        $ing = $conn->get_or_create_ingredient_by_name($ing);
+        if ($ing == NULL) {
+            die("ingredient is null");
+        }
+        // tag[0] is the ID.
+        if (!isset($ing[0]) || $ing[0] == NULL) {
+            die("tag broken");
+        }
+        $stmt = $conn-> connection -> prepare("
+            INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredient`)
+            VALUES 
+            (
+                NULL, 
+                ?, 
+                ?
+            );
+        ");
+        $stmt -> bind_param("ss", 
+            $uuid,
+            $ing[0]
+        );
+        $result = $stmt -> execute();
+        $stmt->close();
+    }
+
+    // map the tags
+    foreach ($tags as $tag) {
+        $tag = $conn->get_or_create_tag_by_name($tag);
+        if ($tag == NULL) {
+            die("tag is null");
+        }
+        // tag[0] is the ID.
+        if (!isset($tag[0]) || $tag[0] == NULL) {
+            die("tag broken");
+        }
+        $stmt = $conn-> connection -> prepare("
+            INSERT INTO `recipie_tag` (`ID`, `recipie`, `tag`)
+            VALUES 
+            (
+                NULL, 
+                ?, 
+                ?
+            );
+        ");
+        $stmt -> bind_param("ss", 
+            $uuid,
+            $tag[0]
+        );
+        $result = $stmt -> execute();
+        $stmt->close();
+    }
+
+    // map the country
+    $country = $conn->get_country_by_name($country[0]);
+    if ($country == NULL) {
+        die("country is null");
+    }
+    // country[0] is the ID.
+    if (!isset($country[0]) || $country[0] == NULL) {
+        die("country broken");
+    }
+    $stmt = $conn-> connection -> prepare("
+        INSERT INTO `recipie_country` (`ID`, `recipie`, `country`)
+        VALUES 
+        (
+            NULL, 
+            ?, 
+            ?
+        );
+    ");
+    $stmt -> bind_param("ss", 
+        $uuid,
+        $country[0]
+    );
+    $result = $stmt -> execute();
+    $stmt->close();
 
     header("Location:".$_SERVER['HTTP_REFERER']);
     exit;
@@ -54,13 +201,13 @@ if($_POST) {
     <main>
         <?php require 'templates/hero.php' // load the search bar and so on ?>
         <section class="recipie-creator-container">
-            <form method="post" action="create.php">
+            <form method="post" action="create.php" enctype="multipart/form-data">
                 <div id="img-part">
                     <label for="img-upload">Bild</label>
                     <br>
                     <img src="img/icons/empty_plate.jpg" alt="image broken"></img>
                     <br>
-                    <input type="file" name="img-upload" id="img-upload">
+                    <input type="file" name="fileToUpload" id="fileToUpload">
                 </div>
                 <h2>Rezept erstellen</h2>
                 <label for="name">Name</label>
@@ -90,18 +237,17 @@ if($_POST) {
                     var category = document.querySelector('input[name=category'),
                     // init Tagify script on the above inputs
                     tagify = new Tagify(category, {
-                    whitelist : [<?php 
+                        whitelist : [<?php 
+                            $conn = new DatabaseConnection($ini_array);
 
-                        $conn = new DatabaseConnection($ini_array);
+                            $stmt = $conn-> connection -> prepare("SELECT * FROM category");
+                            $result = $stmt -> execute();
+                            $result = $stmt -> get_result();
 
-                        $stmt = $conn-> connection -> prepare("SELECT * FROM category");
-                        $result = $stmt -> execute();
-                        $result = $stmt -> get_result();
-
-                        $rows = $result->fetch_all(MYSQLI_ASSOC);
-                        foreach ($rows as $row) {
-                            echo "\"" . $row['name'] . "\",";
-                        }
+                            $rows = $result->fetch_all(MYSQLI_ASSOC);
+                            foreach ($rows as $row) {
+                                echo "\"" . $row['name'] . "\",";
+                            }
                         ?>],
                         dropdown: {
                             position: "manual",
@@ -114,6 +260,7 @@ if($_POST) {
                                 return `<div class='empty'>Nothing Found</div>`;
                             }
                         },
+                        maxTags: 20,
                         enforceWhitelist: true
                     })
 
@@ -123,18 +270,17 @@ if($_POST) {
                     var country = document.querySelector('input[name=country'),
                     // init Tagify script on the above inputs
                     tagify = new Tagify(country, {
-                    whitelist : [<?php 
+                        whitelist : [<?php 
+                            $conn = new DatabaseConnection($ini_array);
 
-                        $conn = new DatabaseConnection($ini_array);
+                            $stmt = $conn-> connection -> prepare("SELECT * FROM country");
+                            $result = $stmt -> execute();
+                            $result = $stmt -> get_result();
 
-                        $stmt = $conn-> connection -> prepare("SELECT * FROM country");
-                        $result = $stmt -> execute();
-                        $result = $stmt -> get_result();
-
-                        $rows = $result->fetch_all(MYSQLI_ASSOC);
-                        foreach ($rows as $row) {
-                            echo "\"" . $row['name'] . "\",";
-                        }
+                            $rows = $result->fetch_all(MYSQLI_ASSOC);
+                            foreach ($rows as $row) {
+                                echo "\"" . $row['name'] . "\",";
+                            }
                         ?>],
                         dropdown: {
                             position: "manual",
@@ -147,6 +293,7 @@ if($_POST) {
                                 return `<div class='empty'>Nothing Found</div>`;
                             }
                         },
+                        maxTags: 1,
                         enforceWhitelist: true
                     })
 
