@@ -54,7 +54,6 @@ require 'common.php';
         foreach ($ingridients as $key => $value) {
             echo "<tr>";
             echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
-            echo "<td>" . htmlspecialchars($value[1] , ENT_QUOTES, 'UTF-8') . "</td>";
             echo "</tr>";
         }
         echo "</tr>";
