@@ -35,15 +35,29 @@ require 'common.php';
             SELECT * FROM `recipie` 
             WHERE title LIKE ? OR 
             ID in (
-                SELECT recipie FROM recipie_ingedigent WHERE 
-                ingredigent in (SELECT ID FROM ingridigent WHERE name = ?)
+                SELECT recipie FROM recipie_ingredient WHERE 
+                ingredient in (SELECT ID FROM ingredient WHERE name LIKE ?)
+            ) OR
+            ID in (
+                SELECT recipie FROM recipie_country WHERE 
+                country in (SELECT ID FROM country WHERE name LIKE ?)
+            ) OR
+            ID in (
+                SELECT recipie FROM recipie_tag WHERE 
+                tag in (SELECT ID FROM tag WHERE name LIKE ?)
             ) OR
             ID in (
                 SELECT recipie FROM recipie_category WHERE 
-                category in (SELECT ID FROM category WHERE name = ?)
+                category in (SELECT ID FROM category WHERE name LIKE ?)
             );
-            ")
-            $stmt -> bind_param("sss", $_GET['search'], $_GET['search'], $_GET['search']);
+            ");
+            $stmt -> bind_param("sssss", 
+                $_GET['search'], 
+                $_GET['search'], 
+                $_GET['search'], 
+                $_GET['search'], 
+                $_GET['search']
+            );
             $stmt->execute();
             $result = $stmt -> get_result();
             //$query = "SELECT * FROM recipies WHERE title ='". $_GET['search'] ."'";  
