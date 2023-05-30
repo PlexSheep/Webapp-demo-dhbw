@@ -1,10 +1,12 @@
 <?php
+define("rep", 1);
+
 require "../common.php";
 
 ?>
 
 <head>
-    <?php require 'templates/head.php' ?>
+    <?php require '../templates/head.php' ?>
 </head>
 
 <?php
@@ -34,7 +36,7 @@ if (isset($_SESSION['ID'])) {
         $.ajax({
             type: "POST",
             url: "/admin/get_user_data.php",
-            data: 'ID=' + $(this).val(),
+            data: 'MAIL=' + $(this).val(),
             beforeSend: function() {
                 $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
             },

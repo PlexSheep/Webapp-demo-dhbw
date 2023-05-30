@@ -122,7 +122,7 @@ class DatabaseConnection {
     }
 
     function query_all_user_data_email(){
-        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ?");
+        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ? LIMIT 10");
         $search = "{$_POST['MAIL']}%";
         $stmt -> bind_param("s", $search);
         $stmt->execute();

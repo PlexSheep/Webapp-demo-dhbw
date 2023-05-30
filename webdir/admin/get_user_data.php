@@ -1,12 +1,13 @@
 <?php
+define("rep", 1);
 
 require "../common.php";
 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(!empty($_POST['ID'])){
+    if(!empty($_POST['MAIL'])){
         $conn = new DatabaseConnection($ini_array);
-        $res = $conn -> query_all_user_data_email($_POST['ID']) -> get_result();
+        $res = $conn -> query_all_user_data_email($_POST['MAIL']) -> get_result();
         $result = $res -> fetch_all(MYSQLI_ASSOC);
         //echo '<pre>'; print_r($result); echo '</pre>';
         if (! empty($result)) {
