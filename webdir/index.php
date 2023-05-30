@@ -6,7 +6,6 @@ require_once 'common.php';
 <!DOCTYPE html>
 <html lang="de">
 <head>
-
 <?php require 'templates/head.php' ?>
 </head>
 <body>
