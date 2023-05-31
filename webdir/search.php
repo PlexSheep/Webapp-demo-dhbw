@@ -72,10 +72,10 @@ require 'common.php';
             echo "<script>recipes = [";
             foreach ($rows as $row) {
                 echo "\t\t{
-                  title: '" . $row['title'] ."',
+                  title: '" . htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') ."',
                   country: '" . $conn->get_country_by_id($row['country'])['name'] . "',
                   imgUrl: 'img/useruploads/" . $row['image_path'] ."',
-                  description: '" . $row['description'] . "',
+                  description: '" . htmlspecialchars($row['description'], ENT_QUOTES, 'UTF-8') . "',
                   id: '" . $row['id'] . "',
                   slug: '" . $row['slug'] . "',
                   score: '" . $row['score'] . "',
