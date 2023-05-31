@@ -1,3 +1,7 @@
+<?php 
+define("rep", 1);
+require "common.php"; 
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -6,7 +10,7 @@
     <title>Rezepti</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="container-fluid">
     <header>
         <div class="logo"><a href = "http://localhost:8080">Rezepti</a></div>
         <nav>
@@ -51,7 +55,62 @@
                         <input type="password" id="reg-password-confirm" name="reg-password-confirm" required>
                         <br>
                         <input type="submit" value="Registrieren">
--->
+                    </form>
+            </div>
+            <div>
+                <?php 
+                if (isset($_SESSION['ERROR'])) {
+                    echo($_SESSION['ERROR']);
+                }  
+                ?>
+            </div>
+            <script>
+                var login = document.getElementById('loginForm');
+                var register = document.getElementById('registerForm');
+                function toggleLogin() {
+                    console.log("Toggle: ");
+                    if (login.style.display === 'none') {
+                        console.log("visible");
+                        login.style.display = 'block';
+                        register.style.display = 'none'
+                    } else {
+                        console.log("invisible");
+                        login.style.display = 'none';
+                        register.style.display = 'block'
+                    }
+                }
+                function toggleReg() {
+                    console.log("Toggle: ");
+                    if (register.style.display === 'none') {
+                        console.log("visible");
+                        register.style.display = 'block';
+                        login.style.display = 'none';
+                    } else {
+                        console.log("invisible");
+                        register.style.display = 'none';
+                        login.style.display = 'block';
+                    }
+                }
+            </script>
+            </div>
+
+            <div id="profile" class="profile-content" style="display: none;">
+                <h2>Willkommen, [Benutzername]!</h2>
+                <div id="newRecipeForm" class="form-content" style="display: none;">
+                    <form id="recipeForm">
+                        <label for="recipeTitle">Rezepttitel:</label>
+                        <input type="text" id="recipeTitle" name="recipeTitle" required>
+                        <br>
+                        <label for="recipeCountry">Land:</label>
+                        <input type="text" id="recipeCountry" name="recipeCountry" required>
+                        <br>
+                        <label for="recipeIngredients">Zutaten:</label>
+                        <textarea id="recipeIngredients" name="recipeIngredients" required></textarea>
+                        <br>
+                        <label for="recipeInstructions">Zubereitung:</label>
+                        <textarea id="recipeInstructions" name="recipeInstructions" required></textarea>
+                        <br>
+                        <input type="submit" value="Rezept erstellen">
                     </form>
                 </div>
             </div>

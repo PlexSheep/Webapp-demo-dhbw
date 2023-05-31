@@ -1,9 +1,12 @@
 <?php
+if (!defined ("rep")) {
+    die("alles kaputt");
+}
 /*
  * This file contains common functionality found in many parts of the webapp.
  *
  */
-
+#
 session_start();
 
 $ini_path = "php.ini";
@@ -50,7 +53,7 @@ class DatabaseConnection {
     }
 
     function query_login(string $inEmail){
-        $stmt = $this-> connection -> prepare("SELECT `username`, `password` FROM `user_pass` WHERE email=?");
+        $stmt = $this-> connection -> prepare("SELECT `ID`, `username`, `password` FROM `user_pass` WHERE email=?");
         $stmt -> bind_param("s", $inEmail);
         $stmt->execute();
         return $stmt;
@@ -60,6 +63,42 @@ class DatabaseConnection {
     function query_database(string $query) {
         $result = $this->connection->query($query);
         return $result;
+    }
+
+    function query_ingridients(string $rec_id){
+        $stmt = $this-> connection -> prepare("SELECT `name`
+                                               FROM `ingredient`, `recipie_ingredient`, `recipie`  
+                                               WHERE ingredient.ID = recipie_ingredient.ingredient 
+                                               AND recipie.ID = recipie_ingredient.recipie 
+                                               AND recipie.slug = ?"
+                                             );
+        $stmt -> bind_param("s", $rec_id);
+        $stmt->execute();
+        return $stmt;       
+    }
+
+    function query_tags(string $rec_id){
+        $stmt = $this-> connection -> prepare("SELECT `name`
+                                               FROM `tag`, `recipie_tag`, `recipie`  
+                                               WHERE tag.ID = recipie_tag.tag 
+                                               AND recipie.ID = recipie_tag.recipie 
+                                               AND recipie.slug = ?"
+                                             );
+        $stmt -> bind_param("s", $rec_id);
+        $stmt->execute();
+        return $stmt;       
+    }
+
+    function query_categories(string $rec_id){
+        $stmt = $this-> connection -> prepare("SELECT `name`
+                                               FROM `category`, `recipie_category`, `recipie`  
+                                               WHERE category.ID = recipie_category.category 
+                                               AND recipie.ID = recipie_category.recipie 
+                                               AND recipie.slug = ?"
+                                             );
+        $stmt -> bind_param("s", $rec_id);
+        $stmt->execute();
+        return $stmt;       
     }
 
     function get_country_by_id(int $id) {
@@ -75,6 +114,27 @@ class DatabaseConnection {
         }
     }
 
+    function query_all_user_data(int $id){
+        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE ID=?");
+        $stmt -> bind_param("d", $id);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    function query_all_user_data_email(){
+        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ? LIMIT 10");
+        $search = "{$_POST['MAIL']}%";
+        $stmt -> bind_param("s", $search);
+        $stmt->execute();
+        return $stmt;
+    }
+
+    function create_category(){
+        $stmt = $conn -> connection -> prepare("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES (?, ?, ?)");
+        $stmt -> bind_param("sss", $username, $hash, $email);
+        $stmt->execute();
+    }
+
     function get_recepe_by_id(string $id) {
         $query = ("SELECT * FROM recipie WHERE slug = \"" . $id . "\"");
         $result = $this->connection->query($query);
@@ -86,6 +146,99 @@ class DatabaseConnection {
             // no result
             return false;
         }
+    }
+    function get_category_by_name(string $name) {
+        $stmt = $this -> connection -> prepare("
+        SELECT * FROM `category` WHERE name = ?;
+        ");
+        $stmt -> bind_param("s", 
+            $name,
+        );
+        $result = $stmt -> execute();
+        $result = $stmt -> get_result()->fetch_row();
+        if (!isset($result[0])) {
+            return NULL;
+        }
+        $stmt->close();
+        return $result;
+    }
+    function get_country_by_name(string $name) {
+        $stmt = $this -> connection -> prepare("
+        SELECT * FROM `country` WHERE name = ?;
+        ");
+        $stmt -> bind_param("s", 
+            $name,
+        );
+        $result = $stmt -> execute();
+        $result = $stmt -> get_result()->fetch_row();
+        if (!isset($result[0])) {
+            return NULL;
+        }
+        $stmt->close();
+        return $result;
+    }
+    function get_or_create_ingredient_by_name(string $name) {
+        $stmt = $this -> connection -> prepare("
+        SELECT * FROM `ingredient` WHERE name LIKE ?;
+        ");
+        $stmt -> bind_param("s", 
+            $name,
+        );
+        $result = $stmt -> execute();
+        $result = $stmt -> get_result()->fetch_row();
+        $stmt->close();
+        if (!isset($result[0])) {
+            // create tag
+            $stmt = $this -> connection -> prepare("
+                INSERT INTO `ingredient` (`ID`, `name`) VALUES (NULL, ?);
+            ");
+            $stmt -> bind_param("s", 
+                $name,
+            );
+            $result = $stmt -> execute();
+            $stmt->close();
+            $stmt = $this -> connection -> prepare("
+            SELECT * FROM `ingredient` WHERE name LIKE ?;
+            ");
+            $stmt -> bind_param("s", 
+                $name,
+            );
+            $result = $stmt -> execute();
+            $result = $stmt -> get_result()->fetch_row();
+        }
+        return $result;
+    }
+    function get_or_create_tag_by_name(string $name) {
+        $stmt = $this -> connection -> prepare("
+        SELECT * FROM `tag` WHERE name LIKE ?;
+        ");
+        $stmt -> bind_param("s", 
+            $name,
+        );
+        $result = $stmt -> execute();
+        $result = $stmt -> get_result()->fetch_row();
+        $stmt->close();
+        if (!isset($result[0])) {
+            // create tag
+            $stmt = $this -> connection -> prepare("
+                INSERT INTO `tag` (`ID`, `name`) VALUES (NULL, ?);
+            ");
+            $stmt -> bind_param("s", 
+                $name,
+            );
+            $result = $stmt -> execute();
+            $stmt->close();
+            $stmt = $this -> connection -> prepare("
+            SELECT * FROM `tag` WHERE name LIKE ?;
+            ");
+            $stmt -> bind_param("s", 
+                $name,
+            );
+            $result = $stmt -> execute();
+            $result = $stmt -> get_result()->fetch_row();
+            $stmt->close();
+        }
+        return $result;
     }
 }
 ?>

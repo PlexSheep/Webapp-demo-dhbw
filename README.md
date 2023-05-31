@@ -30,15 +30,15 @@ We want to make a recipe sharing platform.
 - [ ] Rechte-Verwaltung (Adminrechte-Userrechte)
 - [ ] Dateneingaben client- und serverseitig prüfen (RegExp)
 - [ ] Datensatzmanipulation in SQL-Server (speichern; auslesen/ausgeben; bearbeiten; löschen)
-- [ ] Konfigurationsdaten via Konfigurationsdatei einlesen
-- [ ] Einbindung von jQuery und jQuery UI
+- [X] Konfigurationsdaten via Konfigurationsdatei einlesen
+- [X] Einbindung von jQuery und jQuery UI
 - [ ] Dynamische laden/nachladen mit Hilfe von AJAX
 - [ ] Meldungsfenster und Userbestätigungen mit jQuery und jQuery UI
-- [ ] Datenexport via JSON
+- [X] Datenexport via JSON
 - [ ] Dynamische Menüstruktur mit responsive Webdesign
 ## Eigene Features:
-- [ ] Tags und Ursprungsländer, vorschläge und suche dazu
-- [ ] Suche nach Rezepten
+- [X] Tags und Ursprungsländer, vorschläge und suche dazu
+- [X] Suche nach Rezepten
 - [ ] "Nutzer, die dieses Rezept sahen, sahen auch"
 
 # Documentation for Class (german)
@@ -46,7 +46,8 @@ We want to make a recipe sharing platform.
 Rezepti ist eine Sammlung von Rezepten, sortiert nach Zutaten, Ursprungsländern und vielem mehr.
 
 ## Zielgruppenanalyse
--> TODO
+-> Jeder der Kochen kann und einen Webbrowser verwenden kann.
+-> Jeder der gerne neue Gerichte probiert.
 
 ## Kurze Beschreibung der geplanten Funkionalität
 -> siehe Funktions Requirements

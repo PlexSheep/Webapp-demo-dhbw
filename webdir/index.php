@@ -1,11 +1,12 @@
 <?php
 // require the common.php stuff
-require 'common.php';
+define("rep", 1);
+require_once 'common.php';
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <?php require 'templates/head.php' ?>
+<?php require 'templates/head.php' ?>
 </head>
 <body>
     <header>

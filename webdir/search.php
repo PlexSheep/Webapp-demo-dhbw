@@ -1,4 +1,5 @@
 <?php
+define("rep", 1);
 // require the common.php stuff
 require 'common.php';
 ?>
@@ -24,24 +25,39 @@ require 'common.php';
         //TODO: yes
         if ($_GET['search'] == "") {
             $stmt = $conn-> connection -> prepare("SELECT * FROM recipie");
-            $result = $stmt -> execute() -> get_result();  
+            $stmt -> execute();
+            $result = $stmt -> get_result();
         }
         else {
             // TODO make a query array, iterate over queries
             // TODO add partial string matching
             $stmt = $conn-> connection -> prepare("
-SELECT * FROM `recipie` 
-WHERE title = ? OR 
-ID in (
-    SELECT recipie FROM recipie_ingedigent WHERE 
-    ingredigent in (SELECT ID FROM ingridigent WHERE name = ?)
-) OR
-ID in (
-    SELECT recipie FROM recipie_category WHERE 
-    category in (SELECT ID FROM category WHERE name = ?)
-);
-");
-            $stmt -> bind_param("sss", $_GET['search'], $_GET['search'], $_GET['search']);
+            SELECT * FROM `recipie` 
+            WHERE title LIKE ? OR 
+            ID in (
+                SELECT recipie FROM recipie_ingredient WHERE 
+                ingredient in (SELECT ID FROM ingredient WHERE name LIKE ?)
+            ) OR
+            ID in (
+                SELECT recipie FROM recipie_country WHERE 
+                country in (SELECT ID FROM country WHERE name LIKE ?)
+            ) OR
+            ID in (
+                SELECT recipie FROM recipie_tag WHERE 
+                tag in (SELECT ID FROM tag WHERE name LIKE ?)
+            ) OR
+            ID in (
+                SELECT recipie FROM recipie_category WHERE 
+                category in (SELECT ID FROM category WHERE name LIKE ?)
+            );
+            ");
+            $stmt -> bind_param("sssss", 
+                $_GET['search'], 
+                $_GET['search'], 
+                $_GET['search'], 
+                $_GET['search'], 
+                $_GET['search']
+            );
             $stmt->execute();
             $result = $stmt -> get_result();
             //$query = "SELECT * FROM recipies WHERE title ='". $_GET['search'] ."'";  
@@ -105,7 +121,7 @@ ID in (
 ";
         }
         else {
-            echo "<h1>Keine Rezepte für '" . $_GET['search'] . "' gefunden.</h1>";
+            echo "<h1>Keine Rezepte für '" . htmlspecialchars($_GET['search'], ENT_QUOTES, 'UTF-8') . "' gefunden.</h1>";
         }
 
     ?>
