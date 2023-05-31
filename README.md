@@ -18,13 +18,13 @@ We want to make a recipe sharing platform.
 # Requirements
 - [ ] Dokumentation 
 - [ ] Referenzdokument
-- [ ] Product-Backlog
-- [ ] Verzeichnis- und Datenstruktur
+- [X] Product-Backlog
+- [X] Verzeichnis- und Datenstruktur
 
 # Funktions Requirements
 ## Vorgaben:
 - [X] Sessionverwaltung
-- [X] Login-Logout; automatisches Logout nach bestimmter Zeit
+- [ ] Login-Logout; automatisches Logout nach bestimmter Zeit
 - [X] Admin-Bereich mit Useraccount-Verwaltung
 - [X] Passwort-Verwaltung
 - [X] Rechte-Verwaltung (Adminrechte-Userrechte)
@@ -38,8 +38,7 @@ We want to make a recipe sharing platform.
 - [X] Dynamische Menüstruktur mit responsive Webdesign
 ## Eigene Features:
 - [X] Tags und Ursprungsländer, vorschläge und suche dazu
-- [X] Suche nach Rezepten
-- [ ] "Nutzer, die dieses Rezept sahen, sahen auch"
+- [ ] Suche nach Rezepten
 
 # Documentation for Class (german)
 ## Kurzbeschreibung
