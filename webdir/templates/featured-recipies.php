@@ -1,6 +1,6 @@
         <section class="recipes-cards-section ">
-            <h2 id="rezepte">Beliebte Rezepte</h2>
-            <div class="recipe-grid" id="featured-recipies-grid">
+            <h4 class="display-6">Beliebte Rezepte</h4>
+            <div class="recipe-grid container-fluid" id="featured-recipies-grid">
             </div>
         </section>
         <script>
