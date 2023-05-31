@@ -12,11 +12,11 @@ require 'common.php';
     <header>
     <?php require 'templates/header.php' ?>
     </header>
-    <main>
+    <main >
         <?php require 'templates/hero.php' // load the search bar and so on ?>
-        <section class="recipe-detail-container">
+        <section class="recipe-detail-container container-fluid">
             <center>
-                <div class="recipe-detail-card">
+                <div class="recipe-detail-card ">
                 <?php 
                     // TODO FIXME THIS IS LIKELY VULNERABLE TO HTML INJECTION AND PROBABLY XSS ASWELL!!!
                     $conn = new DatabaseConnection($ini_array);

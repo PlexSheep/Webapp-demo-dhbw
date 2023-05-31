@@ -51,12 +51,13 @@ require 'common.php';
                 category in (SELECT ID FROM category WHERE name LIKE ?)
             );
             ");
+            $search = "%{$_GET['search']}%";
             $stmt -> bind_param("sssss", 
-                $_GET['search'], 
-                $_GET['search'], 
-                $_GET['search'], 
-                $_GET['search'], 
-                $_GET['search']
+                $search, 
+                $search, 
+                $search, 
+                $search, 
+                $search
             );
             $stmt->execute();
             $result = $stmt -> get_result();

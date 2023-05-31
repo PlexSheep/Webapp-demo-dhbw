@@ -36,13 +36,13 @@ if ($result -> num_rows > 0) {
         //die();
     }
     else {
-        $_SESSION['ERROR'] = "Invalid passowrd or username 1";
+        $_SESSION['ERROR'] = "Invalid passowrd or username";
         header('Location: /konto.php');
     }
 }
 else {
     //print_r($result);
-    $_SESSION['ERROR'] = "Invalid passowrd or username 2";
+    $_SESSION['ERROR'] = "Invalid passowrd or username";
     header('Location: /konto.php');
 }
 ?>
