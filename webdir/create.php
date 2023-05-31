@@ -14,8 +14,7 @@ if($_POST) {
         $_POST['tags'] == NULL || 
         $_POST['country'] == NULL
     ) {
-        http_response_code(400);
-        die("<br>Bad request.");
+        exit_with_bad_request();
     }
     // decode tagify json strings
     $categories = (array_column(json_decode($_POST['category']), 'value'));
@@ -30,8 +29,7 @@ if($_POST) {
         $country == NULL ||
         count($country) != 1
     ) {
-        http_response_code(400);
-        die("<br>Bad request.");
+        exit_with_bad_request();
     }
 
     if ((isset($_FILES['fileToUpload']['name'])) && (!$_FILES['fileToUpload']['tmp_name'] == NULL)) {

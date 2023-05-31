@@ -241,4 +241,10 @@ class DatabaseConnection {
         return $result;
     }
 }
+
+function exit_with_bad_request() {
+    http_response_code(400);
+    die("<br>Bad request.");
+}
+
 ?>
