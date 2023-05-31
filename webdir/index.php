@@ -12,7 +12,7 @@ require_once 'common.php';
     <header>
     <?php require 'templates/header.php' ?>
     </header>
-    <main>
+    <main class="container-fluid">
         <?php require 'templates/hero.php' // load the search bar and so on ?>
         <?php require 'templates/featured-recipies.php' // show popular ?>
     </main>

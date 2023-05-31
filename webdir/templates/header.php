@@ -20,7 +20,7 @@
                     <!\-\- TODO remove these links for the test environment for the final version! \-\->
                     <?php
                     if(isset($_SESSION['ID'])){
-                        echo "<li class=\"nav-item\"><a href=\"../auth/logout.php\">Logout</a></li>";
+                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"../auth/logout.php\">Logout</a></li>";
 
                         if ($_SESSION['ID'] == 1){
                             echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"../admin/admin.php\">Admin</a></li>";

@@ -1,4 +1,5 @@
 <?php
+define("rep", 1);
 require "../common.php";
 
 if (isset($_SESSION['ID'])) {

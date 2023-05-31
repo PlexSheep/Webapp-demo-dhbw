@@ -36,7 +36,7 @@ if ($result -> num_rows > 0) {
     }
     else {
         $_SESSION['ERROR'] = "Invalid passowrd or username 1";
-        header('Location: /auth/login.html');
+        header('Location: /konto.php');
     }
 }
 else {
