@@ -247,4 +247,18 @@ function exit_with_bad_request() {
     die("<br>Bad request.");
 }
 
+function test_for_bad_chars(string $input) {
+    $RE_HTML_CHARS = '/(<.*>)|(&lt)|(&gt)/m';
+    $matches = preg_match_all($RE_HTML_CHARS, $input);
+    return ($matches > 0);
+}
+
+function test_for_bad_chars_array(array $input) {
+    $RE_HTML_CHARS = '/(<.*>)|(&lt)|(&gt)/m';
+    foreach ($input as $item) {
+    $matches = preg_match_all($RE_HTML_CHARS, $item);
+    }
+    return ($matches > 0);
+}
+
 ?>
