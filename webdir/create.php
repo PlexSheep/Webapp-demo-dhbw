@@ -32,12 +32,12 @@ if($_POST) {
         count($categories) > 20 ||
         $country == NULL ||
         count($country) != 1 ||
-        filter_var_array($categories, FILTER_SANITIZE_SPECIAL_CHARS) ||
-        filter_var_array($ingredients, FILTER_SANITIZE_SPECIAL_CHARS) ||
-        filter_var_array($tags, FILTER_SANITIZE_SPECIAL_CHARS) ||
-        filter_var_array($country, FILTER_SANITIZE_SPECIAL_CHARS) ||
-        filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS) ||
-        filter_var($_POST['desc'], FILTER_SANITIZE_SPECIAL_CHARS)
+        test_for_bad_chars_array($categories) ||
+        test_for_bad_chars_array($ingredients) ||
+        test_for_bad_chars_array($tags) ||
+        test_for_bad_chars_array($country) ||
+        test_for_bad_chars($_POST['name']) ||
+        test_for_bad_chars($_POST['desc'])
     ) {
         exit_with_bad_request();
     }
@@ -190,7 +190,8 @@ if($_POST) {
     $result = $stmt -> execute();
     $stmt->close();
 
-    header("Location:".$_SERVER['HTTP_REFERER']);
+    $url = '/detail.php?recipe=' . $uuid;
+    header("Location:". $url);
     exit;
 }
 ?>
