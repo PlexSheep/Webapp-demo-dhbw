@@ -187,7 +187,7 @@ if($_POST) {
     $stmt->close();
 
     $url = '/detail.php?recipe=' . $uuid;
-    header("Location:".$_SERVER[$url]);
+    header("Location:". $url);
     exit;
 }
 ?>
