@@ -5,6 +5,10 @@ require 'common.php';
 // include the upload function
 require 'upload.php';
 // process the form if it was sent
+
+if (!isset($_SESSION['ID'])){
+    header("Location: /konto.php");
+}
 if($_POST) {
     if (
         $_POST['name'] == NULL || 

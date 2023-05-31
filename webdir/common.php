@@ -9,6 +9,17 @@ if (!defined ("rep")) {
 #
 session_start();
 
+if(isset($_SESSION["ID"]))
+{
+    if(time()-$_SESSION["login_time_stamp"] > 1800)
+{
+    session_unset();
+    session_destroy();
+    header("Location: /index.php");
+}
+}
+
+
 $ini_path = "php.ini";
 
 // Parse with sections
@@ -33,7 +44,6 @@ class DatabaseConnection {
         $this->username = $ini_array["database"]["username"];
         $this->password = $ini_array["database"]["password"];
         $this->dbname = $ini_array["database"]["dbname"];
-
         // actually connect
         $this->connection = new mysqli(
             $this->servername, 
