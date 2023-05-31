@@ -30,6 +30,7 @@ if ($result -> num_rows > 0) {
     if(password_verify($password, $dbPassword)){
         $_SESSION['ID'] = $data -> ID;
         $_SESSION['USER'] = $username;
+        $_SESSION["login_time_stamp"] = time();
         //print_r($_SESSION['USER']);
         header('Location: /index.php');
         //die();
