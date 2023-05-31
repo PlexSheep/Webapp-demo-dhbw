@@ -27,7 +27,13 @@ if($_POST) {
         $categories == NULL ||
         count($categories) > 20 ||
         $country == NULL ||
-        count($country) != 1
+        count($country) != 1 ||
+        filter_var_array($categories, FILTER_SANITIZE_SPECIAL_CHARS) ||
+        filter_var_array($ingredients, FILTER_SANITIZE_SPECIAL_CHARS) ||
+        filter_var_array($tags, FILTER_SANITIZE_SPECIAL_CHARS) ||
+        filter_var_array($country, FILTER_SANITIZE_SPECIAL_CHARS) ||
+        filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS) ||
+        filter_var($_POST['desc'], FILTER_SANITIZE_SPECIAL_CHARS)
     ) {
         exit_with_bad_request();
     }
@@ -35,7 +41,7 @@ if($_POST) {
     if ((isset($_FILES['fileToUpload']['name'])) && (!$_FILES['fileToUpload']['tmp_name'] == NULL)) {
         $filename = upload_img($_FILES);
         if ($filename == "ERROR" || $filename == NULL) {
-            die("Upload of image broken.");
+            exit_with_bad_request();
         }
     }
     else {
@@ -77,11 +83,11 @@ if($_POST) {
     foreach ($categories as $cat) {
         $cat = $conn->get_category_by_name($cat);
         if ($cat == NULL) {
-            die("category is null");
+            exit_with_bad_request();
         }
         // cat[0] is the ID.
         if (!isset($cat[0]) || $cat[0] == NULL) {
-            die("category broken");
+            exit_with_bad_request();
         }
         $stmt = $conn-> connection -> prepare("
             INSERT INTO `recipie_category` (`ID`, `recipie`, `category`)
@@ -105,11 +111,11 @@ if($_POST) {
     foreach ($ingredients as $ing) {
         $ing = $conn->get_or_create_ingredient_by_name($ing);
         if ($ing == NULL) {
-            die("ingredient is null");
+            exit_with_bad_request();
         }
         // tag[0] is the ID.
         if (!isset($ing[0]) || $ing[0] == NULL) {
-            die("tag broken");
+            exit_with_bad_request();
         }
         $stmt = $conn-> connection -> prepare("
             INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredient`)
@@ -132,11 +138,11 @@ if($_POST) {
     foreach ($tags as $tag) {
         $tag = $conn->get_or_create_tag_by_name($tag);
         if ($tag == NULL) {
-            die("tag is null");
+            exit_with_bad_request();
         }
         // tag[0] is the ID.
         if (!isset($tag[0]) || $tag[0] == NULL) {
-            die("tag broken");
+            exit_with_bad_request();
         }
         $stmt = $conn-> connection -> prepare("
             INSERT INTO `recipie_tag` (`ID`, `recipie`, `tag`)
@@ -158,11 +164,11 @@ if($_POST) {
     // map the country
     $country = $conn->get_country_by_name($country[0]);
     if ($country == NULL) {
-        die("country is null");
+        exit_with_bad_request();
     }
     // country[0] is the ID.
     if (!isset($country[0]) || $country[0] == NULL) {
-        die("country broken");
+        exit_with_bad_request();
     }
     $stmt = $conn-> connection -> prepare("
         INSERT INTO `recipie_country` (`ID`, `recipie`, `country`)
