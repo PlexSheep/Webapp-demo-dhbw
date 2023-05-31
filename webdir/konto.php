@@ -26,7 +26,6 @@ require "common.php";
         <section class="account">
             <h1>Mein Konto</h1>
             <div class="account-choice">
-                <!--
                 <button class="choice-btn active-choice" id="loginChoice">Anmelden</button>
                 <button class="choice-btn" id="registerChoice">Registrieren</button>
             </div>
