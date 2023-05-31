@@ -8,7 +8,7 @@ require "common.php";
 <head>
     <?php require 'templates/head.php' ?>
 </head>
-<body>
+<body class="container-fluid">
     <header>
     <?php require 'templates/header.php' ?>
     </header>

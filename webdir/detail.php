@@ -6,7 +6,7 @@ require 'common.php';
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <?php require 'templates/head.php' ?>
+<?php require 'templates/head.php' ?>
 </head>
 <body>
     <header>

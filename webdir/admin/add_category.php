@@ -1,8 +1,10 @@
 <?php
+define("rep", 1);
+
 require "../common.php";
 
-if (isset($_SESSION['USER'])) {
-    if ($_SESSION['USER'] != "admin") {
+if (isset($_SESSION['ID'])) {
+    if ($_SESSION['ID'] != 1) {
         http_response_code(403);
         exit;
     }

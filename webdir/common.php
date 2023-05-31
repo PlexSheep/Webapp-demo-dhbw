@@ -6,7 +6,7 @@ if (!defined ("rep")) {
  * This file contains common functionality found in many parts of the webapp.
  *
  */
-
+#
 session_start();
 
 $ini_path = "php.ini";
@@ -53,7 +53,7 @@ class DatabaseConnection {
     }
 
     function query_login(string $inEmail){
-        $stmt = $this-> connection -> prepare("SELECT `username`, `password` FROM `user_pass` WHERE email=?");
+        $stmt = $this-> connection -> prepare("SELECT `ID`, `username`, `password` FROM `user_pass` WHERE email=?");
         $stmt -> bind_param("s", $inEmail);
         $stmt->execute();
         return $stmt;
@@ -116,13 +116,13 @@ class DatabaseConnection {
 
     function query_all_user_data(int $id){
         $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE ID=?");
-        $stmt -> bind_param("s", $id);
+        $stmt -> bind_param("d", $id);
         $stmt->execute();
         return $stmt;
     }
 
-    function query_all_user_data_email(String $id){
-        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ?");
+    function query_all_user_data_email(){
+        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ? LIMIT 10");
         $search = "{$_POST['MAIL']}%";
         $stmt -> bind_param("s", $search);
         $stmt->execute();

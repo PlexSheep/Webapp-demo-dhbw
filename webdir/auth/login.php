@@ -28,7 +28,7 @@ if ($result -> num_rows > 0) {
     //print_r($dbPassword);
 
     if(password_verify($password, $dbPassword)){
-        $_SESSION['MAIL'] = $email;
+        $_SESSION['ID'] = $data -> ID;
         $_SESSION['USER'] = $username;
         //print_r($_SESSION['USER']);
         header('Location: /index.php');
@@ -36,7 +36,7 @@ if ($result -> num_rows > 0) {
     }
     else {
         $_SESSION['ERROR'] = "Invalid passowrd or username 1";
-        header('Location: /auth/login.html');
+        header('Location: /konto.php');
     }
 }
 else {
