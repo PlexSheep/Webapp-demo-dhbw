@@ -23,10 +23,10 @@ require "common.php";
                 <div style="display: block;" id="loginForm" class="form-content active-choice">
                     <form action="/auth/login.php" method="post">
                         <label for="email">E-Mail-Adresse:</label>
-                        <input type="email" id="email" name="MAIL" required>
+                        <input type="email" class="form-control" id="email" name="MAIL" required>
                         <br>
                         <label for="password">Passwort:</label>
-                        <input type="password" id="password" name="PASS" required>
+                        <input type="password" class="form-control" id="password" name="PASS" required>
                         <br>
                         <input type="submit" value="Anmelden">
                     </form>
@@ -34,16 +34,16 @@ require "common.php";
             <div style="display: none;" id="registerForm" class="form-content">
                     <form action="/auth/register.php" method="post">
                         <label for="reg-user">Nutzername:</label>
-                        <input type="username" id="reg-email" name="USER" required>
+                        <input type="username" class="form-control" id="reg-email" name="USER" required>
                         <br>
                         <label for="reg-email">E-Mail-Adresse:</label>
-                        <input type="email" id="reg-email" name="MAIL" required>
+                        <input type="email" class="form-control" id="reg-email" name="MAIL" required>
                         <br>
                         <label for="reg-password">Passwort:</label>
-                        <input type="password" id="reg-password" name="PASS" required>
+                        <input type="password" class="form-control" id="reg-password" name="PASS" required>
                         <br>
                         <label for="reg-password-confirm">Passwort bestätigen:</label>
-                        <input type="password" id="reg-password-confirm" name="reg-password-confirm" required>
+                        <input type="password" class="form-control" id="reg-password-confirm" name="reg-password-confirm" required>
                         <br>
                         <input type="submit" value="Registrieren">
                     </form>
@@ -52,6 +52,7 @@ require "common.php";
                 <?php 
                 if (isset($_SESSION['ERROR'])) {
                     echo($_SESSION['ERROR']);
+                    unset($_SESSION['ERROR']);
                 }  
                 ?>
             </div>

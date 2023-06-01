@@ -12,11 +12,11 @@ require 'common.php';
     <header>
     <?php require 'templates/header.php' ?>
     </header>
-    <main>
+    <main >
         <?php require 'templates/hero.php' // load the search bar and so on ?>
-        <section class="recipe-detail-container">
+        <section class="recipe-detail-container container-fluid w-100">
             <center>
-                <div class="recipe-detail-card">
+                <div class="w-100" class="recipe-detail-card container-fluid w-100">
                 <?php 
                     // TODO FIXME THIS IS LIKELY VULNERABLE TO HTML INJECTION AND PROBABLY XSS ASWELL!!!
                     $conn = new DatabaseConnection($ini_array);
@@ -26,10 +26,10 @@ require 'common.php';
                     $tags = $conn -> query_tags($_GET['recipe']) -> get_result() -> fetch_all();
                     //echo '<pre>'; print_r($ingridients); echo '</pre>';
                     if ($result) {
-                        echo "<h1>" . htmlspecialchars($result['title'] , ENT_QUOTES, 'UTF-8') . "</h1>";
-                        echo "<h4>" . htmlspecialchars($conn->get_country_by_id($result['country'])["name"] , ENT_QUOTES, 'UTF-8') . "</h4>";
+                        echo "<h1 class='text-wrap'>" . htmlspecialchars($result['title'] , ENT_QUOTES, 'UTF-8') . "</h1>";
+                        echo "<h4 class='text-wrap'>" . htmlspecialchars($conn->get_country_by_id($result['country'])["name"] , ENT_QUOTES, 'UTF-8') . "</h4>";
                         if ($result['image_path']) {
-                            echo "<img src='img/useruploads/" . $result['image_path'] . "' alt=\"Bild des Rezepts\"></img>";
+                            echo "<img class='img-fluid w-75' src='img/useruploads/" . $result['image_path'] . "' alt=\"Bild des Rezepts\"></img>";
                         }
                         else {
                             echo "( kein Bild vorhanden. )<br>";
@@ -37,6 +37,7 @@ require 'common.php';
 
                         echo "<article>" . htmlspecialchars($result['description'] , ENT_QUOTES, 'UTF-8') . "</article>";
                         
+                        echo "<div>";
                         echo "<table class=\"ingredients infobox\">";
                         echo "<caption>Zutaten</caption>";
                         echo "<tr>";
@@ -70,6 +71,7 @@ require 'common.php';
                         }
                         echo "</tr>";
                         echo "</table>";
+                        echo "</div>";
 
                         //// prepare the score images
                         //$score_meter = " ";
