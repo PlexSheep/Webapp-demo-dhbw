@@ -3,7 +3,7 @@
     <a href = "http://localhost:8080">Rezepti</a>
 </div>
 
-    <nav class="navbar navbar-expand-sm ">
+    <nav class="navbar navbar-expand-sm  ">
         <div class="container-fluid" >
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

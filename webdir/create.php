@@ -325,6 +325,16 @@ if($_POST) {
                     function onDropdownScroll(e){
                         console.log(e.detail)
                       }
+                      
+                    const warning = (e) => {
+                        // The first two lines ensure compatibility with older browsers:
+                        e = e || window.event;
+                        e && (e.returnValue = `Are you sure?`);
+                        // For most browsers, just the following line is sufficient:
+                        return `Are you sure?`;
+                    };
+
+                    window.addEventListener(`beforeunload`, warning);
 
                 </script>
             </form>
