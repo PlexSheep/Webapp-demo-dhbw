@@ -62,7 +62,16 @@ if($_POST) {
     $uuid = $conn ->query_database("SELECT UUID();")->fetch_row()[0];
 
 
-    $tmp = 3;
+    // get the country ID
+    $country = $conn->get_country_by_name($country[0]);
+    if ($country == NULL) {
+        exit_with_bad_request();
+    }
+    // country[0] is the ID.
+    if (!isset($country[0]) || $country[0] == NULL) {
+        exit_with_bad_request();
+    }
+
     // create main entry
     $stmt = $conn-> connection -> prepare("
         INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) 
@@ -80,7 +89,7 @@ if($_POST) {
     $stmt -> bind_param("ssssss", 
         $name,
         // TODO add country lookup and writing to db
-        $tmp,
+        $country[0],
         $filename,
         $desc,
         $uuid,
@@ -178,14 +187,6 @@ if($_POST) {
     }
 
     // map the country
-    $country = $conn->get_country_by_name($country[0]);
-    if ($country == NULL) {
-        exit_with_bad_request();
-    }
-    // country[0] is the ID.
-    if (!isset($country[0]) || $country[0] == NULL) {
-        exit_with_bad_request();
-    }
     $stmt = $conn-> connection -> prepare("
         INSERT INTO `recipie_country` (`ID`, `recipie`, `country`)
         VALUES 
