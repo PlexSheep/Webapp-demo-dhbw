@@ -20,6 +20,11 @@ if($_POST) {
     ) {
         exit_with_bad_request();
     }
+    // POST to normal stuff
+    $name = $_POST['name'];
+    $name = ($name);
+    $desc = $_POST['desc'];
+    $desc = ($desc);
     // decode tagify json strings
     $categories = (array_column(json_decode($_POST['category']), 'value'));
     $ingredients = (array_column(json_decode($_POST['ingredient']), 'value'));
@@ -36,8 +41,8 @@ if($_POST) {
         test_for_bad_chars_array($ingredients) ||
         test_for_bad_chars_array($tags) ||
         test_for_bad_chars_array($country) ||
-        test_for_bad_chars($_POST['name']) ||
-        test_for_bad_chars($_POST['desc'])
+        test_for_bad_chars($name) ||
+        test_for_bad_chars($desc)
     ) {
         exit_with_bad_request();
     }
@@ -57,7 +62,16 @@ if($_POST) {
     $uuid = $conn ->query_database("SELECT UUID();")->fetch_row()[0];
 
 
-    $tmp = 3;
+    // get the country ID
+    $country = $conn->get_country_by_name($country[0]);
+    if ($country == NULL) {
+        exit_with_bad_request();
+    }
+    // country[0] is the ID.
+    if (!isset($country[0]) || $country[0] == NULL) {
+        exit_with_bad_request();
+    }
+
     // create main entry
     $stmt = $conn-> connection -> prepare("
         INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) 
@@ -73,10 +87,11 @@ if($_POST) {
         );
     ");
     $stmt -> bind_param("ssssss", 
-        $_POST['name'],
-        $tmp,
+        $name,
+        // TODO add country lookup and writing to db
+        $country[0],
         $filename,
-        $_POST['desc'],
+        $desc,
         $uuid,
         $uuid,
     );
@@ -102,9 +117,11 @@ if($_POST) {
                 ?
             );
         ");
+        $escaped = $cat[0];
+        $escaped = escape_newlines($escaped);
         $stmt -> bind_param("ss", 
             $uuid,
-            $cat[0]
+            $escaped
         );
         $result = $stmt -> execute();
         $stmt->close();
@@ -130,9 +147,11 @@ if($_POST) {
                 ?
             );
         ");
+        $escaped = $ing[0];
+        $escaped = escape_newlines($escaped);
         $stmt -> bind_param("ss", 
             $uuid,
-            $ing[0]
+            $escaped
         );
         $result = $stmt -> execute();
         $stmt->close();
@@ -157,23 +176,17 @@ if($_POST) {
                 ?
             );
         ");
+        $escaped = $tag[0];
+        $escaped = escape_newlines($escaped);
         $stmt -> bind_param("ss", 
             $uuid,
-            $tag[0]
+            $escaped
         );
         $result = $stmt -> execute();
         $stmt->close();
     }
 
     // map the country
-    $country = $conn->get_country_by_name($country[0]);
-    if ($country == NULL) {
-        exit_with_bad_request();
-    }
-    // country[0] is the ID.
-    if (!isset($country[0]) || $country[0] == NULL) {
-        exit_with_bad_request();
-    }
     $stmt = $conn-> connection -> prepare("
         INSERT INTO `recipie_country` (`ID`, `recipie`, `country`)
         VALUES 
@@ -183,9 +196,11 @@ if($_POST) {
             ?
         );
     ");
+    $escaped = $country[0];
+    $escaped = escape_newlines($escaped);
     $stmt -> bind_param("ss", 
         $uuid,
-        $country[0]
+        $escaped
     );
     $result = $stmt -> execute();
     $stmt->close();
@@ -214,9 +229,16 @@ if($_POST) {
                 <div class="col" id="img-part">
                     <label for="img-upload">Bild</label>
                     <br>
-                    <img class="img-fluid" src="img/icons/empty_plate.jpg" alt="image broken"></img>
+                    <img class="img-fluid" id="upload-display" src="img/icons/empty_plate.jpg" alt="image broken" class="p-3" style="max-width: 400px; max-height: 400px;"></img>
                     <br>
-                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
+                    <script>
+                        function loadFile(event) {
+                            console.log("DO SOMETHING")
+                          var image = document.getElementById('upload-display');
+                          image.src=URL.createObjectURL(event.target.files[0]);
+                        }
+                    </script>
                 </div>
 
                 <h2>Rezept erstellen</h2>
@@ -325,7 +347,7 @@ if($_POST) {
 
                     function onDropdownScroll(e){
                         console.log(e.detail)
-                      }
+                    }
                       
                     const warning = (e) => {
                         // For most browsers, just the following line is sufficient:

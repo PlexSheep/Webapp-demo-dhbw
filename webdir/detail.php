@@ -18,13 +18,11 @@ require 'common.php';
             <center>
                 <div class="w-100" class="recipe-detail-card container-fluid w-100">
                 <?php 
-                    // TODO FIXME THIS IS LIKELY VULNERABLE TO HTML INJECTION AND PROBABLY XSS ASWELL!!!
                     $conn = new DatabaseConnection($ini_array);
                     $result = $conn->get_recepe_by_id($_GET['recipe']);
                     $ingridients = $conn -> query_ingridients($_GET['recipe']) -> get_result() -> fetch_all();
                     $categories = $conn -> query_categories($_GET['recipe']) -> get_result() -> fetch_all();
                     $tags = $conn -> query_tags($_GET['recipe']) -> get_result() -> fetch_all();
-                    //echo '<pre>'; print_r($ingridients); echo '</pre>';
                     if ($result) {
                         echo "<h1 class='text-wrap'>" . htmlspecialchars($result['title'] , ENT_QUOTES, 'UTF-8') . "</h1>";
                         echo "<h4 class='text-wrap'>" . htmlspecialchars($conn->get_country_by_id($result['country'])["name"] , ENT_QUOTES, 'UTF-8') . "</h4>";
@@ -35,12 +33,22 @@ require 'common.php';
                             echo "( kein Bild vorhanden. )<br>";
                         }
 
-                        echo "<article>" . htmlspecialchars($result['description'] , ENT_QUOTES, 'UTF-8') . "</article>";
+                        echo "<article>" . 
+                            (
+                                $result = escape_newlines( 
+                                    htmlspecialchars($result['description'] , ENT_QUOTES, 'UTF-8')
+                                )
+                            ) . "</article>";
                         
                         echo "<div>";
                         echo "<table class=\"ingredients infobox\">";
                         echo "<caption>Zutaten</caption>";
                         echo "<tr>";
+                        if (count($ingridients) === 0) {
+                            echo "<tr>";
+                            echo "<td>Keine</td>";
+                            echo "</tr>";
+                        }
                         foreach ($ingridients as $key => $value) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
@@ -52,6 +60,11 @@ require 'common.php';
                         echo "<table class=\"tags infobox\">";
                         echo "<caption>Tags</caption>";
                         echo "<tr>";
+                        if (count($tags) === 0) {
+                            echo "<tr>";
+                            echo "<td>Keine</td>";
+                            echo "</tr>";
+                        }
                         foreach ($tags as $key => $value) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
@@ -64,6 +77,11 @@ require 'common.php';
                         echo "<table class=\"categories infobox\">";
                         echo "<caption>Kategorien</caption>";
                         echo "<tr>";
+                        if (count($categories) === 0) {
+                            echo "<tr>";
+                            echo "<td>Keine</td>";
+                            echo "</tr>";
+                        }
                         foreach ($categories as $key => $value) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
