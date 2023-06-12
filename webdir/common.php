@@ -140,12 +140,12 @@ class DatabaseConnection {
     }
 
     function create_category(){
-        $stmt = $conn -> connection -> prepare("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES (?, ?, ?)");
+        $stmt = $this -> connection -> prepare("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES (?, ?, ?)");
         $stmt -> bind_param("sss", $username, $hash, $email);
         $stmt->execute();
     }
 
-    function get_recepe_by_id(string $id) {
+    function get_recipie_by_id(string $id) {
         $query = ("SELECT * FROM recipie WHERE slug = \"" . $id . "\"");
         $result = $this->connection->query($query);
         $return = $result->fetch_all(MYSQLI_ASSOC);

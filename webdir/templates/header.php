@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg text-nowrap fs-4">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="img/icons/rezepti.png" width="30" height="30" class="me-3 ms-2"></img>
             <span class="fs-4 text-nowrap text-dark">Rezepti</span>
         </a>
