@@ -229,9 +229,16 @@ if($_POST) {
                 <div id="img-part">
                     <label for="img-upload">Bild</label>
                     <br>
-                    <img src="img/icons/empty_plate.jpg" alt="image broken"></img>
+                    <img id="upload-display" src="img/icons/empty_plate.jpg" alt="image broken" class="p-3" style="max-width: 400px; max-height: 400px;"></img>
                     <br>
-                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
+                    <script>
+                        function loadFile(event) {
+                            console.log("DO SOMETHING")
+                          var image = document.getElementById('upload-display');
+                          image.src=URL.createObjectURL(event.target.files[0]);
+                        }
+                    </script>
                 </div>
                 <h2>Rezept erstellen</h2>
                 <label for="name">Name</label>
@@ -339,7 +346,7 @@ if($_POST) {
 
                     function onDropdownScroll(e){
                         console.log(e.detail)
-                      }
+                    }
                       
                     const warning = (e) => {
                         // The first two lines ensure compatibility with older browsers:
