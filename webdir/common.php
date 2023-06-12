@@ -271,4 +271,12 @@ function test_for_bad_chars_array(array $input) {
     return ($matches > 0);
 }
 
+function escape_newlines(string $input) {
+    //$re = '/\n/m';
+    //$subst = "\\n";
+    //$result = preg_replace($re, $subst, $input);
+    $result = preg_replace("/\r|\n/", "", $input);
+    return $result;
+}
+
 ?>

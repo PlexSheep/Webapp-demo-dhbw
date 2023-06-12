@@ -14,7 +14,7 @@
                       title: '" . htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') ."',
                       country: '" . $conn->get_country_by_id($row['country'])['name'] . "',
                       imgUrl: 'img/useruploads/" . $row['image_path'] ."',
-                      description: '" . htmlspecialchars($row['description'], ENT_QUOTES, 'UTF-8') . "',
+                      description: '" . htmlspecialchars(escape_newlines($row['description'], ENT_QUOTES, 'UTF-8')) . "',
                       id: '" . $row['id'] . "',
                       slug: '" . $row['slug'] . "',
                       score: '" . $row['score'] . "',
