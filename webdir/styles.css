@@ -11,8 +11,6 @@ header {
     background-color: #fc6508;
     color: #fff;
     display: flex;
-    justify-content: space-between;
-    padding: 1rem;
 }
 
 .logo {
@@ -58,10 +56,6 @@ nav ul li a {
 .hero form {
     float: right;
     padding: 16px;
-}
-
-.hero h1 {
-    font-size: 300%;
 }
 
 input[type="search"] {
