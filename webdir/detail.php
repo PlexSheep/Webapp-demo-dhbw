@@ -18,13 +18,11 @@ require 'common.php';
             <center>
                 <div class="w-100" class="recipe-detail-card container-fluid w-100">
                 <?php 
-                    // TODO FIXME THIS IS LIKELY VULNERABLE TO HTML INJECTION AND PROBABLY XSS ASWELL!!!
                     $conn = new DatabaseConnection($ini_array);
                     $result = $conn->get_recepe_by_id($_GET['recipe']);
                     $ingridients = $conn -> query_ingridients($_GET['recipe']) -> get_result() -> fetch_all();
                     $categories = $conn -> query_categories($_GET['recipe']) -> get_result() -> fetch_all();
                     $tags = $conn -> query_tags($_GET['recipe']) -> get_result() -> fetch_all();
-                    //echo '<pre>'; print_r($ingridients); echo '</pre>';
                     if ($result) {
                         echo "<h1 class='text-wrap'>" . htmlspecialchars($result['title'] , ENT_QUOTES, 'UTF-8') . "</h1>";
                         echo "<h4 class='text-wrap'>" . htmlspecialchars($conn->get_country_by_id($result['country'])["name"] , ENT_QUOTES, 'UTF-8') . "</h4>";
