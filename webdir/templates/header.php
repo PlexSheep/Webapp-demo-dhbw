@@ -12,9 +12,6 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item active"><a class="nav-link" href="recipes.html">Rezepte</a></li>
-                    <li class="nav-item "><a class="nav-link" href="region.html">Regionen</a></li>
-                    <li class="nav-item "><a class="nav-link" href="#">Zutaten</a></li>
                     <li class="nav-item" ><a class="nav-link" href="create.php">Erstellen</a></li>
                     <li class="nav-item "><a class="nav-link" href="konto.php">Konto</a></li
                     <!\-\- TODO remove these links for the test environment for the final version! \-\->
