@@ -46,6 +46,11 @@ require 'common.php';
                         echo "<table class=\"ingredients infobox\">";
                         echo "<caption>Zutaten</caption>";
                         echo "<tr>";
+                        if (count($ingridients) === 0) {
+                            echo "<tr>";
+                            echo "<td>Keine</td>";
+                            echo "</tr>";
+                        }
                         foreach ($ingridients as $key => $value) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
@@ -57,6 +62,11 @@ require 'common.php';
                         echo "<table class=\"tags infobox\">";
                         echo "<caption>Tags</caption>";
                         echo "<tr>";
+                        if (count($tags) === 0) {
+                            echo "<tr>";
+                            echo "<td>Keine</td>";
+                            echo "</tr>";
+                        }
                         foreach ($tags as $key => $value) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
@@ -69,6 +79,11 @@ require 'common.php';
                         echo "<table class=\"categories infobox\">";
                         echo "<caption>Kategorien</caption>";
                         echo "<tr>";
+                        if (count($categories) === 0) {
+                            echo "<tr>";
+                            echo "<td>Keine</td>";
+                            echo "</tr>";
+                        }
                         foreach ($categories as $key => $value) {
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
