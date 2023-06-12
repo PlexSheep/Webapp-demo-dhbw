@@ -35,7 +35,12 @@ require 'common.php';
                             echo "( kein Bild vorhanden. )<br>";
                         }
 
-                        echo "<article>" . htmlspecialchars($result['description'] , ENT_QUOTES, 'UTF-8') . "</article>";
+                        echo "<article>" . 
+                            (
+                                $result = escape_newlines( 
+                                    htmlspecialchars($result['description'] , ENT_QUOTES, 'UTF-8')
+                                )
+                            ) . "</article>";
                         
                         echo "<table class=\"ingredients infobox\">";
                         echo "<caption>Zutaten</caption>";

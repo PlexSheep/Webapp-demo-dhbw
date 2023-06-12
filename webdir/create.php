@@ -20,6 +20,11 @@ if($_POST) {
     ) {
         exit_with_bad_request();
     }
+    // POST to normal stuff
+    $name = $_POST['name'];
+    $name = ($name);
+    $desc = $_POST['desc'];
+    $desc = ($desc);
     // decode tagify json strings
     $categories = (array_column(json_decode($_POST['category']), 'value'));
     $ingredients = (array_column(json_decode($_POST['ingredient']), 'value'));
@@ -36,8 +41,8 @@ if($_POST) {
         test_for_bad_chars_array($ingredients) ||
         test_for_bad_chars_array($tags) ||
         test_for_bad_chars_array($country) ||
-        test_for_bad_chars($_POST['name']) ||
-        test_for_bad_chars($_POST['desc'])
+        test_for_bad_chars($name) ||
+        test_for_bad_chars($desc)
     ) {
         exit_with_bad_request();
     }
@@ -73,10 +78,11 @@ if($_POST) {
         );
     ");
     $stmt -> bind_param("ssssss", 
-        $_POST['name'],
+        $name,
+        // TODO add country lookup and writing to db
         $tmp,
         $filename,
-        $_POST['desc'],
+        $desc,
         $uuid,
         $uuid,
     );
@@ -102,9 +108,11 @@ if($_POST) {
                 ?
             );
         ");
+        $escaped = $cat[0];
+        $escaped = escape_newlines($escaped);
         $stmt -> bind_param("ss", 
             $uuid,
-            $cat[0]
+            $escaped
         );
         $result = $stmt -> execute();
         $stmt->close();
@@ -130,9 +138,11 @@ if($_POST) {
                 ?
             );
         ");
+        $escaped = $ing[0];
+        $escaped = escape_newlines($escaped);
         $stmt -> bind_param("ss", 
             $uuid,
-            $ing[0]
+            $escaped
         );
         $result = $stmt -> execute();
         $stmt->close();
@@ -157,9 +167,11 @@ if($_POST) {
                 ?
             );
         ");
+        $escaped = $tag[0];
+        $escaped = escape_newlines($escaped);
         $stmt -> bind_param("ss", 
             $uuid,
-            $tag[0]
+            $escaped
         );
         $result = $stmt -> execute();
         $stmt->close();
@@ -183,9 +195,11 @@ if($_POST) {
             ?
         );
     ");
+    $escaped = $country[0];
+    $escaped = escape_newlines($escaped);
     $stmt -> bind_param("ss", 
         $uuid,
-        $country[0]
+        $escaped
     );
     $result = $stmt -> execute();
     $stmt->close();
