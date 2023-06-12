@@ -224,45 +224,62 @@ if($_POST) {
     </header>
     <main>
         <?php require 'templates/hero.php' // load the search bar and so on ?>
-        <section class="recipie-creator-container row container-fluid w-75">
+        <section class="recipie-creator-container row container-fluid">
             <form class="form-group" method="post" action="create.php" enctype="multipart/form-data">
-                <div class="col" id="img-part">
-                    <label for="img-upload">Bild</label>
-                    <br>
-                    <img id="upload-display" src="img/icons/empty_plate.jpg" alt="thumbnail" class="p-3" style="max-width: 400px; max-height: 400px;"></img>
-                    <br>
-                    <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
-                    <script>
-                        function loadFile(event) {
-                            console.log("DO SOMETHING")
-                          var image = document.getElementById('upload-display');
-                          image.src=URL.createObjectURL(event.target.files[0]);
-                        }
-                    </script>
+                <div class="container-xxl">
+                    <h2 class="h-5">Rezept erstellen</h2>
+                    <div class="row">
+                        <div class="col-3">
+                            <label class="form-label" for="img-upload">Bild</label>
+                            <br>
+                            <img id="upload-display" src="img/icons/empty_plate.jpg" alt="thumbnail" style="min-width: 200px;" class="m-3 pb-3 img-fluid"></img>
+                            <br>
+                            <input class="form-control"type="file" name="fileToUpload" style="min-width: 200px;" id="fileToUpload" onchange="loadFile(event)">
+                            <script>
+                                function loadFile(event) {
+                                    console.log("DO SOMETHING")
+                                  var image = document.getElementById('upload-display');
+                                  image.src=URL.createObjectURL(event.target.files[0]);
+                                }
+                            </script>
+                        </div>
+                        <div class="g-1"></div>
+                        <div class="container col">
+                            <label class="form-label"for="name">Name</label>
+                            <input class="form-control" type="text" id="name" name="name" placeholder="Name">
+                            <label class="form-label"for="desc-box">Beschreibung</label>
+                            <textarea name="desc" id="desc-box" placeholder="Beschreibung des Rezepts" class="form-control"></textarea>
+                            <div class="container row">
+                                <div class="col mx-auto">
+                                    <label class="form-label"for="tags">Tags:</label><br>
+                                    <input type="text" id="tags" placeholder="Tags" name="tags">
+                                </div>
+                                <div class="col mx-auto">
+                                    <label class="form-label"for="ingredient">Zutaten:</label><br>
+                                    <input type="text" id="ingredient" placeholder="Zutaten" name="ingredient">
+                                </div>
+                                <div class="col mx-auto">
+                                    <label class="form-label"for="category">Kategorie:</label><br>
+                                    <input id="category" placeholder="Kategorie" name="category">
+                                    <div id="opetions-for-category" class="tagify-option-chooser"></div>
+                                </div>
+                                <div class="col mx-auto">
+                                    <label class="form-label"for="country">Land:</label><br>
+                                    <input id="country" placeholder="Land" name="country">
+                                    <div id="opetions-for-country" class="tagify-option-chooser"></div>
+                                </div>
+                            </div>
+                            <input class="form-control"type="submit" value="Erstellen">
+                        </div>
+                        </div>
+                    </div>
                 </div>
-
-                <h2>Rezept erstellen</h2>
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Name">
-                <label for="desc-box">Beschreibung</label>
-                <textarea name="desc" id="desc-box" placeholder="Beschreibung des Rezepts" class="form-control w-75"></textarea>
-                <label for="tags">Tags:</label>
-                <input type="text" id="tags" placeholder="Tags" name="tags">
-                <label for="ingredient">Zutaten:</label>
-                <input type="text" id="ingredient" placeholder="Zutaten" name="ingredient">
-                <label for="category">Kategorie:</label> 
-                <input id="category" placeholder="Kategorie" name="category">
-                <div id="opetions-for-category" class="tagify-option-chooser"></div>
-                <label for="country">Land:</label> 
-                <input id="country" placeholder="Land" name="country">
-                <div id="opetions-for-country" class="tagify-option-chooser"></div>
-                <input type="submit" value="Erstellen">
                 <script>
                     // The DOM element you wish to replace with Tagify
                     var tags = document.querySelector('input[name=tags]');
                     var ingredient = document.querySelector('input[name=ingredient]');
 
-                    // initialize Tagify on the above input node reference
+                    // initialize Tagify on the above input class="form-control"node reference
                     new Tagify(tags)
                     new Tagify(ingredient)
 
