@@ -30,7 +30,7 @@ require 'common.php';
                             echo "<img class='img-fluid w-75' src='img/useruploads/" . $result['image_path'] . "' alt=\"Bild des Rezepts\"></img>";
                         }
                         else {
-                            echo "( kein Bild vorhanden. )<br>";
+                            echo "<img class='img-fluid w-75' src='img/icons/empty_plate.jpg' alt='Bild des Rezepts'></img>";
                         }
 
                         echo "<article>" . 

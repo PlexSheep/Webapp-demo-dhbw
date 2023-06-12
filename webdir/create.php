@@ -229,7 +229,7 @@ if($_POST) {
                 <div class="col" id="img-part">
                     <label for="img-upload">Bild</label>
                     <br>
-                    <img class="img-fluid" id="upload-display" src="img/icons/empty_plate.jpg" alt="image broken" class="p-3" style="max-width: 400px; max-height: 400px;"></img>
+                    <img id="upload-display" src="img/icons/empty_plate.jpg" alt="thumbnail" class="p-3" style="max-width: 400px; max-height: 400px;"></img>
                     <br>
                     <input type="file" name="fileToUpload" id="fileToUpload" onchange="loadFile(event)">
                     <script>
