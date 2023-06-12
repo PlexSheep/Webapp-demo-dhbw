@@ -1,14 +1,16 @@
-<nav class="navbar navbar-expand-lg text-nowrap fs-4">
+<nav class="navbar navbar-expand-md text-nowrap fs-4">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="img/icons/rezepti.png" width="30" height="30" class="me-3 ms-2"></img>
-            <span class="fs-4 text-nowrap text-dark">Rezepti</span>
-        </a>
+        <div>
+            <a class="navbar-brand mx-auto" href="#">
+                <img src="img/icons/rezepti.png" width="30" height="30" class="me-3 ms-2"></img>
+                <span class="fs-4 text-nowrap text-dark">Rezepti</span>
+            </a>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse d-flex" id="navbarNavAltMarkup">
-            <div class="navbar-nav text-end">
+        <div class="collapse navbar-collapse mx-auto" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
                 <a class="nav-link mx-1" href="create.php">Erstellen</a>
                 <a class="nav-link mx-1" href="konto.php">Konto</a>
                 <?php
