@@ -356,3 +356,6 @@ input[type="submit"]:hover {
     margin-right: auto;
 }
 
+.form-control {
+    color: grey;
+}

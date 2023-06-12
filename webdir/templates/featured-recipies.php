@@ -1,4 +1,4 @@
-        <section class="recipes-cards-section ">
+        <section class="recipes-cards-section justify-content-center">
             <h4 class="display-6">Beliebte Rezepte</h4>
             <div class="recipe-grid container-fluid" id="featured-recipies-grid">
             </div>

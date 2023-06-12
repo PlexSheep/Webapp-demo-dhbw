@@ -209,20 +209,21 @@ if($_POST) {
     </header>
     <main>
         <?php require 'templates/hero.php' // load the search bar and so on ?>
-        <section class="recipie-creator-container">
-            <form method="post" action="create.php" enctype="multipart/form-data">
-                <div id="img-part">
+        <section class="recipie-creator-container row container-fluid w-75">
+            <form class="form-group" method="post" action="create.php" enctype="multipart/form-data">
+                <div class="col" id="img-part">
                     <label for="img-upload">Bild</label>
                     <br>
-                    <img src="img/icons/empty_plate.jpg" alt="image broken"></img>
+                    <img class="img-fluid" src="img/icons/empty_plate.jpg" alt="image broken"></img>
                     <br>
                     <input type="file" name="fileToUpload" id="fileToUpload">
                 </div>
+
                 <h2>Rezept erstellen</h2>
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Name">
                 <label for="desc-box">Beschreibung</label>
-                <textarea name="desc" id="desc-box" placeholder="Beschreibung des Rezepts" rows="20" cols="120"></textarea>
+                <textarea name="desc" id="desc-box" placeholder="Beschreibung des Rezepts" class="form-control w-75"></textarea>
                 <label for="tags">Tags:</label>
                 <input type="text" id="tags" placeholder="Tags" name="tags">
                 <label for="ingredient">Zutaten:</label>
@@ -327,9 +328,6 @@ if($_POST) {
                       }
                       
                     const warning = (e) => {
-                        // The first two lines ensure compatibility with older browsers:
-                        e = e || window.event;
-                        e && (e.returnValue = `Are you sure?`);
                         // For most browsers, just the following line is sufficient:
                         return `Are you sure?`;
                     };
