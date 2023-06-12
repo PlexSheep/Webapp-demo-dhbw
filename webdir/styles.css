@@ -337,7 +337,7 @@ input[type="submit"]:hover {
 }
 
 .infobox {
-    float: right;
+    /*float: right;*/
     background-color: #eeeeee;
     min-height: 150px;
     min-width: 150px;
@@ -352,8 +352,10 @@ input[type="submit"]:hover {
 }
 
 .infobox tr, td  {
+    /*
     margin-left: auto;
     margin-right: auto;
+*/
 }
 
 .form-control {

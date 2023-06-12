@@ -40,8 +40,8 @@ require 'common.php';
                                 )
                             ) . "</article>";
                         
-                        echo "<div>";
-                        echo "<table class=\"ingredients infobox\">";
+                        echo "<div class='container'>";
+                        echo "<table class='col ingredients infobox'>";
                         echo "<caption>Zutaten</caption>";
                         echo "<tr>";
                         if (count($ingridients) === 0) {
@@ -57,7 +57,7 @@ require 'common.php';
                         echo "</tr>";
                         echo "</table>";
 
-                        echo "<table class=\"tags infobox\">";
+                        echo "<table class='col tags infobox'>";
                         echo "<caption>Tags</caption>";
                         echo "<tr>";
                         if (count($tags) === 0) {
@@ -74,7 +74,7 @@ require 'common.php';
                         echo "<caption>Kategorien</caption>";
                         echo "</table>";
 
-                        echo "<table class=\"categories infobox\">";
+                        echo "<table class='col categories infobox'>";
                         echo "<caption>Kategorien</caption>";
                         echo "<tr>";
                         if (count($categories) === 0) {

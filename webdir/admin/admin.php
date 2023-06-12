@@ -169,7 +169,7 @@ if (isset($_SESSION['ID'])) {
         <div style="display: block;" class="form-control" class="form-content active-choice">
             <form id="cat">
                 <label for="ID">Enter name of new category: </label>
-                <input type="text" class="form-control" d="NAME" name="Name of category" required>
+                <input type="text" class="form-control" id="NAME" name="Name of category" required>
                 <input type="submit" class="form-control align-items-center" value="add category">
             </form>
         </div>
