@@ -24,13 +24,13 @@ require 'common.php';
                     $categories = $conn -> query_categories($_GET['recipe']) -> get_result() -> fetch_all();
                     $tags = $conn -> query_tags($_GET['recipe']) -> get_result() -> fetch_all();
                     if ($result) {
-                        echo "<h1 class='display-4 text-wrap'>" . htmlspecialchars($result['title'] , ENT_QUOTES, 'UTF-8') . "</h1>";
-                        echo "<h4 class='h4 text-wrap'>" . htmlspecialchars($conn->get_country_by_id($result['country'])["name"] , ENT_QUOTES, 'UTF-8') . "</h4>";
+                        echo "<h1 class='text-wrap'>" . htmlspecialchars($result['title'] , ENT_QUOTES, 'UTF-8') . "</h1>";
+                        echo "<h4 class='text-wrap'>" . htmlspecialchars($conn->get_country_by_id($result['country'])["name"] , ENT_QUOTES, 'UTF-8') . "</h4>";
                         if ($result['image_path']) {
-                            echo "<img class='img-thumbnail w-25' src='img/useruploads/" . $result['image_path'] . "' alt=\"Bild des Rezepts\"></img>";
-                        }                                   
-                        else {                              
-                            echo "<img class='img-thumbnail w-25' src='img/icons/empty_plate.jpg' alt='Bild des Rezepts'></img>";
+                            echo "<img class='img-fluid w-75' src='img/useruploads/" . $result['image_path'] . "' alt=\"Bild des Rezepts\"></img>";
+                        }
+                        else {
+                            echo "<img class='img-fluid w-75' src='img/icons/empty_plate.jpg' alt='Bild des Rezepts'></img>";
                         }
 
                         echo "<article>" . 
@@ -40,42 +40,55 @@ require 'common.php';
                                 )
                             ) . "</article>";
                         
-                        echo "<div class='container row'>";
-                        echo "<div class='col'>";
-                        echo "<label>Zutaten</label>";
-                        echo "<ul class=\"list-group w-50\">";
+                        echo "<div class='container'>";
+                        echo "<table class='col ingredients infobox'>";
+                        echo "<caption>Zutaten</caption>";
+                        echo "<tr>";
                         if (count($ingridients) === 0) {
-                            echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">Keine</li>";
+                            echo "<tr>";
+                            echo "<td>Keine</td>";
+                            echo "</tr>";
                         }
                         foreach ($ingridients as $key => $value) {
-                            echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</li>";
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
+                            echo "</tr>";
                         }
-                        echo "</ul>";
-                        echo "</div>";
+                        echo "</tr>";
+                        echo "</table>";
 
-                        echo "<div class='col'>";
-                        echo "<label>Tags</label>";
-                        echo "<ul class=\"list-group w-50\">";
+                        echo "<table class='col tags infobox'>";
+                        echo "<caption>Tags</caption>";
+                        echo "<tr>";
                         if (count($tags) === 0) {
-                            echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">Keine</li>";
+                            echo "<tr>";
+                            echo "<td>Keine</td>";
+                            echo "</tr>";
                         }
                         foreach ($tags as $key => $value) {
-                            echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</li>";
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
+                            echo "</tr>";
                         }
-                        echo "</ul>";
-                        echo "</div>";
+                        echo "</tr>";
+                        echo "<caption>Kategorien</caption>";
+                        echo "</table>";
 
-                        echo "<div class='col'>";
-                        echo "<label>Kategorien</label>";
-                        echo "<ul class=\"list-group w-50\">";
+                        echo "<table class='col categories infobox'>";
+                        echo "<caption>Kategorien</caption>";
+                        echo "<tr>";
                         if (count($categories) === 0) {
-                            echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">Keine</li>";
+                            echo "<tr>";
+                            echo "<td>Keine</td>";
+                            echo "</tr>";
                         }
                         foreach ($categories as $key => $value) {
-                            echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</li>";
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</td>";
+                            echo "</tr>";
                         }
-                        echo "</ul>";
-                        echo "</div>";
+                        echo "</tr>";
+                        echo "</table>";
                         echo "</div>";
 
                         //// prepare the score images
