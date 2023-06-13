@@ -1,11 +1,35 @@
-        <section class="recipes-cards-section justify-content-center">
-            <h4 class="display-6">Beliebte Rezepte</h4>
+<?php
+// require the common.php stuff
+require_once 'common.php';
+if (!isset($_GET['user'])) {
+    exit_with_bad_request();
+}
+?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<?php require 'templates/head.php' ?>
+</head>
+<body>
+    <?php require 'templates/header.php' ?>
+    <main>
+        <?php require 'templates/hero.php' // load the search bar and so on ?>
             <div class="container-fluid">
-                <div class="recipe-grid container-fluid px-5 mt-5" id="featured-recipies-grid">
                     <?php
                         $conn = new DatabaseConnection($ini_array);
-                        $result = $conn->query_database("SELECT * FROM recipie");
-                        $rows = $result->fetch_all(MYSQLI_ASSOC);
+                        
+                        $user = $conn->query_all_user_data($_GET['user'])->get_result()->fetch_assoc();
+                        if (!isset($user) || $user === NULL) {
+                            exit_with_not_found();
+                        }
+
+                        echo '<h4 class="display-4 mt-5 mx-5">Rezepte von ' . $user['username'] . '</h4><br>';
+                        echo '<div class="recipe-grid container-fluid px-5 mt-5" id="featured-recipies-grid">';
+
+                        $rows = $conn->query_recipies_user($_GET['user'])->get_result()->fetch_all(MYSQLI_ASSOC);
+                        if (!isset($rows) || $rows === NULL) {
+                            exit_with_not_found();
+                        }
                         foreach ($rows as $row) {
                             if ($row['image_path'] === null) {
                                 echo '
@@ -46,4 +70,12 @@
                     ?>
                 </div>
             </div>
-        </section>
+        <div class="container-fluid">
+            <?php require 'templates/featured-recipies.php' // show popular ?>
+        </div>
+    </main>
+    <footer>
+    <?php require 'templates/footer.php' ?>
+    </footer>
+</body>
+</html>

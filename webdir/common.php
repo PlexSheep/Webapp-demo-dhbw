@@ -256,6 +256,12 @@ class DatabaseConnection {
     }
 }
 
+function exit_with_not_found() {
+    http_response_code(404);
+    header("Location: /404.php");
+    exit;
+}
+
 function exit_with_bad_request() {
     http_response_code(400);
     header("Location: /400.php");
