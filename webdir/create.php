@@ -204,6 +204,42 @@ if($_POST) {
     $result = $stmt -> execute();
     $stmt->close();
 
+    // User mapping
+    $stmt = $conn-> connection -> prepare("
+        INSERT INTO `user_recipie` (`user`, `recipie`)
+        VALUES 
+        (
+            ?, 
+            ?
+        );
+    ");
+    $stmt -> bind_param("is", 
+        $_SESSION['ID'],
+        $uuid
+    );
+    $result = $stmt -> execute();
+    $stmt->close();
+    
+
+    // map the country
+    $stmt = $conn-> connection -> prepare("
+        INSERT INTO `recipie_country` (`ID`, `recipie`, `country`)
+        VALUES 
+        (
+            NULL, 
+            ?, 
+            ?
+        );
+    ");
+    $escaped = $country[0];
+    $escaped = escape_newlines($escaped);
+    $stmt -> bind_param("ss", 
+        $uuid,
+        $escaped
+    );
+    $result = $stmt -> execute();
+    $stmt->close();
+
     $url = '/detail.php?recipie=' . $uuid;
     header("Location:". $url);
     exit;

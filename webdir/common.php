@@ -122,12 +122,19 @@ class DatabaseConnection {
     }
 
     function query_all_user_data(int $id){
-        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE ID=?");
+        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE user_pass.ID=?");
         $stmt -> bind_param("d", $id);
         $stmt->execute();
         return $stmt;
     }
 
+    function query_recipies_user(int $id){
+        $stmt = $this-> connection -> prepare("SELECT * FROM `recipie` WHERE (SELECT `user` FROM user_recipie WHERE user_recipie.user = ? AND user_recipie.recipie = recipie.id)");
+        $stmt -> bind_param("d", $id);
+        $stmt->execute();
+        return $stmt;
+    }
+    
     function query_all_user_data_email(){
         $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ? LIMIT 10");
         $search = "{$_POST['MAIL']}%";
