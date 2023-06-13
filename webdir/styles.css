@@ -7,11 +7,6 @@ body {
     padding: 0;
 }
 
-header {
-    background-color: #fc6508;
-    color: #fff;
-    display: flex;
-}
 
 .logo {
     font-size: 1.5rem;
