@@ -9,9 +9,7 @@ require 'common.php';
     <?php require 'templates/head.php' ?>
 </head>
 <body>
-    <header>
     <?php require 'templates/header.php' ?>
-    </header>
     <main>
         <?php require 'templates/hero.php' // load the search bar and so on ?>
         <section class="recipes-cards-section ">
