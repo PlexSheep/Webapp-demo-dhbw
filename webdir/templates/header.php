@@ -14,13 +14,14 @@
         </li>
         <?php
         if(isset($_SESSION['ID'])){
-            echo "<li><a class=\"nav-link\" href=\"../auth/logout.php\">Logout</a></li>";
-
             if ($_SESSION['ID'] == 1){
                 echo "<li><a class=\"nav-link\" href=\"../admin/admin.php\">Admin</a></li>";
                 echo "<li><a class=\"nav-link\" href=\"test/index.php\">Testpages</a></li>";
                 echo "<li><a class=\"nav-link\" href=\"http://localhost:8082\">phpmyadmin</a></li>";
             }
+
+            echo "<li><a class=\"nav-link\" href=\"/profile.php?user=" . $_SESSION['ID'] . "\">Profil</a></li>";
+            echo "<li><a class=\"nav-link\" href=\"../auth/logout.php\">Logout</a></li>";
         }
         else {
             echo "<li><a class=\"nav-link\" href=\"konto.php\">Anmelden</a></li>";
