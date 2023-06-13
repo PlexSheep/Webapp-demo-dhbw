@@ -21,6 +21,10 @@ SET time_zone = "+00:00";
 -- Database: `Recepie_Service`
 --
 
+-- i added this myself, to fix the db being unable to start
+CREATE DATABASE Recepie_Service;
+USE Recepie_Service;
+
 -- --------------------------------------------------------
 
 --
