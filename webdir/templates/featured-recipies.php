@@ -1,7 +1,7 @@
         <section class="recipes-cards-section justify-content-center">
             <h4 class="display-6">Beliebte Rezepte</h4>
             <div class="container-fluid">
-                <div class="recipe-grid container-fluid" id="featured-recipies-grid">
+                <div class="recipe-grid container-fluid px-5 mt-5" id="featured-recipies-grid">
                     <?php
                         $conn = new DatabaseConnection($ini_array);
                         $result = $conn->query_database("SELECT * FROM recipie");
