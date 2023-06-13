@@ -130,6 +130,14 @@ class DatabaseConnection {
         $stmt->execute();
         return $stmt;
     }
+    
+    function query_all_reci_data(){
+        $stmt = $this-> connection -> prepare("SELECT * FROM `recipie`, `recipie_category`, `recipie_country`, `recipie_ingredient`, `recipie_tag`, `ingredient`, `country`, `category`, `tag`
+                                               WHERE ID=?");
+        $stmt -> bind_param("d", $id);
+        $stmt->execute();
+        return $stmt;
+    }
 
     function query_all_user_data_email(){
         $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ? LIMIT 10");
