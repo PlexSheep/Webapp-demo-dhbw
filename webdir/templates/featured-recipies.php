@@ -7,8 +7,6 @@
                         $result = $conn->query_database("SELECT * FROM recipie");
                         $rows = $result->fetch_all(MYSQLI_ASSOC);
                         foreach ($rows as $row) {
-
-
                             if ($row['image_path'] === null) {
                                 echo '
                                 <a href=' . $row['slug'] . '>
