@@ -254,7 +254,8 @@ class DatabaseConnection {
 
 function exit_with_bad_request() {
     http_response_code(400);
-    die("<br>Bad request.");
+    header("Location: /400.php");
+    exit;
 }
 
 function test_for_bad_chars(string $input) {

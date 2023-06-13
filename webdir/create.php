@@ -18,7 +18,6 @@ if($_POST) {
         $_POST['tags'] == NULL || 
         $_POST['country'] == NULL
     ) {
-        echo "bad HTTP POST";
         exit_with_bad_request();
     }
     // POST to normal stuff
@@ -45,14 +44,12 @@ if($_POST) {
         test_for_bad_chars($name) ||
         test_for_bad_chars($desc)
     ) {
-        echo "bad parameters given";
         exit_with_bad_request();
     }
 
     if ((isset($_FILES['fileToUpload']['name'])) && (!$_FILES['fileToUpload']['tmp_name'] == NULL)) {
         $filename = upload_img($_FILES);
         if ($filename == "ERROR" || $filename == NULL) {
-            echo "file error";
             exit_with_bad_request();
         }
     }
@@ -68,12 +65,10 @@ if($_POST) {
     // get the country ID
     $country = $conn->get_country_by_name($country[0]);
     if ($country == NULL) {
-        echo "country not found";
         exit_with_bad_request();
     }
     // country[0] is the ID.
     if (!isset($country[0]) || $country[0] == NULL) {
-        echo "country value not found";
         exit_with_bad_request();
     }
 
@@ -107,12 +102,10 @@ if($_POST) {
     foreach ($categories as $cat) {
         $cat = $conn->get_category_by_name($cat);
         if ($cat == NULL) {
-            echo "category not found";
             exit_with_bad_request();
         }
         // cat[0] is the ID.
         if (!isset($cat[0]) || $cat[0] == NULL) {
-            echo "category value not found";
             exit_with_bad_request();
         }
         $stmt = $conn-> connection -> prepare("
@@ -139,12 +132,10 @@ if($_POST) {
     foreach ($ingredients as $ing) {
         $ing = $conn->get_or_create_ingredient_by_name($ing);
         if ($ing == NULL) {
-            echo "ingredient not found";
             exit_with_bad_request();
         }
         // ing[0] is the ID.
         if (!isset($ing[0]) || $ing[0] == NULL) {
-            echo "category value not found";
             exit_with_bad_request();
         }
         $stmt = $conn-> connection -> prepare("
@@ -170,12 +161,10 @@ if($_POST) {
     foreach ($tags as $tag) {
         $tag = $conn->get_or_create_tag_by_name($tag);
         if ($tag == NULL) {
-            echo "tag not found";
             exit_with_bad_request();
         }
         // tag[0] is the ID.
         if (!isset($tag[0]) || $tag[0] == NULL) {
-            echo "tag value not found";
             exit_with_bad_request();
         }
         $stmt = $conn-> connection -> prepare("
