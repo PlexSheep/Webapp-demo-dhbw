@@ -143,6 +143,13 @@ class DatabaseConnection {
         return $stmt;
     }
 
+    function get_user_for_recipie($recipie_uuid){
+        $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE user_pass.ID in (SELECT user FROM user_recipie WHERE user_recipie.recipie = ?)");
+        $stmt -> bind_param("s", $recipie_uuid);
+        $stmt->execute();
+        return $stmt;
+    }
+
     function create_category(){
         $stmt = $this -> connection -> prepare("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES (?, ?, ?)");
         $stmt -> bind_param("sss", $username, $hash, $email);

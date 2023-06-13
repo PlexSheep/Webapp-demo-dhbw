@@ -23,6 +23,14 @@ if (!isset($_GET['recipie'])) {
                     $ingridients = $conn -> query_ingridients($_GET['recipie']) -> get_result() -> fetch_all();
                     $categories = $conn -> query_categories($_GET['recipie']) -> get_result() -> fetch_all();
                     $tags = $conn -> query_tags($_GET['recipie']) -> get_result() -> fetch_all();
+                    $user = $conn -> get_user_for_recipie($result['id']) -> get_result() -> fetch_all(MYSQLI_ASSOC);
+                    if (!isset($user) || $user === NULL || count($user) !== 1) {
+                        $user_exists = false;
+                    }
+                    else {
+                        $user_exists = true;
+                        $user = $user[0];
+                    }
                     if ($result) {
                         echo "<h1 class='display-4 text-wrap'>" . htmlspecialchars($result['title'] , ENT_QUOTES, 'UTF-8') . "</h1>";
                         echo "<h4 class='h4 text-wrap'>" . htmlspecialchars($conn->get_country_by_id($result['country'])["name"] , ENT_QUOTES, 'UTF-8') . "</h4>";
@@ -73,6 +81,18 @@ if (!isset($_GET['recipie'])) {
                         }
                         foreach ($categories as $key => $value) {
                             echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">" . htmlspecialchars($value[0] , ENT_QUOTES, 'UTF-8') . "</li>";
+                        }
+                        echo "</ul>";
+                        echo "</div>";
+
+                        echo "<div class='col'>";
+                        echo "<label>Nutzer</label>";
+                        echo "<ul class=\"list-group w-50\">";
+                        if ($user_exists) {
+                            echo "<a href=\"/profile.php?user=" . $user['ID'] . "\"><li style=\"min-width: 100px;\" class=\"list-group-item\">" . $user['username'] . "</li></a>";
+                        }
+                        else {
+                            echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">Anonymous</li>";
                         }
                         echo "</ul>";
                         echo "</div>";
