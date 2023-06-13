@@ -11,7 +11,7 @@ if(isset($_SESSION['ID'])){
 		$user = $data -> get_result() -> fetch_object();
 		
 		$data_reci = $conn -> query_recipies_user($_POST['ID']);
-		$reci = $data_reci -> get_result() -> fetch_all();
+		$reci = $data_reci -> get_result() -> fetch_all(MYSQLI_ASSOC);
 		
 		$arr = array();
 		$arr[0] = $user;

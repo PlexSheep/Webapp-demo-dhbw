@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Jun 13, 2023 at 04:20 PM
+-- Generation Time: Jun 13, 2023 at 05:03 PM
 -- Server version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
 -- PHP Version: 8.1.18
 
@@ -85,7 +85,8 @@ INSERT INTO `ingredient` (`ID`, `name`) VALUES
 (2, 'Wasser'),
 (3, 'Müll'),
 (8, 'Spaghetti Nudeln'),
-(9, 's');
+(9, 's'),
+(10, 'd');
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,9 @@ INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `s
 ('Zwiebelramen', 4, 'aa29a06b23357e9bb6d94bf4f11e863a-522_2PV2_Miso_Onion_Ramen_4.jpg', 'Zwiebelramen ist Ramen mit Zwiebeln.', 'd958a0b6-e446-11ed-9b5e-0242ac140005', 0, 'zwiebelramen'),
 ('Müll', 3, 'd71bd869f724bd9bedb65b2490e1e1ee-mehr-muell-durch-corona-sel.jpg', 'Müll findet man überall, hat aber nicht so viel Nährwert.', 'f4446ad6-dae7-11ed-89a6-0242ac150002', 1.4, 'muell'),
 ('Spaghetti mit Tomatensoße', 3, 'd03cefacf5fb4aae95e32a33f9e786d1-spaghetti-with-tomato-sauce.jpg', 'Die beste Form der Nudeln.', 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 0, 'bd76b524-fe2e-11ed-b25f-0242c0a87005'),
-('awfawfaf', 3, NULL, 'wafafwawf', '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 0, '0569d4e3-0a06-11ee-ac1e-6ea18f847757');
+('awfawfaf', 3, NULL, 'wafafwawf', '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 0, '0569d4e3-0a06-11ee-ac1e-6ea18f847757'),
+('syvysvvs', 4, NULL, 'scscysvsv', '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 0, '4e7ca145-0a06-11ee-ac1e-6ea18f847757'),
+('esdrxctfvgzbhnijkmo,püö', 4, NULL, 'dsxfcgvh bjnkml,.', '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 0, '8c47dad3-0a09-11ee-ac1e-6ea18f847757');
 
 -- --------------------------------------------------------
 
@@ -135,7 +138,9 @@ CREATE TABLE `recipie_category` (
 INSERT INTO `recipie_category` (`ID`, `recipie`, `category`) VALUES
 (1, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1),
 (24, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 2),
-(25, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 1);
+(25, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 1),
+(26, '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 2),
+(27, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 3);
 
 -- --------------------------------------------------------
 
@@ -156,7 +161,11 @@ CREATE TABLE `recipie_country` (
 
 INSERT INTO `recipie_country` (`ID`, `recipie`, `country`) VALUES
 (1, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 5),
-(2, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 3);
+(2, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 3),
+(3, '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 4),
+(4, '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 4),
+(5, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 4),
+(6, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 4);
 
 -- --------------------------------------------------------
 
@@ -181,7 +190,9 @@ INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredient`) VALUES
 (3, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 1),
 (4, 'd958a0b6-e446-11ed-9b5e-0242ac140005', 2),
 (69, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 8),
-(70, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 9);
+(70, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 9),
+(71, '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 9),
+(72, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 10);
 
 -- --------------------------------------------------------
 
@@ -203,7 +214,9 @@ CREATE TABLE `recipie_tag` (
 INSERT INTO `recipie_tag` (`ID`, `recipie`, `tag`) VALUES
 (12, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 12),
 (13, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 1),
-(14, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 13);
+(14, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 13),
+(15, '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 13),
+(16, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 14);
 
 -- --------------------------------------------------------
 
@@ -225,7 +238,8 @@ INSERT INTO `tag` (`ID`, `name`) VALUES
 (1, 'Scharf'),
 (2, 'Bitter'),
 (12, 'Spaghetti'),
-(13, 's');
+(13, 's'),
+(14, 'd');
 
 -- --------------------------------------------------------
 
@@ -1261,6 +1275,14 @@ CREATE TABLE `user_recipie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `user_recipie`
+--
+
+INSERT INTO `user_recipie` (`user`, `recipie`) VALUES
+(1, '4e7ca145-0a06-11ee-ac1e-6ea18f847757'),
+(1, '8c47dad3-0a09-11ee-ac1e-6ea18f847757');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -1349,37 +1371,37 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `ingredient`
 --
 ALTER TABLE `ingredient`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `recipie_category`
 --
 ALTER TABLE `recipie_category`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `recipie_country`
 --
 ALTER TABLE `recipie_country`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `recipie_ingredient`
 --
 ALTER TABLE `recipie_ingredient`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `recipie_tag`
 --
 ALTER TABLE `recipie_tag`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user_pass`
