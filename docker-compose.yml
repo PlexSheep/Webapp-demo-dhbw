@@ -30,7 +30,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: example
     volumes:
-      - ./dev/docker_mysql_init/Recepie_Service.sql:/docker-entrypoint-initdb.d/Recepie_Service.sql:z
+      - ./dev/docker_mysql_init/Recipie_Service.sql:/docker-entrypoint-initdb.d/Recepie_Service.sql:z
       - ./dev/docker_mysql_init/custom.sql:/docker-entrypoint-initdb.d/custom.sql:z
   phpmyadmin:
     image: phpmyadmin
