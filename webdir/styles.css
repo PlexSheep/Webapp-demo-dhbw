@@ -331,13 +331,12 @@ input[type="submit"]:hover {
     min-width: 150px;
 }
 
-.infobox tr, td  {
-    /*
-    margin-left: auto;
-    margin-right: auto;
-*/
-}
-
 .form-control {
     color: grey;
+}
+
+.card-img {
+  height: 200px; /* Feste Höhe für Bilder */
+  width: 100%;
+  object-fit: cover;
 }

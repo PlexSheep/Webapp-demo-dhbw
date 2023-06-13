@@ -2,6 +2,9 @@
 define("rep", 1);
 // require the common.php stuff
 require 'common.php';
+if (!isset($_GET['recipie'])) {
+    exit_with_bad_request();
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -14,15 +17,15 @@ require 'common.php';
     </header>
     <main >
         <?php require 'templates/hero.php' // load the search bar and so on ?>
-        <section class="recipe-detail-container container-fluid w-100">
+        <section class="recipie-detail-container container-fluid w-100">
             <center>
-                <div class="w-100" class="recipe-detail-card container-fluid w-100">
+                <div class="w-100" class="recipie-detail-card container-fluid w-100">
                 <?php 
                     $conn = new DatabaseConnection($ini_array);
-                    $result = $conn->get_recepe_by_id($_GET['recipe']);
-                    $ingridients = $conn -> query_ingridients($_GET['recipe']) -> get_result() -> fetch_all();
-                    $categories = $conn -> query_categories($_GET['recipe']) -> get_result() -> fetch_all();
-                    $tags = $conn -> query_tags($_GET['recipe']) -> get_result() -> fetch_all();
+                    $result = $conn->get_recipie_by_id($_GET['recipie']);
+                    $ingridients = $conn -> query_ingridients($_GET['recipie']) -> get_result() -> fetch_all();
+                    $categories = $conn -> query_categories($_GET['recipie']) -> get_result() -> fetch_all();
+                    $tags = $conn -> query_tags($_GET['recipie']) -> get_result() -> fetch_all();
                     if ($result) {
                         echo "<h1 class='text-wrap'>" . htmlspecialchars($result['title'] , ENT_QUOTES, 'UTF-8') . "</h1>";
                         echo "<h4 class='text-wrap'>" . htmlspecialchars($conn->get_country_by_id($result['country'])["name"] , ENT_QUOTES, 'UTF-8') . "</h4>";
