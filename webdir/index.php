@@ -1,6 +1,5 @@
 <?php
 // require the common.php stuff
-define("rep", 1);
 require_once 'common.php';
 ?>
 <!DOCTYPE html>

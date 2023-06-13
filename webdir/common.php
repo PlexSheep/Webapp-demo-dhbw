@@ -1,7 +1,4 @@
 <?php
-if (!defined ("rep")) {
-    die("alles kaputt");
-}
 /*
  * This file contains common functionality found in many parts of the webapp.
  *
