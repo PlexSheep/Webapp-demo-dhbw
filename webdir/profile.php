@@ -38,7 +38,7 @@ if (!isset($_GET['user'])) {
                                 if ($row['image_path'] === null) {
                                     echo '
                                     <a href=/detail.php?recipie=' . $row['slug'] . '>
-                                    <div class="card" style="width: 18rem;">
+                                    <div class="card" style="max-width: 18rem;">
                                       <div>
                                           <img src="img/icons/empty_plate.jpg" class="card-img-top card-img" alt="thumbnail">
                                       </div>
@@ -55,7 +55,7 @@ if (!isset($_GET['user'])) {
                                 else {
                                     echo '
                                     <a href=/detail.php?recipie=' . $row['slug'] . '>
-                                    <div class="card" style="width: 18rem;">
+                                    <div class="card" style="max-width: 18rem;">
                                       <div>
                                           <img src="img/useruploads/' . $row['image_path'] . '" class="card-img-top card-img" alt="thumbnail">
                                       </div>

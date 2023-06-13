@@ -331,7 +331,7 @@ input[type="submit"]:hover {
 }
 
 .card-img {
-  height: 200px; /* Feste Höhe für Bilder */
+  height: 12rem; /* Feste Höhe für Bilder */
   width: 100%;
   object-fit: cover;
 }

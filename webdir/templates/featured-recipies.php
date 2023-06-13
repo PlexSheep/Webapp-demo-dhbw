@@ -1,6 +1,5 @@
-        <section class="recipes-cards-section justify-content-center">
-            <h4 class="display-6">Beliebte Rezepte</h4>
-            <div class="container-fluid">
+            <div class="container-fluid my-5">
+            <h4 class="display-6 m-5">Beliebte Rezepte</h4>
                 <div class="recipe-grid container-fluid px-5 mt-5" id="featured-recipies-grid">
                     <?php
                         $conn = new DatabaseConnection($ini_array);
@@ -10,7 +9,7 @@
                             if ($row['image_path'] === null) {
                                 echo '
                                 <a href=/detail.php?recipie=' . $row['slug'] . '>
-                                <div class="card" style="width: 18rem;">
+                                <div class="card" style="max-width: 18rem;">
                                   <div>
                                       <img src="img/icons/empty_plate.jpg" class="card-img-top card-img" alt="thumbnail">
                                   </div>
@@ -27,7 +26,7 @@
                             else {
                                 echo '
                                 <a href=/detail.php?recipie=' . $row['slug'] . '>
-                                <div class="card" style="width: 18rem;">
+                                <div class="card" style="max-width: 18rem;">
                                   <div>
                                       <img src="img/useruploads/' . $row['image_path'] . '" class="card-img-top card-img" alt="thumbnail">
                                   </div>
@@ -46,4 +45,3 @@
                     ?>
                 </div>
             </div>
-        </section>
