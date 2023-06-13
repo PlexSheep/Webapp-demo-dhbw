@@ -8,6 +8,7 @@ require "../common.php";
 <head>
     <?php require '../templates/head.php' ?>
 </head>
+<?php require '../templates/header.php' ?>
 
 <?php
 if (isset($_SESSION['ID'])) {
