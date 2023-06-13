@@ -9,9 +9,7 @@ require "common.php";
     <?php require 'templates/head.php' ?>
 </head>
 <body>
-    <header>
     <?php require 'templates/header.php' ?>
-    </header>
     <main>
         <section class="account">
             <h1>Mein Konto</h1>

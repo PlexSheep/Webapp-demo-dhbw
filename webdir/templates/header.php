@@ -12,9 +12,6 @@
         <li class="nav-item">
           <a class="nav-link" href="create.php">Erstellen</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="konto.php">Konto</a>
-        </li>
         <?php
         if(isset($_SESSION['ID'])){
             echo "<li><a class=\"nav-link\" href=\"../auth/logout.php\">Logout</a></li>";
@@ -24,6 +21,9 @@
                 echo "<li><a class=\"nav-link\" href=\"test/index.php\">Testpages</a></li>";
                 echo "<li><a class=\"nav-link\" href=\"http://localhost:8082\">phpmyadmin</a></li>";
             }
+        }
+        else {
+            echo "<li><a class=\"nav-link\" href=\"konto.php\">Anmelden</a></li>";
         }
         ?>
       </ul>

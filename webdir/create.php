@@ -230,9 +230,7 @@ if($_POST) {
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <header>
     <?php require 'templates/header.php' ?>
-    </header>
     <main>
         <?php require 'templates/hero.php' // load the search bar and so on ?>
         <section class="recipie-creator-container row container-fluid">
