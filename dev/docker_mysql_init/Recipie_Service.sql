@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Jun 13, 2023 at 05:03 PM
--- Server version: 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
--- PHP Version: 8.1.18
+-- Erstellungszeit: 14. Jun 2023 um 08:39
+-- Server-Version: 10.11.3-MariaDB-1:10.11.3+maria~ubu2204
+-- PHP-Version: 8.1.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,41 +18,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Recepie_Service`
+-- Datenbank: `Recipie_Service`
 --
-
--- i added this myself, to fix the db being unable to start
-CREATE DATABASE Recipie_Service;
-USE Recipie_Service;
+CREATE DATABASE IF NOT EXISTS `Recipie_Service` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `Recipie_Service`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Tabellenstruktur für Tabelle `category`
 --
 
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `ID` int(11) NOT NULL,
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `category`
+-- Daten für Tabelle `category`
 --
 
 INSERT INTO `category` (`ID`, `name`) VALUES
 (1, 'Ramen'),
 (2, 'Nudeln'),
-(3, 'Süßigkeiten');
+(3, 'Süßigkeiten'),
+(4, 'Pizza'),
+(5, 'Sushi'),
+(6, 'Snack');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `country`
+-- Tabellenstruktur für Tabelle `country`
 --
 
-DROP TABLE IF EXISTS `country`;
 CREATE TABLE `country` (
   `ID` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -60,7 +59,7 @@ CREATE TABLE `country` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `country`
+-- Daten für Tabelle `country`
 --
 
 INSERT INTO `country` (`ID`, `name`, `short_name`) VALUES
@@ -71,17 +70,16 @@ INSERT INTO `country` (`ID`, `name`, `short_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ingredient`
+-- Tabellenstruktur für Tabelle `ingredient`
 --
 
-DROP TABLE IF EXISTS `ingredient`;
 CREATE TABLE `ingredient` (
   `ID` int(11) NOT NULL,
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `ingredient`
+-- Daten für Tabelle `ingredient`
 --
 
 INSERT INTO `ingredient` (`ID`, `name`) VALUES
@@ -90,15 +88,17 @@ INSERT INTO `ingredient` (`ID`, `name`) VALUES
 (3, 'Müll'),
 (8, 'Spaghetti Nudeln'),
 (9, 's'),
-(10, 'd');
+(10, 'd'),
+(11, 'Käse'),
+(12, 'Tomaten'),
+(13, 'test');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recipie`
+-- Tabellenstruktur für Tabelle `recipie`
 --
 
-DROP TABLE IF EXISTS `recipie`;
 CREATE TABLE `recipie` (
   `title` varchar(40) DEFAULT NULL COMMENT 'title of the recipe',
   `country` int(11) DEFAULT NULL COMMENT 'id of the correspondin country',
@@ -110,25 +110,21 @@ CREATE TABLE `recipie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='stores the recipies';
 
 --
--- Dumping data for table `recipie`
+-- Daten für Tabelle `recipie`
 --
 
 INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) VALUES
-('Leitungswasser', 3, 'c3088096c996ba7286364497221155e5-1702189647_03d15f58b0_o.jpg', 'Leckeres Wasser aus der Leitung.Man öffne den Hahn und zapfe dieses exquisite Gut.', '4e605ea3-dad7-11ed-9a45-0242ac130002', 5, 'leitungswasser'),
 ('Zwiebelramen', 4, 'aa29a06b23357e9bb6d94bf4f11e863a-522_2PV2_Miso_Onion_Ramen_4.jpg', 'Zwiebelramen ist Ramen mit Zwiebeln.', 'd958a0b6-e446-11ed-9b5e-0242ac140005', 0, 'zwiebelramen'),
 ('Müll', 3, 'd71bd869f724bd9bedb65b2490e1e1ee-mehr-muell-durch-corona-sel.jpg', 'Müll findet man überall, hat aber nicht so viel Nährwert.', 'f4446ad6-dae7-11ed-89a6-0242ac150002', 1.4, 'muell'),
-('Spaghetti mit Tomatensoße', 3, 'd03cefacf5fb4aae95e32a33f9e786d1-spaghetti-with-tomato-sauce.jpg', 'Die beste Form der Nudeln.', 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 0, 'bd76b524-fe2e-11ed-b25f-0242c0a87005'),
-('awfawfaf', 3, NULL, 'wafafwawf', '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 0, '0569d4e3-0a06-11ee-ac1e-6ea18f847757'),
-('syvysvvs', 4, NULL, 'scscysvsv', '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 0, '4e7ca145-0a06-11ee-ac1e-6ea18f847757'),
-('esdrxctfvgzbhnijkmo,püö', 4, NULL, 'dsxfcgvh bjnkml,.', '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 0, '8c47dad3-0a09-11ee-ac1e-6ea18f847757');
+('Pizza', 5, '7dbf9fcf19b8d42a233b63c88672a158-Pizza-3007395.jpg', 'Eine Pizza (Aussprache [ˈpɪtsa], ital. [ˈpitːsa], deutscher Plural: die Pizzas oder die Pizzen[1]) ist ein vor dem Backen würzig belegtes Fladenbrot aus einfachem Hefeteig aus der italienischen Küche. Die heutige international verbreitete Variante mit Tomatensauce und Käse als Basis stammt vermutlich aus Neapel. 2017 wurde die neapolitanische Kunst des Pizzabäckers (Art of Neapolitan ‘Pizzaiuolo’) von der UNESCO in die repräsentative Liste des immateriellen Kulturerbes der Menschheit aufgenommen.[2]', '9a1062e1-0a8d-11ee-8a26-0242ac1a0003', 0, '9a1062e1-0a8d-11ee-8a26-0242ac1a0003'),
+('Spaghetti mit Tomatensoße', 3, 'd03cefacf5fb4aae95e32a33f9e786d1-spaghetti-with-tomato-sauce.jpg', 'Die beste Form der Nudeln.', 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 0, 'bd76b524-fe2e-11ed-b25f-0242c0a87005');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recipie_category`
+-- Tabellenstruktur für Tabelle `recipie_category`
 --
 
-DROP TABLE IF EXISTS `recipie_category`;
 CREATE TABLE `recipie_category` (
   `ID` int(11) NOT NULL,
   `recipie` uuid NOT NULL,
@@ -136,7 +132,7 @@ CREATE TABLE `recipie_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `recipie_category`
+-- Daten für Tabelle `recipie_category`
 --
 
 INSERT INTO `recipie_category` (`ID`, `recipie`, `category`) VALUES
@@ -144,15 +140,16 @@ INSERT INTO `recipie_category` (`ID`, `recipie`, `category`) VALUES
 (24, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 2),
 (25, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 1),
 (26, '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 2),
-(27, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 3);
+(27, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 3),
+(28, '9a1062e1-0a8d-11ee-8a26-0242ac1a0003', 4),
+(29, 'c7ed1f5a-0a8d-11ee-8a26-0242ac1a0003', 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recipie_country`
+-- Tabellenstruktur für Tabelle `recipie_country`
 --
 
-DROP TABLE IF EXISTS `recipie_country`;
 CREATE TABLE `recipie_country` (
   `ID` int(11) NOT NULL,
   `recipie` uuid NOT NULL,
@@ -160,7 +157,7 @@ CREATE TABLE `recipie_country` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `recipie_country`
+-- Daten für Tabelle `recipie_country`
 --
 
 INSERT INTO `recipie_country` (`ID`, `recipie`, `country`) VALUES
@@ -169,15 +166,18 @@ INSERT INTO `recipie_country` (`ID`, `recipie`, `country`) VALUES
 (3, '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 4),
 (4, '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 4),
 (5, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 4),
-(6, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 4);
+(6, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 4),
+(7, '9a1062e1-0a8d-11ee-8a26-0242ac1a0003', 5),
+(8, '9a1062e1-0a8d-11ee-8a26-0242ac1a0003', 5),
+(9, 'c7ed1f5a-0a8d-11ee-8a26-0242ac1a0003', 3),
+(10, 'c7ed1f5a-0a8d-11ee-8a26-0242ac1a0003', 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recipie_ingredient`
+-- Tabellenstruktur für Tabelle `recipie_ingredient`
 --
 
-DROP TABLE IF EXISTS `recipie_ingredient`;
 CREATE TABLE `recipie_ingredient` (
   `ID` int(11) NOT NULL,
   `recipie` uuid NOT NULL,
@@ -185,7 +185,7 @@ CREATE TABLE `recipie_ingredient` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `recipie_ingredient`
+-- Daten für Tabelle `recipie_ingredient`
 --
 
 INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredient`) VALUES
@@ -196,15 +196,17 @@ INSERT INTO `recipie_ingredient` (`ID`, `recipie`, `ingredient`) VALUES
 (69, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 8),
 (70, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 9),
 (71, '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 9),
-(72, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 10);
+(72, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 10),
+(73, '9a1062e1-0a8d-11ee-8a26-0242ac1a0003', 11),
+(74, '9a1062e1-0a8d-11ee-8a26-0242ac1a0003', 12),
+(75, 'c7ed1f5a-0a8d-11ee-8a26-0242ac1a0003', 13);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recipie_tag`
+-- Tabellenstruktur für Tabelle `recipie_tag`
 --
 
-DROP TABLE IF EXISTS `recipie_tag`;
 CREATE TABLE `recipie_tag` (
   `ID` int(11) NOT NULL,
   `recipie` uuid NOT NULL,
@@ -212,7 +214,7 @@ CREATE TABLE `recipie_tag` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `recipie_tag`
+-- Daten für Tabelle `recipie_tag`
 --
 
 INSERT INTO `recipie_tag` (`ID`, `recipie`, `tag`) VALUES
@@ -220,22 +222,23 @@ INSERT INTO `recipie_tag` (`ID`, `recipie`, `tag`) VALUES
 (13, 'bd76b524-fe2e-11ed-b25f-0242c0a87005', 1),
 (14, '0569d4e3-0a06-11ee-ac1e-6ea18f847757', 13),
 (15, '4e7ca145-0a06-11ee-ac1e-6ea18f847757', 13),
-(16, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 14);
+(16, '8c47dad3-0a09-11ee-ac1e-6ea18f847757', 14),
+(17, '9a1062e1-0a8d-11ee-8a26-0242ac1a0003', 15),
+(18, 'c7ed1f5a-0a8d-11ee-8a26-0242ac1a0003', 16);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tag`
+-- Tabellenstruktur für Tabelle `tag`
 --
 
-DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
   `ID` int(11) NOT NULL,
   `name` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tag`
+-- Daten für Tabelle `tag`
 --
 
 INSERT INTO `tag` (`ID`, `name`) VALUES
@@ -243,15 +246,16 @@ INSERT INTO `tag` (`ID`, `name`) VALUES
 (2, 'Bitter'),
 (12, 'Spaghetti'),
 (13, 's'),
-(14, 'd');
+(14, 'd'),
+(15, 'Warm'),
+(16, 'test');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_pass`
+-- Tabellenstruktur für Tabelle `user_pass`
 --
 
-DROP TABLE IF EXISTS `user_pass`;
 CREATE TABLE `user_pass` (
   `ID` int(11) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
@@ -260,7 +264,7 @@ CREATE TABLE `user_pass` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user_pass`
+-- Daten für Tabelle `user_pass`
 --
 
 INSERT INTO `user_pass` (`ID`, `username`, `password`, `email`) VALUES
@@ -1269,54 +1273,55 @@ INSERT INTO `user_pass` (`ID`, `username`, `password`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_recipie`
+-- Tabellenstruktur für Tabelle `user_recipie`
 --
 
-DROP TABLE IF EXISTS `user_recipie`;
 CREATE TABLE `user_recipie` (
   `user` int(10) NOT NULL,
   `recipie` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user_recipie`
+-- Daten für Tabelle `user_recipie`
 --
 
 INSERT INTO `user_recipie` (`user`, `recipie`) VALUES
 (1, '4e7ca145-0a06-11ee-ac1e-6ea18f847757'),
-(1, '8c47dad3-0a09-11ee-ac1e-6ea18f847757');
+(1, '8c47dad3-0a09-11ee-ac1e-6ea18f847757'),
+(1, '9a1062e1-0a8d-11ee-8a26-0242ac1a0003'),
+(1, 'c7ed1f5a-0a8d-11ee-8a26-0242ac1a0003');
 
 --
--- Indexes for dumped tables
+-- Indizes der exportierten Tabellen
 --
 
 --
--- Indexes for table `category`
+-- Indizes für die Tabelle `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `country`
+-- Indizes für die Tabelle `country`
 --
 ALTER TABLE `country`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `ingredient`
+-- Indizes für die Tabelle `ingredient`
 --
 ALTER TABLE `ingredient`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `recipie`
+-- Indizes für die Tabelle `recipie`
 --
 ALTER TABLE `recipie`
   ADD PRIMARY KEY (`id`),
   ADD KEY `country` (`country`);
 
 --
--- Indexes for table `recipie_category`
+-- Indizes für die Tabelle `recipie_category`
 --
 ALTER TABLE `recipie_category`
   ADD PRIMARY KEY (`ID`),
@@ -1324,13 +1329,13 @@ ALTER TABLE `recipie_category`
   ADD KEY `category` (`category`);
 
 --
--- Indexes for table `recipie_country`
+-- Indizes für die Tabelle `recipie_country`
 --
 ALTER TABLE `recipie_country`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `recipie_ingredient`
+-- Indizes für die Tabelle `recipie_ingredient`
 --
 ALTER TABLE `recipie_ingredient`
   ADD PRIMARY KEY (`ID`),
@@ -1338,87 +1343,87 @@ ALTER TABLE `recipie_ingredient`
   ADD KEY `ingredigent` (`ingredient`) USING BTREE;
 
 --
--- Indexes for table `recipie_tag`
+-- Indizes für die Tabelle `recipie_tag`
 --
 ALTER TABLE `recipie_tag`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `tag`
+-- Indizes für die Tabelle `tag`
 --
 ALTER TABLE `tag`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `user_pass`
+-- Indizes für die Tabelle `user_pass`
 --
 ALTER TABLE `user_pass`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT for table `category`
+-- AUTO_INCREMENT für Tabelle `category`
 --
 ALTER TABLE `category`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `country`
+-- AUTO_INCREMENT für Tabelle `country`
 --
 ALTER TABLE `country`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `ingredient`
+-- AUTO_INCREMENT für Tabelle `ingredient`
 --
 ALTER TABLE `ingredient`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT für Tabelle `recipie_category`
+--
+ALTER TABLE `recipie_category`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT für Tabelle `recipie_country`
+--
+ALTER TABLE `recipie_country`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `recipie_category`
---
-ALTER TABLE `recipie_category`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT for table `recipie_country`
---
-ALTER TABLE `recipie_country`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `recipie_ingredient`
+-- AUTO_INCREMENT für Tabelle `recipie_ingredient`
 --
 ALTER TABLE `recipie_ingredient`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
--- AUTO_INCREMENT for table `recipie_tag`
+-- AUTO_INCREMENT für Tabelle `recipie_tag`
 --
 ALTER TABLE `recipie_tag`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT für Tabelle `tag`
+--
+ALTER TABLE `tag`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `tag`
---
-ALTER TABLE `tag`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `user_pass`
+-- AUTO_INCREMENT für Tabelle `user_pass`
 --
 ALTER TABLE `user_pass`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
 
 --
--- Constraints for dumped tables
+-- Constraints der exportierten Tabellen
 --
 
 --
--- Constraints for table `recipie`
+-- Constraints der Tabelle `recipie`
 --
 ALTER TABLE `recipie`
   ADD CONSTRAINT `country` FOREIGN KEY (`country`) REFERENCES `country` (`ID`) ON DELETE SET NULL;
