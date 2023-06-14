@@ -51,7 +51,7 @@ if (!isset($_GET['recipie'])) {
                         echo "<div class='container row'>";
                         echo "<div class='col'>";
                         echo "<label>Zutaten</label>";
-                        echo "<ul class=\"list-group w-50\">";
+                        echo "<ul class=\"list-group w-100\">";
                         if (count($ingridients) === 0) {
                             echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">Keine</li>";
                         }
@@ -63,7 +63,7 @@ if (!isset($_GET['recipie'])) {
 
                         echo "<div class='col'>";
                         echo "<label>Tags</label>";
-                        echo "<ul class=\"list-group w-50\">";
+                        echo "<ul class=\"list-group w-100\">";
                         if (count($tags) === 0) {
                             echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">Keine</li>";
                         }
@@ -75,7 +75,7 @@ if (!isset($_GET['recipie'])) {
 
                         echo "<div class='col'>";
                         echo "<label>Kategorien</label>";
-                        echo "<ul class=\"list-group w-50\">";
+                        echo "<ul class=\"list-group w-100\">";
                         if (count($categories) === 0) {
                             echo "<li style=\"min-width: 100px;\" class=\"list-group-item\">Keine</li>";
                         }
@@ -87,7 +87,7 @@ if (!isset($_GET['recipie'])) {
 
                         echo "<div class='col'>";
                         echo "<label>Nutzer</label>";
-                        echo "<ul class=\"list-group w-50\">";
+                        echo "<ul class=\"list-group w-100\">";
                         if ($user_exists) {
                             echo "<a href=\"/profile.php?user=" . $user['ID'] . "\"><li style=\"min-width: 100px;\" class=\"list-group-item\">" . $user['username'] . "</li></a>";
                         }
