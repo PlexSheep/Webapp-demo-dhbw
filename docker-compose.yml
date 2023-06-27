@@ -23,7 +23,6 @@ services:
       - ./webdir:/var/www/html:z
   db:
     image: mariadb
-    restart: always
     networks:
       - internal
     ports:
@@ -31,24 +30,16 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: example
     volumes:
-      - ./dev/docker_mysql_init/Recepie_Service.sql:/docker-entrypoint-initdb.d/Recepie_Service.sql:z
+      - ./dev/docker_mysql_init/Recipie_Service.sql:/docker-entrypoint-initdb.d/Recepie_Service.sql:z
       - ./dev/docker_mysql_init/custom.sql:/docker-entrypoint-initdb.d/custom.sql:z
   phpmyadmin:
     image: phpmyadmin
-    restart: always
     networks:
       - internal
     ports:
       - "127.0.0.1:8082:80"
     environment:
       - PMA_HOST=db
-  #adminer:
-  #  image: adminer
-  #  restart: always
-  #  networks:
-  #    - internal
-  #  ports:
-  #    - "127.0.0.1:8081:8080"
 
 networks:
   internal:

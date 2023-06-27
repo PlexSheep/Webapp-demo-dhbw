@@ -30,18 +30,19 @@ if ($result -> num_rows > 0) {
     if(password_verify($password, $dbPassword)){
         $_SESSION['ID'] = $data -> ID;
         $_SESSION['USER'] = $username;
+        $_SESSION["login_time_stamp"] = time();
         //print_r($_SESSION['USER']);
         header('Location: /index.php');
         //die();
     }
     else {
-        $_SESSION['ERROR'] = "Invalid passowrd or username 1";
+        $_SESSION['ERROR'] = "Invalid passowrd or username";
         header('Location: /konto.php');
     }
 }
 else {
     //print_r($result);
-    $_SESSION['ERROR'] = "Invalid passowrd or username 2";
+    $_SESSION['ERROR'] = "Invalid passowrd or username";
     header('Location: /konto.php');
 }
 ?>

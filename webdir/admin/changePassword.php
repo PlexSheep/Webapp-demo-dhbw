@@ -18,7 +18,7 @@ if (isset($_SESSION['ID'])) {
         header('Location: /admin/admin.php');
     }
     else {
-        echo "No";
+        http_response_code(404); exit;
     }
 
 }

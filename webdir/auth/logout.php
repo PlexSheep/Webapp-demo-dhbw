@@ -3,7 +3,7 @@ define("rep", 1);
 
 require "../common.php";
 
-if (isset($_SESSION['MAIL'])) {
+if (isset($_SESSION['ID'])) {
     session_destroy();
     header('Location: /index.php');
 }

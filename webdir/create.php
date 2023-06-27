@@ -1,10 +1,13 @@
 <?php
-define("rep", 1);
 // require the common.php stuff
 require 'common.php';
 // include the upload function
 require 'upload.php';
 // process the form if it was sent
+
+if (!isset($_SESSION['ID'])){
+    header("Location: /konto.php");
+}
 if($_POST) {
     if (
         $_POST['name'] == NULL || 
@@ -16,6 +19,11 @@ if($_POST) {
     ) {
         exit_with_bad_request();
     }
+    // POST to normal stuff
+    $name = $_POST['name'];
+    $name = ($name);
+    $desc = $_POST['desc'];
+    $desc = ($desc);
     // decode tagify json strings
     $categories = (array_column(json_decode($_POST['category']), 'value'));
     $ingredients = (array_column(json_decode($_POST['ingredient']), 'value'));
@@ -28,12 +36,12 @@ if($_POST) {
         count($categories) > 20 ||
         $country == NULL ||
         count($country) != 1 ||
-        filter_var_array($categories, FILTER_SANITIZE_SPECIAL_CHARS) ||
-        filter_var_array($ingredients, FILTER_SANITIZE_SPECIAL_CHARS) ||
-        filter_var_array($tags, FILTER_SANITIZE_SPECIAL_CHARS) ||
-        filter_var_array($country, FILTER_SANITIZE_SPECIAL_CHARS) ||
-        filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS) ||
-        filter_var($_POST['desc'], FILTER_SANITIZE_SPECIAL_CHARS)
+        test_for_bad_chars_array($categories) ||
+        test_for_bad_chars_array($ingredients) ||
+        test_for_bad_chars_array($tags) ||
+        test_for_bad_chars_array($country) ||
+        test_for_bad_chars($name) ||
+        test_for_bad_chars($desc)
     ) {
         exit_with_bad_request();
     }
@@ -53,7 +61,16 @@ if($_POST) {
     $uuid = $conn ->query_database("SELECT UUID();")->fetch_row()[0];
 
 
-    $tmp = 3;
+    // get the country ID
+    $country = $conn->get_country_by_name($country[0]);
+    if ($country == NULL) {
+        exit_with_bad_request();
+    }
+    // country[0] is the ID.
+    if (!isset($country[0]) || $country[0] == NULL) {
+        exit_with_bad_request();
+    }
+
     // create main entry
     $stmt = $conn-> connection -> prepare("
         INSERT INTO `recipie` (`title`, `country`, `image_path`, `description`, `id`, `score`, `slug`) 
@@ -69,10 +86,11 @@ if($_POST) {
         );
     ");
     $stmt -> bind_param("ssssss", 
-        $_POST['name'],
-        $tmp,
+        $name,
+        // TODO add country lookup and writing to db
+        $country[0],
         $filename,
-        $_POST['desc'],
+        $desc,
         $uuid,
         $uuid,
     );
@@ -98,9 +116,11 @@ if($_POST) {
                 ?
             );
         ");
+        $escaped = $cat[0];
+        $escaped = escape_newlines($escaped);
         $stmt -> bind_param("ss", 
             $uuid,
-            $cat[0]
+            $escaped
         );
         $result = $stmt -> execute();
         $stmt->close();
@@ -113,7 +133,7 @@ if($_POST) {
         if ($ing == NULL) {
             exit_with_bad_request();
         }
-        // tag[0] is the ID.
+        // ing[0] is the ID.
         if (!isset($ing[0]) || $ing[0] == NULL) {
             exit_with_bad_request();
         }
@@ -126,9 +146,11 @@ if($_POST) {
                 ?
             );
         ");
+        $escaped = $ing[0];
+        $escaped = escape_newlines($escaped);
         $stmt -> bind_param("ss", 
             $uuid,
-            $ing[0]
+            $escaped
         );
         $result = $stmt -> execute();
         $stmt->close();
@@ -153,23 +175,17 @@ if($_POST) {
                 ?
             );
         ");
+        $escaped = $tag[0];
+        $escaped = escape_newlines($escaped);
         $stmt -> bind_param("ss", 
             $uuid,
-            $tag[0]
+            $escaped
         );
         $result = $stmt -> execute();
         $stmt->close();
     }
 
     // map the country
-    $country = $conn->get_country_by_name($country[0]);
-    if ($country == NULL) {
-        exit_with_bad_request();
-    }
-    // country[0] is the ID.
-    if (!isset($country[0]) || $country[0] == NULL) {
-        exit_with_bad_request();
-    }
     $stmt = $conn-> connection -> prepare("
         INSERT INTO `recipie_country` (`ID`, `recipie`, `country`)
         VALUES 
@@ -179,14 +195,53 @@ if($_POST) {
             ?
         );
     ");
+    $escaped = $country[0];
+    $escaped = escape_newlines($escaped);
     $stmt -> bind_param("ss", 
         $uuid,
-        $country[0]
+        $escaped
     );
     $result = $stmt -> execute();
     $stmt->close();
 
-    header("Location:".$_SERVER['HTTP_REFERER']);
+    // User mapping
+    $stmt = $conn-> connection -> prepare("
+        INSERT INTO `user_recipie` (`user`, `recipie`)
+        VALUES 
+        (
+            ?, 
+            ?
+        );
+    ");
+    $stmt -> bind_param("is", 
+        $_SESSION['ID'],
+        $uuid
+    );
+    $result = $stmt -> execute();
+    $stmt->close();
+    
+
+    // map the country
+    $stmt = $conn-> connection -> prepare("
+        INSERT INTO `recipie_country` (`ID`, `recipie`, `country`)
+        VALUES 
+        (
+            NULL, 
+            ?, 
+            ?
+        );
+    ");
+    $escaped = $country[0];
+    $escaped = escape_newlines($escaped);
+    $stmt -> bind_param("ss", 
+        $uuid,
+        $escaped
+    );
+    $result = $stmt -> execute();
+    $stmt->close();
+
+    $url = '/detail.php?recipie=' . $uuid;
+    header("Location:". $url);
     exit;
 }
 ?>
@@ -199,42 +254,64 @@ if($_POST) {
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <header>
     <?php require 'templates/header.php' ?>
-    </header>
     <main>
         <?php require 'templates/hero.php' // load the search bar and so on ?>
-        <section class="recipie-creator-container">
-            <form method="post" action="create.php" enctype="multipart/form-data">
-                <div id="img-part">
-                    <label for="img-upload">Bild</label>
-                    <br>
-                    <img src="img/icons/empty_plate.jpg" alt="image broken"></img>
-                    <br>
-                    <input type="file" name="fileToUpload" id="fileToUpload">
+        <section class="recipie-creator-container row container-fluid">
+            <form class="form-group" method="post" action="create.php" enctype="multipart/form-data">
+                <div class="container-xxl">
+                    <h2 class="h-5">Rezept erstellen</h2>
+                    <div class="row">
+                        <div class="col-3">
+                            <label class="form-label" for="img-upload">Bild</label>
+                            <br>
+                            <img id="upload-display" src="img/icons/empty_plate.jpg" alt="thumbnail" style="min-width: 200px;" class="m-3 pb-3 img-fluid"></img>
+                            <br>
+                            <input class="form-control"type="file" name="fileToUpload" style="min-width: 200px;" id="fileToUpload" onchange="loadFile(event)">
+                            <script>
+                                function loadFile(event) {
+                                    console.log("DO SOMETHING")
+                                  var image = document.getElementById('upload-display');
+                                  image.src=URL.createObjectURL(event.target.files[0]);
+                                }
+                            </script>
+                        </div>
+                        <div class="g-1"></div>
+                        <div class="container col">
+                            <label class="form-label"for="name">Name</label>
+                            <input class="form-control" type="text" id="name" name="name" placeholder="Name">
+                            <label class="form-label"for="desc-box">Beschreibung</label>
+                            <textarea name="desc" id="desc-box" placeholder="Beschreibung des Rezepts" class="form-control"></textarea>
+                            <div class="container row">
+                                <div class="col mx-auto">
+                                    <label class="form-label"for="tags">Tags:</label><br>
+                                    <input type="text" id="tags" placeholder="Tags" name="tags">
+                                </div>
+                                <div class="col mx-auto">
+                                    <label class="form-label"for="ingredient">Zutaten:</label><br>
+                                    <input type="text" id="ingredient" placeholder="Zutaten" name="ingredient">
+                                </div>
+                                <div class="col mx-auto">
+                                    <label class="form-label"for="category">Kategorie:</label><br>
+                                    <input id="category" placeholder="Kategorie" name="category">
+                                    <div id="opetions-for-category" class="tagify-option-chooser"></div>
+                                </div>
+                                <div class="col mx-auto">
+                                    <label class="form-label"for="country">Land:</label><br>
+                                    <input id="country" placeholder="Land" name="country">
+                                    <div id="opetions-for-country" class="tagify-option-chooser"></div>
+                                </div>
+                            </div>
+                            <input class="form-control"type="submit" value="Erstellen">
+                        </div>
+                        </div>
+                    </div>
                 </div>
-                <h2>Rezept erstellen</h2>
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Name">
-                <label for="desc-box">Beschreibung</label>
-                <textarea name="desc" id="desc-box" placeholder="Beschreibung des Rezepts" rows="20" cols="120"></textarea>
-                <label for="tags">Tags:</label>
-                <input type="text" id="tags" placeholder="Tags" name="tags">
-                <label for="ingredient">Zutaten:</label>
-                <input type="text" id="ingredient" placeholder="Zutaten" name="ingredient">
-                <label for="category">Kategorie:</label> 
-                <input id="category" placeholder="Kategorie" name="category">
-                <div id="opetions-for-category" class="tagify-option-chooser"></div>
-                <label for="country">Land:</label> 
-                <input id="country" placeholder="Land" name="country">
-                <div id="opetions-for-country" class="tagify-option-chooser"></div>
-                <input type="submit" value="Erstellen">
                 <script>
-                    // The DOM element you wish to replace with Tagify
                     var tags = document.querySelector('input[name=tags]');
                     var ingredient = document.querySelector('input[name=ingredient]');
 
-                    // initialize Tagify on the above input node reference
+                    // initialize Tagify on the above input class="form-control"node reference
                     new Tagify(tags)
                     new Tagify(ingredient)
 
@@ -319,7 +396,14 @@ if($_POST) {
 
                     function onDropdownScroll(e){
                         console.log(e.detail)
-                      }
+                    }
+                      
+                    const warning = (e) => {
+                        // For most browsers, just the following line is sufficient:
+                        return `Are you sure?`;
+                    };
+
+                    window.addEventListener(`beforeunload`, warning);
 
                 </script>
             </form>
