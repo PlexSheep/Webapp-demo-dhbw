@@ -152,6 +152,14 @@ class DatabaseConnection {
         $stmt->execute();
         return $stmt;
     }
+    
+    function query_all_reci_data(){
+        $stmt = $this-> connection -> prepare("SELECT * FROM `recipie`, `recipie_category`, `recipie_country`, `recipie_ingredient`, `recipie_tag`, `ingredient`, `country`, `category`, `tag`
+                                               WHERE ID=?");
+        $stmt -> bind_param("d", $id);
+        $stmt->execute();
+        return $stmt;
+    }
 
     /**
      * Function to query all recipies belonging to a certain user identified by id
