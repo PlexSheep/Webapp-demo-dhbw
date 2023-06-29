@@ -3,6 +3,8 @@ Demo project for DHBW Mannheim Webapplication Lectures.
 
 We want to make a recipe sharing platform.
 
+> Eine Seite Für Kochrezepte von verschiedenen Ländern all around the globe.
+
 # Technology Stack
 - PHP for Server Backend (requirement)
 - Bootstrap for CSS Framework (requirement, verhandelbar?)
