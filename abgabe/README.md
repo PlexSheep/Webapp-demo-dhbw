@@ -15,6 +15,10 @@ We want to make a recipe sharing platform.
 - CSS (requirement)
 - JS (requirement)
 
+# Deployment
+- You'll need a webserver and a database server (perferably MariaDB)
+- configure the `rezepti_config.ini file to your needs
+
 # Requirements
 - [ ] Dokumentation 
 - [ ] Referenzdokument
