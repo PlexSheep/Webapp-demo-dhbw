@@ -93,6 +93,5 @@ Rezepti ist eine Sammlung von Rezepten, sortiert nach Zutaten, Ursprungsländern
 | BROWN@test.de    | test     |
 | MOORE@test.de    | test     |
 | TAYLOR@test.de   | test     |
-|------------------|----------|
 
 Und viele mehr
