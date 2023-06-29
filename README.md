@@ -28,7 +28,7 @@ We want to make a recipe sharing platform.
 - [X] Admin-Bereich mit Useraccount-Verwaltung
 - [X] Passwort-Verwaltung
 - [X] Rechte-Verwaltung (Adminrechte-Userrechte)
-- [ ] Dateneingaben client- und serverseitig prüfen (RegExp)
+- [X] Dateneingaben client- und serverseitig prüfen (RegExp)
 - [X] Datensatzmanipulation in SQL-Server (speichern; auslesen/ausgeben; bearbeiten; löschen)
 - [X] Konfigurationsdaten via Konfigurationsdatei einlesen
 - [X] Einbindung von jQuery und jQuery UI
