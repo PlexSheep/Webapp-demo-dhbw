@@ -1,4 +1,7 @@
 <?php
+/**
+ * @ignore
+ */
 define("rep", 1);
 require "../common.php";
 //require "jwt.php";
