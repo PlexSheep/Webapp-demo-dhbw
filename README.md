@@ -24,7 +24,7 @@ We want to make a recipe sharing platform.
 # Funktions Requirements
 ## Vorgaben:
 - [X] Sessionverwaltung
-- [ ] Login-Logout; automatisches Logout nach bestimmter Zeit
+- [X] Login-Logout; automatisches Logout nach bestimmter Zeit
 - [X] Admin-Bereich mit Useraccount-Verwaltung
 - [X] Passwort-Verwaltung
 - [X] Rechte-Verwaltung (Adminrechte-Userrechte)
@@ -38,7 +38,7 @@ We want to make a recipe sharing platform.
 - [X] Dynamische Menüstruktur mit responsive Webdesign
 ## Eigene Features:
 - [X] Tags und Ursprungsländer, vorschläge und suche dazu
-- [ ] Suche nach Rezepten
+- [X] Suche nach Rezepten
 
 # Documentation for Class (german)
 ## Kurzbeschreibung
