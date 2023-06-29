@@ -2,6 +2,14 @@
     <?php require '../templates/head.php' ?>
 </head>
 
+<?php
+if (isset($_SESSION['ID'])) {
+    if ($_SESSION['ID'] != 1) {
+        http_response_code(403);
+        exit;
+    }
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
@@ -38,3 +46,11 @@
     </div>
   </div>
 </nav>
+
+<?php
+else {
+    // Access control
+    http_response_code(403); exit;
+}
+
+?>
