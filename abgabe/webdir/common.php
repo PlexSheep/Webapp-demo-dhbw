@@ -17,7 +17,7 @@ if(isset($_SESSION["ID"]))
 }
 
 
-$ini_path = "php.ini";
+$ini_path = "./rezepti_config.ini";
 
 // Parse with sections
 $ini_array = parse_ini_file($ini_path, true);
