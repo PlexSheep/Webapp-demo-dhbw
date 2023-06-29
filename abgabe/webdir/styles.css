@@ -1,0 +1,351 @@
+/* Allgemeine Stile */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F7;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.logo a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 32px;
+    float: left;
+    margin: 4px;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    background-image: url(img/foods/hintirezi.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 2rem;
+    min-height: 200px;
+    text-align: center;
+}
+
+.hero form {
+    float: right;
+    padding: 16px;
+}
+
+input[type="search"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.recipes-cards-section {
+    padding: 2rem;
+}
+
+.recipie-creator-container {
+    background-color: #F1F1F3;
+    padding: 2rem;
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 2rem; /* Erhöhter Abstand zwischen Boxen */
+}
+
+.recipe-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: center;
+    
+}
+
+.recipe-detail-card {
+    width: 100%;
+    /*max-width: 450px;*/
+    float: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+
+
+.recipe-grid a {
+    display: grid;
+    color: #000;
+    text-decoration: none;
+}
+
+.recipe-card {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 1rem;
+    text-align: center;
+    width: 250px;
+    margin-left: 40px;
+}
+
+.recipe-card img {
+  height: 200px; /* Feste Höhe für Bilder */
+  width: 100%;
+  object-fit: cover;
+}
+
+#rezepte{
+    text-align: center;
+}
+
+.baggi{
+    background-image: url(hkoch.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Konto-Seite Stile */
+.active {
+    font-weight: bold;
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 400px;
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #fc6508;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #e4550a;
+}
+
+.baggi{
+    
+    background-image: url(img/hkoch.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.recipe-detail-container {
+    padding: 2rem;
+    background-color: #eeeeee;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 1rem;
+    text-align: center;
+    float: left;
+}
+
+.recipe-detail-card {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /*overflow: hidden;*/
+    padding: 1rem;
+    text-align: center;
+    float: left;
+}
+
+.recipe-detail-card img {
+    height: auto;
+    max-width: 1000px;
+    min-width: 300px;
+    max-height: 40%;
+    object-fit: cover;
+    padding: 0px;
+    border: solid 2px black;
+}
+
+main {
+    min-height: 50rem;
+}
+
+footer {
+    padding: 16px;
+    text-align: center;
+    border-top: thin black solid;
+    border-radius: 5px;
+    background-color: #eeeeee;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+article {
+    padding: 16px;
+}
+
+.score {
+    background-color: orangered;
+    border-radius: 2px;
+    box-shadow: 0 4px 6px rgb(251, 7, 7);
+    overflow: hidden;
+    padding: 1rem;
+    text-align: center;
+    max-width: 8rem;
+    color: white;
+}
+
+.score h4 {
+    margin: -4px;
+}
+
+
+.baggi{
+    background-image: url(hkoch.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Konto-Seite Stile */
+.active {
+    font-weight: bold;
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 400px;
+    width: 100%;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #fc6508;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+}
+
+input[type="submit"]:hover {
+    background-color: #e4550a;
+}
+
+.tagify {
+    width: 200px;
+}
+
+.tagify-option-chooser {
+    width: 200px;
+}
+
+.infobox {
+    /*float: right;*/
+    background-color: #eeeeee;
+    min-height: 150px;
+    min-width: 150px;
+    border: 2px solid black;
+    margin: 4px;
+}
+.infobox tbody {
+    padding: 4px;
+    text-align: center;
+    min-height: 150px;
+    min-width: 150px;
+}
+
+.form-control {
+    color: grey;
+}
+
+.card-img {
+  height: 12rem; /* Feste Höhe für Bilder */
+  width: 100%;
+  object-fit: cover;
+}
+
+.customSuggestionsList > div{
+  max-height: 300px;
+  min-height: 50px;
+  border: 2px solid pink;
+  overflow: auto;
+}
+
+.customSuggestionsList .empty{
+  color: #fc6508;
+  font-size: 20px;
+  text-align: center;
+  padding: 1em;
+}
