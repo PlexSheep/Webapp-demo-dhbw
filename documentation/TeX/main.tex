@@ -3,10 +3,11 @@
 %\usepackage{todonotes}
 \usepackage{listings}
 \usepackage{subcaption}
-
+\usepackage{multicol}
+\usepackage[section]{placeins}
 
 \title{Rezepti}
-\author{ Christoph Sherr , Dominik Hummel, Tobias Lotz }
+\author{ Christoph Sherr , Tobias Lotz, Dominik Hummel }
 \date{June 2023}
 
 \begin{document}
@@ -31,6 +32,25 @@ Der Projektrahmen sind die gegebenen requirements die erfüllt wurden.
 Die Umsetzungsstrategie war sehr dynamisch jeder war in einem bereich einigermaßen gut deshalb ging es einfach los und gelegentlich vergleichen bis wir an einem punkt waren das es darum ging die requirements zu erfüllen ab dann wurde mit planung schritt für schritt die requirements übernommen. 
 \newline
 Zuständigkeit Domme Frontend, Tobias Backend und Christoph vermittler zwischen Front und Backen und ebenfalls Entwicklung in beiden Bereichen.
+
+\section{Komplettes Product-Backlog als Tabelle}
+\begin{itemize}
+    \item detail view
+    \item Rezept suche
+    \item Startseite
+    \item Rezepte aus DB laden
+    \item Rating System
+    \item account seite
+    \item bilder hochladen
+    \item rezepte erstellen
+    \item admin section
+    \item session management
+    \item "similar" recipies section - injection resistance
+    \item user profile page
+    \item Filter funktion
+    \item Zutaten kaufen
+\end{itemize}
+
 
 \section{Technologien/Requirements}
 
@@ -115,23 +135,30 @@ Zuständigkeit Domme Frontend, Tobias Backend und Christoph vermittler zwischen 
 \end{itemize}
 \label{tab:my_label}
 
-\section{Aufbau der Directories}
+\section{Verzeichnisstruktur}
+Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontainer relevant sind. Diese sind die nginx, php, site.conf und dev Verzeichnisse. Der tatsächliche code der Webapp befindet sich im Verzeichnis webdir.
+
+\begin{figure}[!hbt]
+    \centering
+    \includegraphics[scale=0.75]{Pictures/Dirs1.png}
+    \caption{Directories}
+    \label{fig:sfig1}
+\end{figure}
+
+
 
 \section{Beschreibung der Datenstrukturen und Tabellen}
 
-\begin{figure*}
-    \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.8\linewidth]{Pictures/DB_Tables.png}
-        \caption{Liste der Tabellen}
-        \label{fig:sfig1}
-    \end{subfigure}%
-    \begin{subfigure}{.5\textwidth}
-        \centering
-        \includegraphics[width=.8\linewidth]{Pictures/DB_Tables2.png}
-        \caption{Tabellen mit Attributen}
-        \label{fig:sfig2} 
-    \end{subfigure}
-\end{figure*}
+Für die Datenbank wurde nach Vorgabe MariDB verwendet. Diese Datenbank wurde in einem Dockercontainer gehostet und dann zur Bereitstellung der Daten angebunden.
+
+\begin{figure}[!hbt]
+    \centering
+    \includegraphics[scale=0.75]{Pictures/DB_Tables2.png}
+    \caption{Directories}
+    \label{fig:sfig1}
+\end{figure}
+
+
+
 
 \end{document}
