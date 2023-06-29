@@ -199,6 +199,11 @@ class DatabaseConnection {
         $stmt->execute();
     }
 
+    /**
+     * Function to get a recipie by its id
+     * @param string $id
+     * @return array
+     */
     function get_recipie_by_id(string $id) {
         $query = ("SELECT * FROM recipie WHERE slug = \"" . $id . "\"");
         $result = $this->connection->query($query);
@@ -211,6 +216,12 @@ class DatabaseConnection {
             return false;
         }
     }
+
+    /**
+     * Function to get a category by its name
+     * @param string $name
+     * @return array
+     */
     function get_category_by_name(string $name) {
         $stmt = $this -> connection -> prepare("
         SELECT * FROM `category` WHERE name = ?;
@@ -226,6 +237,7 @@ class DatabaseConnection {
         $stmt->close();
         return $result;
     }
+
     function get_country_by_name(string $name) {
         $stmt = $this -> connection -> prepare("
         SELECT * FROM `country` WHERE name = ?;
