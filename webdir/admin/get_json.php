@@ -2,7 +2,9 @@
 define("rep", 1);
 
 require "../common.php";
-
+/**
+ * This script gets the 
+ */
 if(isset($_SESSION['ID'])){
 	if($_SESSION['ID'] == 1) {
 		$conn = new DatabaseConnection($ini_array);

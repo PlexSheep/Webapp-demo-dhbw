@@ -72,6 +72,11 @@ class DatabaseConnection {
         return $result;
     }
 
+    /**
+     * Function to query the recipie ingridients from the database
+     * @param string $rec_id
+     * @return sql statement object
+     */
     function query_ingridients(string $rec_id){
         $stmt = $this-> connection -> prepare("SELECT `name`
                                                FROM `ingredient`, `recipie_ingredient`, `recipie`  
@@ -84,6 +89,11 @@ class DatabaseConnection {
         return $stmt;       
     }
 
+    /**
+     * Function to query the recipie tags from the database
+     * @param string $rec_id
+     * @return sql statement object
+     */
     function query_tags(string $rec_id){
         $stmt = $this-> connection -> prepare("SELECT `name`
                                                FROM `tag`, `recipie_tag`, `recipie`  
@@ -96,6 +106,11 @@ class DatabaseConnection {
         return $stmt;       
     }
 
+    /**
+     * Function to query the recipie categories from the database
+     * @param string $rec_id
+     * @return sql statement object
+     */
     function query_categories(string $rec_id){
         $stmt = $this-> connection -> prepare("SELECT `name`
                                                FROM `category`, `recipie_category`, `recipie`  
@@ -108,6 +123,11 @@ class DatabaseConnection {
         return $stmt;       
     }
 
+    /**
+     * Function to get a single country from the database by id
+     * @param int $id
+     * @return String
+     */
     function get_country_by_id(int $id) {
         $query = ("SELECT * FROM country WHERE ID = " . $id);
         $result = $this->connection->query($query);
@@ -121,6 +141,11 @@ class DatabaseConnection {
         }
     }
 
+    /**
+     * Function to query all data belonging to a certain user identified by id
+     * @param int $id
+     * @return sql statement object
+     */
     function query_all_user_data(int $id){
         $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE user_pass.ID=?");
         $stmt -> bind_param("d", $id);
@@ -128,6 +153,11 @@ class DatabaseConnection {
         return $stmt;
     }
 
+    /**
+     * Function to query all recipies belonging to a certain user identified by id
+     * @param int $id
+     * @return sql statement object
+     */
     function query_recipies_user(int $id){
         $stmt = $this-> connection -> prepare("SELECT * FROM `recipie` WHERE (SELECT `user` FROM user_recipie WHERE user_recipie.user = ? AND user_recipie.recipie = recipie.id)");
         $stmt -> bind_param("d", $id);
@@ -135,6 +165,10 @@ class DatabaseConnection {
         return $stmt;
     }
     
+    /**
+     * Function to query all data belonging to a certain user identified by email
+     * @return sql statement object
+     */
     function query_all_user_data_email(){
         $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE email LIKE ? LIMIT 10");
         $search = "{$_POST['MAIL']}%";
@@ -143,6 +177,11 @@ class DatabaseConnection {
         return $stmt;
     }
 
+    /**
+     * Function to get the user that has created a recipie
+     * @param $recipie_uuid
+     * @return sql statement object
+     */
     function get_user_for_recipie($recipie_uuid){
         $stmt = $this-> connection -> prepare("SELECT * FROM `user_pass` WHERE user_pass.ID in (SELECT user FROM user_recipie WHERE user_recipie.recipie = ?)");
         $stmt -> bind_param("s", $recipie_uuid);
@@ -150,6 +189,10 @@ class DatabaseConnection {
         return $stmt;
     }
 
+    /**
+     * Function to create a new category
+     * @return None
+     */
     function create_category(){
         $stmt = $this -> connection -> prepare("INSERT INTO `user_pass` (`username`, `password`, `email`) VALUES (?, ?, ?)");
         $stmt -> bind_param("sss", $username, $hash, $email);

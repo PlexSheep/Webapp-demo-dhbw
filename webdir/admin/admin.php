@@ -20,11 +20,12 @@ if (isset($_SESSION['ID'])) {
 
 <body>
 
-<div id="dialog-confirm" title="Empty the recycle bin?" style="display: None">
+<div id="dialog-confirm" title="Delete User?" style="display: None">
   <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>This user will be deleted. Are you sure?</p>
 </div>
 
-<div id="dialog-confirm-pass" title="Empty the recycle bin?" style="display: None">
+
+<div id="dialog-confirm-pass" title="Change password?" style="display: None">
   <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Really change password?</p>
 </div>
 
@@ -37,7 +38,10 @@ if (isset($_SESSION['ID'])) {
 
     <script>
 
-
+    /**
+     * Function that creates an autocomplete feature for the emails when searching in the admin panel using JQuery AJAX
+     * The function searches the database with a LIKE SQL statement on every keypress
+     */
     $(document).ready(function() {
         $("#search-box").keyup(function() {
             console.log("Here");
@@ -62,6 +66,9 @@ if (isset($_SESSION['ID'])) {
         $("#user-search").hide();
     }
 
+    /**
+     * This function handels the deletion of a user via JQuery AJAX so as to not have to jump between sites
+     */
     $(document).ready(function(){
         $( "#delForm" ).on( "submit", function( event ) {
             event.preventDefault()
@@ -91,6 +98,10 @@ if (isset($_SESSION['ID'])) {
         });
         });
     
+
+    /**
+     * This function handels the change of a users passsword via JQuery AJAX so as to not have to jump between sites
+     */
     $(document).ready(function(){
         $( "#update_pass" ).on( "submit", function( event ) {
             event.preventDefault()
@@ -120,6 +131,9 @@ if (isset($_SESSION['ID'])) {
         });
         });
 
+    /**
+     * This function handels the addition of recipie categories via JQuery AJAX so as to not have to jump between sites
+     */
      $(document).ready(function(){
         $( "#cat" ).on( "submit", function( event ) {
             event.preventDefault()

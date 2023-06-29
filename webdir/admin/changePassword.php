@@ -11,6 +11,7 @@ if (isset($_SESSION['ID'])) {
 
     $conn = new DatabaseConnection($ini_array);
     if ($_POST['ID'] != 1) {
+        // Hash the changed password
         $hash = password_hash($_POST['PASS'], PASSWORD_ARGON2ID);
         $stmt = $conn -> connection -> prepare("UPDATE `user_pass` SET `password` = ? WHERE ID = ?");
         $stmt -> bind_param("si", $hash, $_POST['ID']);
