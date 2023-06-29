@@ -35,7 +35,7 @@ We want to make a recipe sharing platform.
 - [X] Datensatzmanipulation in SQL-Server (speichern; auslesen/ausgeben; bearbeiten; löschen)
 - [X] Konfigurationsdaten via Konfigurationsdatei einlesen
     - php.ini
-    - soll vom webserver geschützt werden. Da sie ihren eigenen Webserver verwenden möchten,
+    - soll vom webserver geschützt werden. Da Sie ihren eigenen Webserver verwenden möchten,
       können wir ihnen dafür keine Konfiguration mitschicken.
       Für nginx:
       ```
