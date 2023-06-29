@@ -249,9 +249,9 @@ if($_POST) {
 <html lang="de">
 <head>
     <?php require 'templates/head.php' ?>
-    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+    <script src="/static/tagify/tagify.min.js"></script>
+    <script src="/static/tagify/tagify.polyfills.min.js"></script>
+    <link href="/static/tagify/tagify.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <?php require 'templates/header.php' ?>

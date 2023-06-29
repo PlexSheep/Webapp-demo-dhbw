@@ -61,29 +61,6 @@ We want to make a recipe sharing platform.
 - [X] Tags, Kategorien und Ursprungsländer
 - [X] Suche nach Rezepten
 
-# Documentation for Class (german)
-## Kurzbeschreibung
-Rezepti ist eine Sammlung von Rezepten, sortiert nach Zutaten, Ursprungsländern und vielem mehr.
-
-## Zielgruppenanalyse
--> Jeder der Kochen kann und einen Webbrowser verwenden kann.
--> Jeder der gerne neue Gerichte probiert.
-
-## Kurze Beschreibung der geplanten Funkionalität
--> siehe Funktions Requirements
-
-## Kurze Beschreibung der geplanten Technologien
--> siehe Technology Stack
-
-## SCRUM Backlog
--> siehe Github Project und issues list
-
-## Präsentation
--> noch nicht notwendig
-
-## Abgabedatum
--> Vermutlich zur letzten Vorlesung
-
 # Default Credentials
 | User             | Password |
 |------------------|----------|
