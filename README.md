@@ -62,3 +62,14 @@ Rezepti ist eine Sammlung von Rezepten, sortiert nach Zutaten, Ursprungsländern
 
 ## Abgabedatum
 -> Vermutlich zur letzten Vorlesung
+
+# Default Credentials
+| User             | Password |
+|------------------|----------|
+| admin@adm.com    | admin    |
+| WILLIAMS@test.de | test     |
+| JONES@test.de    | test     |
+| BROWN@test.de    | test     |
+| MOORE@test.de    | test     |
+| TAYLOR@test.de   | test     |
+|------------------|----------|
