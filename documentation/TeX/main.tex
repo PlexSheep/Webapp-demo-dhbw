@@ -1,6 +1,6 @@
-\documentclass{report}
+\documentclass{article}
 \usepackage{graphicx} % Required for inserting images
-%\usepackage{todonotes}
+\usepackage{hyperref}
 \usepackage{listings}
 \usepackage{subcaption}
 \usepackage{multicol}
@@ -23,11 +23,25 @@
 \end{figure}
 \maketitle
 
+\pagebreak
 \section{Kurzbeschreibung:}
 Eine Seite Für Kochrezepte von verschiedenen Ländern all around the globe.
 
 \section{Zielgruppe Nutzer und Beeinflusser:}
 Unsere Zielgruppe sind alle Personen die Kochen wollen. Nutzer könnten alle Personen sein die ein bestimmten Rezept suchen oder einfach Rezepte Endecken wollen. Beeinflusser können Firmen sein die unseren konntet für ihre Zwecke nutzen wollen zb. Influenzer die Rezepte probieren oder Firmen die Produkte durch Rezepte vermarkten wollen.
+
+\section{Funktionen}
+\begin{multicols}{2}
+    \begin{itemize}
+        \item Rezepte Filtern
+        \item Rezepte suchen
+        \item Anmeldung/Registrierung
+        \item Rezept erstellen
+        \item Rezept bewerten
+        \item Rezept unter Favoriten speichern
+        \item Rezepte Endecken
+    \end{itemize}
+\end{multicols}
 
 \section{Referenzdokument}
 (mit Zielen, Funktionsrahmen bzw. allg. Funktionsbeschreibung, Projektrahmen, Umsetzungsstrategie, Aufgaben und Zuständigkeiten)
@@ -46,23 +60,23 @@ Zuständigkeit Domme Frontend, Tobias Backend und Christoph vermittler zwischen 
 \section{Komplettes Product-Backlog als Tabelle}
 \begin{multicols}{2}
 \centering
-\begin{itemize}
-    \item detail view
-    \item Rezept suche
-    \item Startseite
-    \item Rezepte aus DB laden
-    \item Rating System
-    \item account seite
-    \item bilder hochladen
-    \item rezepte erstellen
-    \item admin section
-    \item session management
-    \item "similar" recipies section - injection resistance
-    \item user profile page
-    \item Filter funktion
-    \item Zutaten kaufen
-\end{itemize}
+\begin{tabular}{|c|c|}
+    Detail view & Rezept suche \\
+    Startseite & Rezepte aus DB laden\\
+    Rating System & Account seite\\
+    Bilder hochladen & rezepte erstellen\\
+    Admin section & Session management \\
+    "similar" recipies section - injection resistance & User profile page\\
+    Filter funktion & Zutaten kaufen\\
+\end{tabular}
 \end{multicols}
+
+Im Verlauf des Projektes haben wir die "Projects" Funktion von GitHub verwendet, welche u.a. ein Kanban Board zu organisation anbietet.
+\begin{center}
+    Dieses kann unter folgendem Link gefunden werden:  
+    \url{https://github.com/users/PlexSheep/projects/2}
+\end{center}
+
 
 \pagebreak
 \section{Technologien/Requirements}
@@ -149,7 +163,7 @@ Zuständigkeit Domme Frontend, Tobias Backend und Christoph vermittler zwischen 
 \label{tab:my_label}
 
 \section{Verzeichnisstruktur}
-Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontainer relevant sind. Diese sind die nginx, php, site.conf und dev Verzeichnisse. Der tatsächliche code der Webapp befindet sich im Verzeichnis webdir.
+Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontainer relevant sind. Diese sind die nginx, php, site.conf und dev Verzeichnisse. Der tatsächliche code der Webapp befindet sich im Verzeichnis webdir. In diesem Verzeichnis werden die haupt customer-facing Seiten gespeichert. In den in webdir enthaltenen Unterordnern admin, auth, und templates werden jeweils die Dateien für die Administarorenseiten, Authentifizierung und Templates gespeichert.
 
 \begin{figure}[!hbt]
     \centering
@@ -160,7 +174,7 @@ Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontaine
 
 
 \pagebreak
-\section{Beschreibung der Datenstrukturen und Tabellen}
+\section{Beschreibung der Datenstrukturen \newline und Tabellen}
 
 Für die Datenbank wurde nach Vorgabe MariDB verwendet. Diese Datenbank wurde in einem Dockercontainer gehostet und dann zur Bereitstellung der Daten angebunden.
 
@@ -171,7 +185,102 @@ Für die Datenbank wurde nach Vorgabe MariDB verwendet. Diese Datenbank wurde in
     \label{fig:sfig1}
 \end{figure}
 
+\subsection{recipie}
+Haupttabelle der Rezepte
+\newline
+title: Titel des Rezepts
+\newline
+country: Land das dem Rezept zugewiesen wurde
+\newline
+image\_path: ID des Bildes, welchen in der webdir/img gespeichert werden.
+\newline
+description: Beschreibung des Rezeptes
+\newline
+id: uuid des Rezeptes
+\newline
+score: Bewertung des Rezeptes (Nicht genutzt)
+\newline
+slug: Referenzierung in der URL
 
+\subsection{country}
+Tabelle für die Länder
+ID: ID des Landes
+\newline
+name: Name des Landes
+\newline
+short\_name: Landeskürzel
+
+\subsection{tag}
+Tabelle für Tags
+ID: ID des Tags
+\newline
+name: Name des Tags
+
+\subsection{recipie\_category}
+Verbindngstabelle für Rezepte und Länder
+ID: Primary key
+\newline
+recipie: ID des Rezeptes
+\newline
+category: ID der Kategorie
+
+\subsection{recipie\_ingridient}
+Verbindngstabelle für Rezepte und Zutaten
+ID: Primary key
+\newline
+recipie: ID des Rezeptes
+\newline
+ingidient: ID der Zutat
+
+\subsection{user\_pass}
+Tabelle für die Core Userdaten
+ID: ID der User
+\newline
+username: Nutzername der User
+\newline
+password: Passwort der Nutzer
+\newline
+email: Email der Nutzer
+
+\subsection{recipie\_country}
+Verbindngstabelle für Rezepte und Länder
+ID: Primary key
+\newline
+recipie: ID des Rezeptes
+\newline
+country: ID des Landes
+
+\subsection{recipie\_tag}
+Verbindngstabelle für Rezepte und Tags
+ID: Primary key
+\newline
+recipie: ID des Rezeptes
+\newline
+tag: ID des Tags
+
+\subsection{category}
+Tabelle für die Kategorieen
+ID: Primary key
+\newline
+recipie: ID des Rezeptes
+\newline
+name: Name der Kategorie
+
+\subsection{ingidient}
+Tabelle für die Zutaten
+ID: Primary key
+\newline
+recipie: ID des Rezeptes
+\newline
+name: Name der Zutat
+
+\subsection{user\_recipie}
+Verbindngstabelle für User und Rezepte
+user: ID des Users
+\newline
+recipie: ID des Rezeptes
+
+\section{Installationsanleitung}
 
 
 \end{document}
