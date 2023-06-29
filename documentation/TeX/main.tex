@@ -6,6 +6,8 @@
 \usepackage{multicol}
 \usepackage[section]{placeins}
 \usepackage{amsmath}
+\usepackage{ragged2e}
+\justifying
 
 \title{Rezepti}
 
@@ -13,10 +15,10 @@
 \date{June 2023}
 
 \begin{document}
+
 \begin{figure}
     \centering
     \includegraphics[scale=0.3]{Pictures/rezepti.png}
-
     \label{fig:sfig1}
 \end{figure}
 \maketitle
@@ -43,6 +45,7 @@ Zuständigkeit Domme Frontend, Tobias Backend und Christoph vermittler zwischen 
 \pagebreak
 \section{Komplettes Product-Backlog als Tabelle}
 \begin{multicols}{2}
+\centering
 \begin{itemize}
     \item detail view
     \item Rezept suche
@@ -63,7 +66,6 @@ Zuständigkeit Domme Frontend, Tobias Backend und Christoph vermittler zwischen 
 
 \pagebreak
 \section{Technologien/Requirements}
-
 
 \begin{itemize}
     \item Clienttechnologie: 
@@ -111,7 +113,7 @@ Zuständigkeit Domme Frontend, Tobias Backend und Christoph vermittler zwischen 
             \end{itemize}
         \item Dateneingaben client- und serverseitig prüfen (RegExp)\\
             \begin{itemize}
-                \item Implementiert in common.php test\_for\_bad\_chars, test\_for\_bad\_chars\_array. Die Funktionen selbst sind in der datei common.php (l.341-345) und (l.347-353) deklariert.
+                \item Implementiert in common.php test\_for\_bad\_chars, \newline test\_for\_bad\_chars\_array. Die Funktionen selbst sind in der datei common.php (l.341-345) und (l.347-353) deklariert.
             \end{itemize}
         \item Datensatzmanipulation in SQL-Server (speichern; auslesen/ausgeben; bearbeiten; löschen)\\
             \begin{itemize}
@@ -151,7 +153,7 @@ Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontaine
 
 \begin{figure}[!hbt]
     \centering
-    \includegraphics[scale=0.75]{Pictures/Dirs1.png}
+    \includegraphics[scale=0.75, width=\textwidth]{Pictures/Dirs1.png}
     \caption{Directories}
     \label{fig:sfig1}
 \end{figure}
@@ -164,7 +166,7 @@ Für die Datenbank wurde nach Vorgabe MariDB verwendet. Diese Datenbank wurde in
 
 \begin{figure}[!hbt]
     \centering
-    \includegraphics[scale=0.75]{Pictures/DB_Tables2.png}
+    \includegraphics[scale=0.75, width=\textwidth]{Pictures/DB_Tables2.png}
     \caption{Datenbank Tabellen}
     \label{fig:sfig1}
 \end{figure}
