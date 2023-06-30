@@ -228,17 +228,30 @@ Dieses kann unter folgendem Link gefunden werden:
             \end{itemize}
     \end{itemize}
 \end{itemize}
+
+\subsection{Beschreibung der verwendeten APIs (Frontend)}
+\begin{itemize}
+    \item Bootstrap 5.3\\
+        Allgemeines CSS Framework mit Grid System
+    \item JQuery\\
+        JavaScript Library für AJAX, event handling, Widgets
+    \item JQuery-UI\\
+        JavaScript Library basierent auf JQuery für Nutzerfreundliche Widgets und andere
+        UI Anwendungen
+    \item Tagify\\
+        JavaScript Library für Eingabefelder von Tags
+\end{itemize}
 \label{tab:my_label}
 
 \pagebreak
 \section{Verzeichnisstruktur}
 Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontainer relevant sind. 
 Diese sind die \verb|nginx|, \verb|php|, \verb|site|.conf und \verb|dev| Verzeichnisse. 
-Die Verzeichnisse \verb|abgabe| und \verb|Documentation| sind nur Dokumentation.
-Der tatsächliche code der Webapp befindet sich im Verzeichnis webdir. 
-In diesem Verzeichnis werden die haupt customer-facing Seiten gespeichert. 
-In den in webdir enthaltenen Unterordnern admin, auth, und templates werden jeweils die 
-Dateien für die Administarorenseiten, Authentifizierung und Templates gespeichert.
+Die Verzeichnisse \verb|abgabe| und \verb|Documentation| sind nur Dokumentation.\\\\
+Der eigentliche Code der Webapp befindet sich im Verzeichnis \verb|webdir|. 
+In den in Webdir enthaltenen Unterordnern \verb|admin|, \verb|auth|, und \verb|templates| werden 
+jeweils die Dateien für die Administarorenseiten, Authentifizierung und Templates gespeichert.
+\verb|static| enthält die Dependencies, die geladen werden müssen.
 \\
 \\
 \dirtree{%
@@ -259,6 +272,15 @@ Dateien für die Administarorenseiten, Authentifizierung und Templates gespeiche
 .4 foods.
 .4 icons.
 .4 useruploads.
+.3 static.
+.4 \text{bs5.3}.
+.5 \dots.
+.4 \text{jquery-3.6.0}.
+.5 \dots.
+.4 \text{jquery-ui-1.13.2}.
+.5 \dots.
+.4 \text{tagify}.
+.5 \dots.
 .3 templates.
 .3 test.
 }
@@ -300,8 +322,11 @@ score: Bewertung des Rezeptes (Nicht genutzt)
 \newline
 slug: Referenzierung in der URL
 
+\pagebreak
+
 \subsection{country}
 Tabelle für die Länder
+\newline
 ID: ID des Landes
 \newline
 name: Name des Landes
@@ -310,12 +335,14 @@ short\_name: Landeskürzel
 
 \subsection{tag}
 Tabelle für Tags
+\newline
 ID: ID des Tags
 \newline
 name: Name des Tags
 
 \subsection{recipie\_category}
 Verbindngstabelle für Rezepte und Länder
+\newline
 ID: Primary key
 \newline
 recipie: ID des Rezeptes
@@ -324,6 +351,7 @@ category: ID der Kategorie
 
 \subsection{recipie\_ingridient}
 Verbindngstabelle für Rezepte und Zutaten
+\newline
 ID: Primary key
 \newline
 recipie: ID des Rezeptes
@@ -332,6 +360,7 @@ ingidient: ID der Zutat
 
 \subsection{user\_pass}
 Tabelle für die Core Userdaten
+\newline
 ID: ID der User
 \newline
 username: Nutzername der User
@@ -342,6 +371,7 @@ email: Email der Nutzer
 
 \subsection{recipie\_country}
 Verbindngstabelle für Rezepte und Länder
+\newline
 ID: Primary key
 \newline
 recipie: ID des Rezeptes
@@ -350,6 +380,7 @@ country: ID des Landes
 
 \subsection{recipie\_tag}
 Verbindngstabelle für Rezepte und Tags
+\newline
 ID: Primary key
 \newline
 recipie: ID des Rezeptes
@@ -358,6 +389,7 @@ tag: ID des Tags
 
 \subsection{category}
 Tabelle für die Kategorieen
+\newline
 ID: Primary key
 \newline
 recipie: ID des Rezeptes
@@ -366,6 +398,7 @@ name: Name der Kategorie
 
 \subsection{ingidient}
 Tabelle für die Zutaten
+\newline
 ID: Primary key
 \newline
 recipie: ID des Rezeptes
@@ -374,6 +407,7 @@ name: Name der Zutat
 
 \subsection{user\_recipie}
 Verbindngstabelle für User und Rezepte
+\newline
 user: ID des Users
 \newline
 recipie: ID des Rezeptes
