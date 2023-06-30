@@ -28,7 +28,11 @@
 Eine Seite Für Kochrezepte von verschiedenen Ländern all around the globe.
 
 \section{Zielgruppe Nutzer und Beeinflusser:}
-Unsere Zielgruppe sind alle Personen die Kochen wollen. Nutzer könnten alle Personen sein die ein bestimmten Rezept suchen oder einfach Rezepte Endecken wollen. Beeinflusser können Firmen sein die unseren konntet für ihre Zwecke nutzen wollen zb. Influenzer die Rezepte probieren oder Firmen die Produkte durch Rezepte vermarkten wollen.
+Unsere Zielgruppe sind alle Personen die Spaß am Kochen haben oder auf der Suche nach Rezepten sind.
+
+Beeinflusser sind unsere Nutzer selbst, Firmen die eventuell Werbung schalten wollen oder Rezepte 
+sponsern könnten. Auch Influencer aus dem Kochsegment könnten Beeinflusser sein.
+
 
 \section{Funktionen}
 \begin{multicols}{2}
@@ -36,10 +40,15 @@ Unsere Zielgruppe sind alle Personen die Kochen wollen. Nutzer könnten alle Per
         \item Rezepte Filtern
         \item Rezepte suchen
         \item Anmeldung/Registrierung
+        \item Abmeldung
         \item Rezept erstellen
-        \item Rezept bewerten
-        \item Rezept unter Favoriten speichern
         \item Rezepte Endecken
+        \item Administaroren Seite
+        \item Responsive Design
+        \item Intuitive Bedienbarkeit
+        \item Erstellen von Tags und Zutaten
+        \item Anzeigen von Nutzerprofilen
+        \item Rezept Bilder
     \end{itemize}
 \end{multicols}
 
@@ -71,20 +80,7 @@ Christoph hatte die Aufgabe, den Überblick zu behalten und das Frontend mit dem
 
 \pagebreak
 \section{Komplettes Product-Backlog als Tabelle}
-%\begin{multicols}{2}
-%\centering
-%\begin{tabular}{|c|c|}
-%    Detail view & Rezept suche \\
-%    Startseite & Rezepte aus DB laden\\
-%    Rating System & Account seite\\
-%    Bilder hochladen & rezepte erstellen\\
-%    Admin section & Session management \\
-%    "similar" recipies section - injection resistance & User profile page\\
-%    Filter funktion & Zutaten kaufen\\
-%\end{tabular}
-%\end{multicols}
-\begin{center}
-\begin{table}[]
+\begin{table}[hbt!]
 \centering
 \begin{tabular}{@{}|l|l|@{}}
 \hline
@@ -127,12 +123,13 @@ session management                                                      & done  
 Database structure                                                      & done      \\ 
 \hline
 \end{tabular}
-\end{table}
-
+\caption{
 Im Verlauf des Projektes haben wir die "Projects" Funktion von GitHub verwendet, welche u.a. ein Kanban Board zu organisation anbietet.
 Dieses kann unter folgendem Link gefunden werden:  
 \url{https://github.com/users/PlexSheep/projects/2}
-\end{center}
+}
+\end{table}
+
 
 
 \pagebreak
@@ -141,77 +138,90 @@ Dieses kann unter folgendem Link gefunden werden:
 \begin{itemize}
     \item Clienttechnologie: 
     \begin{itemize}
-        \item CSS\\
-        \item JS\\
-        \item jQuery\\
-        \item jQueryUI\\
-        \item Bootstrap o.ä als Addon-Frameworks\\
+        \item CSS
+        \item JS
+        \item jQuery
+        \item jQuery Tagify
+        \item jQueryUI
+        \item Bootstrap 5.3
         \item HTML5
     \end{itemize}
     
     \item Servertechnologie: 
     \begin{itemize}
-        \item PHP (8.0)
-        \item MariaDB (MySQL) kein PHP-Framework wie Synfony o.ä\\
-        \item nginx
+        \item PHP
+        \item MariaDB (MySQL)
+        \item NGINX
     \end{itemize}
     
     \item Funktionelle Vorgaben:
     \begin{itemize}
         \item Sessionverwaltung
             \begin{itemize}
-                \item Wir in der common.php datei (l.7) gestartet
-                \item Session expire in (l. 9 - 17)
-                \item Session abfrage z.B: in admin.php (l.14-19)
+                \item Wird in der common.php datei (l. 7) gestartet
+                \item Session expire in (l.  9 - 17)
+                \item Session Abfrage z.B: in \verb|admin.php| (l. 14-19)
             \end{itemize}
-        \item Login-Logout; automatisches Logout nach bestimmter Zeit\\
+        \item Login-Logout; automatisches Logout nach bestimmter Zeit
             \begin{itemize}
-                \item Session expire in (l. 9 - 17) 
+                \item Session expire in \verb|common.php| (l.  9 - 17) 
             \end{itemize}
-        \item Admin-Bereich mit Useraccount-Verwaltung\\
+        \item Admin-Bereich mit Useraccount-Verwaltung
             \begin{itemize}
-                \item In admin.php
+                \item In \verb|admin.php|
                 \item Nutzerverwaltung in den JavaScript Funktionen 
             \end{itemize}
-        \item Passwort-Verwaltung\\
+        \item Passwort-Verwaltung
             \begin{itemize}
-                \item In admin.php (l.105-129)
+                \item In \verb|admin.php| (l. 105-129)
             \end{itemize}
-        \item Rechte-Verwaltung (Adminrechte-Userrechte)\\
+        \item Rechte-Verwaltung (Adminrechte-Userrechte)
             \begin{itemize}
-                \item Die Rechteverwaltung wird hier mit in Sessionvariablen gespeicherten IDs geregelt.
-                z.B: in admin.php (l.14-19)
+                \item Die Rechteverwaltung wird hier mit in Sessionvariablen gespeicherten IDs 
+                    geregelt. Z.B: in \verb|admin.php| (l. 14-19)
             \end{itemize}
-        \item Dateneingaben client- und serverseitig prüfen (RegExp)\\
+        \item Dateneingaben client- und serverseitig prüfen (RegExp)
             \begin{itemize}
-                \item Implementiert in common.php test\_for\_bad\_chars, \newline test\_for\_bad\_chars\_array. Die Funktionen selbst sind in der datei common.php (l.341-345) und (l.347-353) deklariert.
+                \item Implementiert in common.php \verb|test_for_bad_chars|,\\
+                    \verb|test_for_bad_chars_array|. 
+                    Die Funktionen selbst sind in der datei \verb|common.php| (l. 341-345) 
+                    und (l. 347-353) deklariert.
             \end{itemize}
-        \item Datensatzmanipulation in SQL-Server (speichern; auslesen/ausgeben; bearbeiten; löschen)\\
+            \pagebreak
+        \item Datensatzmanipulation in SQL-Server\\
+            (speichern; auslesen/ausgeben; bearbeiten; löschen)
             \begin{itemize}
-            \item Implementiert an vielen stellen im Projekt. Die Rezepte, welche auf der Startseite augegeben werden, werden aus der Datenbank geladen 
-            \newline z.B: featured\_recipies (l.5-8 \dots), gespeichert in z.: admin.php (l.137-149), bearbeitet in z.B: admin.php (l.105-132), gelöscht in z.B: admin.php (l.72-99).
+            \item Implementiert an vielen Stellen im Projekt. Die Rezepte, welche auf der 
+                Startseite augegeben werden, werden aus der Datenbank geladen.
+            \item Ausgabe: \verb|featured_recipies| (l. 5-8 und mehr)
+            \item Speichern: \verb|admin.php| (l. 137-149)
+            \item Bearbeitung: \verb|admin.php| (l. 105-132)
+            \item Löschung: \verb|admin.php| (l. 72-99)
             \end{itemize}
-        \item Konfigurationsdaten via Konfigurationsdatei einlesen\\
+        \item Konfigurationsdaten via Konfigurationsdatei einlesen
             \begin{itemize}
-                \item Eine Konfigurationsdatei wird mit (PHP INI) realisiert. Diese wird in common.php (l.20-55) geladen und deren Daten verwendet.
+                \item Eine Konfigurationsdatei wird mit ini realisiert (\verb|rezepti_config.ini|).
+                    Diese wird in \verb|common.php| (l. 20-55) geladen und deren Daten verwendet.
             \end{itemize}
-        \item Einbindung von jQuery und jQuery UI\\
+        \item Einbindung von jQuery und jQuery UI\
             \begin{itemize}
-                \item JQery und JQuery UI werden in der admin.php Datei verwendet, um z.B: einen Confirmation-Dialog zu realisieren, der den Nutzer fragt, ob eine aktion ausgefhrt werden soll, sowie auch um AJAX einzubinden.
+                \item JQery und JQuery UI werden in der \verb|admin.php| Datei verwendet, 
+                    um z.B: einen Confirmation-Dialog zu realisieren, der den Nutzer fragt, 
+                    ob eine aktion ausgefhrt werden soll, sowie auch um AJAX einzubinden.
             \end{itemize}
-        \item Dynamische laden/nachladen mit Hilfe von AJAX\\
+        \item Dynamische laden/nachladen mit Hilfe von AJAX
             \begin{itemize}
                 \item Realisiert in admin.php (siehe oben)
             \end{itemize}
-        \item Meldungsfenster und Userbestätigungen mit jQuery und jQuery UI\\
+        \item Meldungsfenster und Userbestätigungen mit jQuery und jQuery UI
             \begin{itemize}
                 \item Realisiert in admin.php (siehe oben)
             \end{itemize}
-        \item Datenexport via JSON\\
+        \item Datenexport via JSON
             \begin{itemize}
                 \item Realisiert in get\_user\_data.php
             \end{itemize}
-        \item Dynamische Menüstruktur mit responsive Webdesign\\
+        \item Dynamische Menüstruktur mit responsive Webdesign
             \begin{itemize}
                 \item Auf der gesammten Seite vorhanden
             \end{itemize}
@@ -219,6 +229,7 @@ Dieses kann unter folgendem Link gefunden werden:
 \end{itemize}
 \label{tab:my_label}
 
+\pagebreak
 \section{Verzeichnisstruktur}
 Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontainer relevant sind. Diese sind die nginx, php, site.conf und dev Verzeichnisse. Der tatsächliche code der Webapp befindet sich im Verzeichnis webdir. In diesem Verzeichnis werden die haupt customer-facing Seiten gespeichert. In den in webdir enthaltenen Unterordnern admin, auth, und templates werden jeweils die Dateien für die Administarorenseiten, Authentifizierung und Templates gespeichert.
 
