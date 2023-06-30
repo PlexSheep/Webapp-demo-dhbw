@@ -1,4 +1,105 @@
+HTTP/2 200 
+server: GitHub.com
+date: Fri, 30 Jun 2023 07:29:44 GMT
+content-type: application/json; charset=utf-8
+content-length: 87669
+cache-control: private, max-age=60, s-maxage=60
+vary: Accept, Authorization, Cookie, X-GitHub-OTP
+etag: "1765510f4c01de6cf49d20a8daab6b6eb1fe08ea12ff15b2b3d4de7f857b88f7"
+x-oauth-scopes: gist, repo, user
+x-accepted-oauth-scopes: repo
+x-github-media-type: github.v3; format=json
+link: <https://api.github.com/repositories/626918321/issues?state=all&page=2>; rel="next", <https://api.github.com/repositories/626918321/issues?state=all&page=4>; rel="last"
+x-github-api-version-selected: 2022-11-28
+x-ratelimit-limit: 5000
+x-ratelimit-remaining: 4997
+x-ratelimit-reset: 1688113569
+x-ratelimit-used: 3
+x-ratelimit-resource: core
+access-control-expose-headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset
+access-control-allow-origin: *
+strict-transport-security: max-age=31536000; includeSubdomains; preload
+x-frame-options: deny
+x-content-type-options: nosniff
+x-xss-protection: 0
+referrer-policy: origin-when-cross-origin, strict-origin-when-cross-origin
+content-security-policy: default-src 'none'
+vary: Accept-Encoding, Accept, X-Requested-With
+x-github-request-id: 8502:FEB1:2AED75E:2B6EEB8:649E8468
+
 [
+  {
+    "url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/100",
+    "repository_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw",
+    "labels_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/100/labels{/name}",
+    "comments_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/100/comments",
+    "events_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/100/events",
+    "html_url": "https://github.com/PlexSheep/Webapp-demo-dhbw/pull/100",
+    "id": 1782025994,
+    "node_id": "PR_kwDOJV4Dsc5UThVH",
+    "number": 100,
+    "title": "sync",
+    "user": {
+      "login": "cscherrNT",
+      "id": 123484154,
+      "node_id": "U_kgDOB1w3-g",
+      "avatar_url": "https://avatars.githubusercontent.com/u/123484154?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/cscherrNT",
+      "html_url": "https://github.com/cscherrNT",
+      "followers_url": "https://api.github.com/users/cscherrNT/followers",
+      "following_url": "https://api.github.com/users/cscherrNT/following{/other_user}",
+      "gists_url": "https://api.github.com/users/cscherrNT/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/cscherrNT/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/cscherrNT/subscriptions",
+      "organizations_url": "https://api.github.com/users/cscherrNT/orgs",
+      "repos_url": "https://api.github.com/users/cscherrNT/repos",
+      "events_url": "https://api.github.com/users/cscherrNT/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/cscherrNT/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2023-06-30T07:16:38Z",
+    "updated_at": "2023-06-30T07:16:47Z",
+    "closed_at": "2023-06-30T07:16:46Z",
+    "author_association": "COLLABORATOR",
+    "active_lock_reason": null,
+    "draft": false,
+    "pull_request": {
+      "url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/pulls/100",
+      "html_url": "https://github.com/PlexSheep/Webapp-demo-dhbw/pull/100",
+      "diff_url": "https://github.com/PlexSheep/Webapp-demo-dhbw/pull/100.diff",
+      "patch_url": "https://github.com/PlexSheep/Webapp-demo-dhbw/pull/100.patch",
+      "merged_at": "2023-06-30T07:16:46Z"
+    },
+    "body": null,
+    "reactions": {
+      "url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/100/reactions",
+      "total_count": 0,
+      "+1": 0,
+      "-1": 0,
+      "laugh": 0,
+      "hooray": 0,
+      "confused": 0,
+      "heart": 0,
+      "rocket": 0,
+      "eyes": 0
+    },
+    "timeline_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/100/timeline",
+    "performed_via_github_app": null,
+    "state_reason": null
+  },
   {
     "url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/99",
     "repository_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw",
@@ -42,7 +143,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2023-06-29T09:52:37Z",
-    "updated_at": "2023-06-29T09:52:43Z",
+    "updated_at": "2023-06-30T07:16:58Z",
     "closed_at": "2023-06-29T09:52:42Z",
     "author_association": "COLLABORATOR",
     "active_lock_reason": null,
@@ -2058,70 +2159,6 @@
       "eyes": 0
     },
     "timeline_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/71/timeline",
-    "performed_via_github_app": null,
-    "state_reason": "completed"
-  },
-  {
-    "url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/70",
-    "repository_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw",
-    "labels_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/70/labels{/name}",
-    "comments_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/70/comments",
-    "events_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/70/events",
-    "html_url": "https://github.com/PlexSheep/Webapp-demo-dhbw/issues/70",
-    "id": 1684976636,
-    "node_id": "I_kwDOJV4Dsc5kbrP8",
-    "number": 70,
-    "title": "Zutaten / Tags in der Datenbank",
-    "user": {
-      "login": "PlexSheep",
-      "id": 58274330,
-      "node_id": "MDQ6VXNlcjU4Mjc0MzMw",
-      "avatar_url": "https://avatars.githubusercontent.com/u/58274330?v=4",
-      "gravatar_id": "",
-      "url": "https://api.github.com/users/PlexSheep",
-      "html_url": "https://github.com/PlexSheep",
-      "followers_url": "https://api.github.com/users/PlexSheep/followers",
-      "following_url": "https://api.github.com/users/PlexSheep/following{/other_user}",
-      "gists_url": "https://api.github.com/users/PlexSheep/gists{/gist_id}",
-      "starred_url": "https://api.github.com/users/PlexSheep/starred{/owner}{/repo}",
-      "subscriptions_url": "https://api.github.com/users/PlexSheep/subscriptions",
-      "organizations_url": "https://api.github.com/users/PlexSheep/orgs",
-      "repos_url": "https://api.github.com/users/PlexSheep/repos",
-      "events_url": "https://api.github.com/users/PlexSheep/events{/privacy}",
-      "received_events_url": "https://api.github.com/users/PlexSheep/received_events",
-      "type": "User",
-      "site_admin": false
-    },
-    "labels": [
-
-    ],
-    "state": "closed",
-    "locked": false,
-    "assignee": null,
-    "assignees": [
-
-    ],
-    "milestone": null,
-    "comments": 0,
-    "created_at": "2023-04-26T12:54:48Z",
-    "updated_at": "2023-05-03T12:31:25Z",
-    "closed_at": "2023-05-03T12:31:25Z",
-    "author_association": "OWNER",
-    "active_lock_reason": null,
-    "body": null,
-    "reactions": {
-      "url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/70/reactions",
-      "total_count": 0,
-      "+1": 0,
-      "-1": 0,
-      "laugh": 0,
-      "hooray": 0,
-      "confused": 0,
-      "heart": 0,
-      "rocket": 0,
-      "eyes": 0
-    },
-    "timeline_url": "https://api.github.com/repos/PlexSheep/Webapp-demo-dhbw/issues/70/timeline",
     "performed_via_github_app": null,
     "state_reason": "completed"
   }

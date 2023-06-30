@@ -43,38 +43,95 @@ Unsere Zielgruppe sind alle Personen die Kochen wollen. Nutzer könnten alle Per
     \end{itemize}
 \end{multicols}
 
+\pagebreak
 \section{Referenzdokument}
-(mit Zielen, Funktionsrahmen bzw. allg. Funktionsbeschreibung, Projektrahmen, Umsetzungsstrategie, Aufgaben und Zuständigkeiten)
-\newline\newline
-Ziel war es ein Platform zu schaffen auf der man Rezepte mit anderen Menschen auf der ganzen Welt teilen kann oder von anderen Menschen auf der ganzen Welt Rezepte entdecken kann. 
-\newline
-Zu Funktionen soll gehören das man sich einen acount anlegen kann und von diBreach4-Stunner-Refuse-Doseesem aus rezepte erstellen liken und speichern kann. Es soll möglich sein rezepte ohne anmedlung einzusehen. Es soll die möglichlichleit bestehen rezepte zu suchen oder nach besrimmten zutaten ländern oder kategorien des rezeptes zu suchen. Der admin soll die funktion haben angelegte user zu löschen. 
-\newline
-Der Projektrahmen sind die gegebenen requirements die erfüllt wurden.
-\newline
-Die Umsetzungsstrategie war sehr dynamisch jeder war in einem bereich einigermaßen gut deshalb ging es einfach los und gelegentlich vergleichen bis wir an einem punkt waren das es darum ging die requirements zu erfüllen ab dann wurde mit planung schritt für schritt die requirements übernommen. 
-\newline
-Zuständigkeit Domme Frontend, Tobias Backend und Christoph vermittler zwischen Front und Backen und ebenfalls Entwicklung in beiden Bereichen.
+%(mit Zielen, Funktionsrahmen bzw. allg. Funktionsbeschreibung, Projektrahmen, Umsetzungsstrategie, Aufgaben und Zuständigkeiten)
+
+
+Ziel war es, eine Plattform zu schaffen, auf der Rezepte weltweit ausgetauscht werden können. Jeder Nutzer soll mit Hilfe eines Accounts nach Rezepten suchen und eigene Rezepte veröffentlichen können.\\
+\\
+Die Nutzer sollen Accounts anlegen, Rezepte einsehen und neue Rezepte erstellen können.
+Es soll auch möglich sein, Rezepte ohne Anmeldung anzusehen.
+Es soll möglich sein, Rezepte nach Zutaten, Kategorien und anderen Merkmalen zu suchen.
+Außerdem soll es einen Admin-Bereich geben, in dem die Seite verwaltet werden kann.
+Die Seite sollte intuitiv bedienbar sein, unabhängig vom Endgerät des Nutzers.\\
+\\
+Der Projektrahmen bestand hauptsächlich aus der Planung, der Implementierung und der Dokumentation des Ergebnisses. Die Implementierung nahm die meiste Zeit in Anspruch, ging aber teilweise mit der Planung einher.\\
+\\
+Für die Implementierung war bereits bei der Planung klar, dass wir ein Versionskontrollsystem benötigen, wofür wir Git zusammen mit GitHub verwendeten, was uns auch bei der Planung half, da wir einen Backlog in Github Projects einrichten konnten.\\
+\\
+Wir entschieden uns, Docker Compose für unser Projekt zu verwenden, damit jeder eine lauffähige Entwicklungsumgebung hatte. So konnte die Entwicklungsumgebung einfach auf jeder Maschine identisch zum Laufen gebracht werden.
+Dies war auch für die Synchronisation der Datenbank nützlich. So konnten wir beim Start eine gedumpte SQL Datenbank laden.
+Für das Backend erstellten wir eine allgemeine Klasse, über die man in jeder PHP Datei auf die Datenbank zugreifen konnte. Für das Frontend haben wir zunächst Vanilla CSS verwendet.\\
+\\
+Die Verantwortlichkeiten wurden bereits in der Planung festgelegt:
+Domme sollte sich hauptsächlich um das Frontend und das Design der Website kümmern,
+Tobias sollte sich um das Backend und die Datenbank kümmern.
+Christoph hatte die Aufgabe, den Überblick zu behalten und das Frontend mit dem Backend zu verbinden.\\
 
 \pagebreak
 \section{Komplettes Product-Backlog als Tabelle}
-\begin{multicols}{2}
+%\begin{multicols}{2}
+%\centering
+%\begin{tabular}{|c|c|}
+%    Detail view & Rezept suche \\
+%    Startseite & Rezepte aus DB laden\\
+%    Rating System & Account seite\\
+%    Bilder hochladen & rezepte erstellen\\
+%    Admin section & Session management \\
+%    "similar" recipies section - injection resistance & User profile page\\
+%    Filter funktion & Zutaten kaufen\\
+%\end{tabular}
+%\end{multicols}
+\begin{center}
+\begin{table}[]
 \centering
-\begin{tabular}{|c|c|}
-    Detail view & Rezept suche \\
-    Startseite & Rezepte aus DB laden\\
-    Rating System & Account seite\\
-    Bilder hochladen & rezepte erstellen\\
-    Admin section & Session management \\
-    "similar" recipies section - injection resistance & User profile page\\
-    Filter funktion & Zutaten kaufen\\
+\begin{tabular}{@{}|l|l|@{}}
+\hline
+Aufgabe                                                                 & Status    \\ \hline
+Dokumentation                                                           & done      \\ 
+Use local dependencies instead of CDN                                   & done      \\ 
+AJAX                                                                    & done      \\ 
+fix xss in search                                                       & done      \\ 
+Benutzerverwaltung                                                      & done      \\ 
+synchronized header and footer                                          & done      \\ 
+logout                                                                  & done      \\ 
+Docker environment for windows                                          & done      \\ 
+Kurzbeschreibung                                                        & done      \\ 
+user profile page                                                       & done      \\ 
+Rezepte erstellen                                                       & done      \\ 
+Startseite                                                              & done      \\ 
+detail view                                                             & done      \\ 
+Rezept search                                                           & done      \\ 
+jquery ui integration                                                   & done      \\ 
+jquery integration                                                      & done      \\ 
+load shared html from central files as templates                        & done      \\ 
+search for ingridients                                                  & done      \\ 
+search for tags                                                         & done      \\ 
+fix potential sql injections                                            & done      \\ 
+redisign detail view to be fancy                                        & done      \\ 
+implement basic search                                                  & done      \\ 
+upload images to on creation                                            & done      \\ 
+automate user creation for db                                           & done      \\ 
+Referenzdokument                                                        & done      \\ 
+fix website for firefox                                                 & done      \\ 
+switch from vanilla css to bootstrap                                    & done      \\ 
+store images in the upload directory                                    & done      \\ 
+automatically load recipies from database                               & done      \\ 
+add a favicon                                                           & done      \\ 
+use font available on any system                                        & done      \\ 
+data sanitisation                                                       & done      \\ 
+password management                                                     & done      \\ 
+admin section                                                           & done      \\ 
+session management                                                      & done      \\ 
+Database structure                                                      & done      \\ 
+\hline
 \end{tabular}
-\end{multicols}
+\end{table}
 
 Im Verlauf des Projektes haben wir die "Projects" Funktion von GitHub verwendet, welche u.a. ein Kanban Board zu organisation anbietet.
-\begin{center}
-    Dieses kann unter folgendem Link gefunden werden:  
-    \url{https://github.com/users/PlexSheep/projects/2}
+Dieses kann unter folgendem Link gefunden werden:  
+\url{https://github.com/users/PlexSheep/projects/2}
 \end{center}
 
 
