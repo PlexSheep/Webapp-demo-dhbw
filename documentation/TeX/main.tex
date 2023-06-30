@@ -7,6 +7,7 @@
 \usepackage[section]{placeins}
 \usepackage{amsmath}
 \usepackage{ragged2e}
+\usepackage{dirtree}
 \justifying
 
 \title{Rezepti}
@@ -211,15 +212,15 @@ Dieses kann unter folgendem Link gefunden werden:
             \end{itemize}
         \item Dynamische laden/nachladen mit Hilfe von AJAX
             \begin{itemize}
-                \item Realisiert in admin.php (siehe oben)
+                \item Realisiert in \verb|admin.php| (siehe oben)
             \end{itemize}
         \item Meldungsfenster und Userbestätigungen mit jQuery und jQuery UI
             \begin{itemize}
-                \item Realisiert in admin.php (siehe oben)
+                \item Realisiert in \verb|admin.php| (siehe oben)
             \end{itemize}
         \item Datenexport via JSON
             \begin{itemize}
-                \item Realisiert in get\_user\_data.php
+                \item Realisiert in \verb|get_user_data.php|
             \end{itemize}
         \item Dynamische Menüstruktur mit responsive Webdesign
             \begin{itemize}
@@ -227,18 +228,70 @@ Dieses kann unter folgendem Link gefunden werden:
             \end{itemize}
     \end{itemize}
 \end{itemize}
+
+\subsection{Beschreibung der verwendeten APIs (Frontend)}
+\begin{itemize}
+    \item Bootstrap 5.3\\
+        Allgemeines CSS Framework mit Grid System
+    \item JQuery\\
+        JavaScript Library für AJAX, event handling, Widgets
+    \item JQuery-UI\\
+        JavaScript Library basierent auf JQuery für Nutzerfreundliche Widgets und andere
+        UI Anwendungen
+    \item Tagify\\
+        JavaScript Library für Eingabefelder von Tags.
+\end{itemize}
 \label{tab:my_label}
 
 \pagebreak
 \section{Verzeichnisstruktur}
-Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontainer relevant sind. Diese sind die nginx, php, site.conf und dev Verzeichnisse. Der tatsächliche code der Webapp befindet sich im Verzeichnis webdir. In diesem Verzeichnis werden die haupt customer-facing Seiten gespeichert. In den in webdir enthaltenen Unterordnern admin, auth, und templates werden jeweils die Dateien für die Administarorenseiten, Authentifizierung und Templates gespeichert.
+Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontainer relevant sind. 
+Diese sind die \verb|nginx|, \verb|php|, \verb|site|.conf und \verb|dev| Verzeichnisse. 
+Die Verzeichnisse \verb|abgabe| und \verb|Documentation| sind nur Dokumentation.
 
-\begin{figure}[!hbt]
-    \centering
-    \includegraphics[scale=0.75, width=\textwidth]{Pictures/Dirs1.png}
-    \caption{Directories}
-    \label{fig:sfig1}
-\end{figure}
+Der eigentliche Code der Webapp befindet sich im Verzeichnis \verb|webdir|. 
+In den in Webdir enthaltenen Unterordnern \verb|admin|, \verb|auth|, und \verb|templates| werden 
+jeweils die Dateien für die Administarorenseiten, Authentifizierung und Templates gespeichert.
+\verb|static| enthält die Dependencies, die geladen werden müssen.
+\\
+\\
+\dirtree{%
+.1 \text{.}.
+.2 abgabe.
+.2 documentation.
+.2 dev.
+.3 docker\_mysql\_init.
+.2 nginx.
+.2 php.
+.2 site.conf.
+.2 webdir.
+.3 admin.
+.3 auth.
+.3 img.
+.4 backgrounds.
+.4 favicon.
+.4 foods.
+.4 icons.
+.4 useruploads.
+.3 static.
+.4 \text{bs5.3}.
+.5 \dots.
+.4 \text{jquery-3.6.0}.
+.5 \dots.
+.4 \text{jquery-ui-1.13.2}.
+.5 \dots.
+.4 \text{tagify}.
+.5 \dots.
+.3 templates.
+.3 test.
+}
+
+%\begin{figure}[!hbt]
+%    \centering
+%    \includegraphics[scale=0.75, width=\textwidth]{Pictures/Dirs1.png}
+%    \caption{Directories}
+%    \label{fig:sfig1}
+%\end{figure}
 
 
 \pagebreak
