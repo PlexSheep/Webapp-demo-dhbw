@@ -7,24 +7,25 @@ We want to make a recipe sharing platform.
 
 # Technology Stack
 - PHP for Server Backend (requirement)
-- Bootstrap for CSS Framework (requirement, verhandelbar?)
-- Nginx as Webserver
+- Bootstrap 5.3 (requirement)
+- Nginx
 - docker/podman for deployment
 - MariaDB (requirement)
 - JQuery (requirement)
 - JQueryUI (requirement)
+- Tagify
 - HTML5 (requirement)
 - CSS (requirement)
 - JS (requirement)
 
-# Requirements
-- [ ] Dokumentation 
-- [ ] Referenzdokument
+# Requirements (German)
+- [X] Dokumentation 
+- [X] Referenzdokument
 - [X] Product-Backlog
 - [X] Verzeichnis- und Datenstruktur
 
-# Funktions Requirements
-## Vorgaben:
+## Funktions Requirements
+### Vorgaben:
 - [X] Sessionverwaltung
 - [X] Login-Logout; automatisches Logout nach bestimmter Zeit
 - [X] Admin-Bereich mit Useraccount-Verwaltung
@@ -39,11 +40,12 @@ We want to make a recipe sharing platform.
     - php.ini
     - soll vom webserver geschützt werden. Da Sie ihren eigenen Webserver verwenden möchten,
       können wir ihnen dafür keine Konfiguration mitschicken.
-      Für nginx:
+
+      Für nginx: (see [our nginx config](nginx/default.conf))
       ```
       ...
 
-      location /php.ini {
+      location /rezepti_config.ini {
           return 403;
       }
 
@@ -63,29 +65,6 @@ We want to make a recipe sharing platform.
 - [X] Tags, Kategorien und Ursprungsländer
 - [X] Suche nach Rezepten
 
-# Documentation for Class (german)
-## Kurzbeschreibung
-Rezepti ist eine Sammlung von Rezepten, sortiert nach Zutaten, Ursprungsländern und vielem mehr.
-
-## Zielgruppenanalyse
--> Jeder der Kochen kann und einen Webbrowser verwenden kann.
--> Jeder der gerne neue Gerichte probiert.
-
-## Kurze Beschreibung der geplanten Funkionalität
--> siehe Funktions Requirements
-
-## Kurze Beschreibung der geplanten Technologien
--> siehe Technology Stack
-
-## SCRUM Backlog
--> siehe Github Project und issues list
-
-## Präsentation
--> noch nicht notwendig
-
-## Abgabedatum
--> Vermutlich zur letzten Vorlesung
-
 # Default Credentials
 | User             | Password |
 |------------------|----------|
@@ -96,4 +75,7 @@ Rezepti ist eine Sammlung von Rezepten, sortiert nach Zutaten, Ursprungsländern
 | MOORE@test.de    | test     |
 | TAYLOR@test.de   | test     |
 
-Und viele mehr
+and many more
+
+# Documentation
+A verbose [Documentation](abgabe/Documentation.pdf) in german has been written.
