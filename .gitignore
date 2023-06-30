@@ -1,3 +1,10 @@
 mariadb/var/lib/mysql
 webdir/.env
 node_modules
+documentation/TeX/main.log
+documentation/TeX/main.out
+documentation/TeX/main.aux
+documentation/TeX/main.aux
+documentation/TeX/main.aux
+documentation/TeX/main.log
+documentation/TeX/main.out

@@ -1,5 +1,8 @@
 <?php
 // require the common.php stuff
+/**
+ * @ignore
+ */
 define("rep", 1);
 require_once 'common.php';
 ?>

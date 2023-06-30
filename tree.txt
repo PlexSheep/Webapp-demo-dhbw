@@ -1,0 +1,127 @@
+.
+├── build
+│   ├── doctrees
+│   ├── html
+│   │   ├── _sources
+│   │   └── _static
+│   │       ├── css
+│   │       │   └── fonts
+│   │       └── js
+│   ├── _sources
+│   └── _static
+│       ├── css
+│       │   └── fonts
+│       └── js
+├── dev
+│   └── docker_mysql_init
+│       ├── custom.sql
+│       ├── db.sql
+│       └── Recipie_Service.sql
+├── docker-compose.yml
+├── documentation
+│   ├── Kurzbeschreibung.odt
+│   └── Kurzbeschreibung.pdf
+├── domme-rezepte.txt
+├── favicon_io.zip
+├── helpers
+│   ├── familynames-usa-top1000.txt
+│   ├── useradd.py
+│   └── users.sql
+├── nginx
+│   ├── default.conf
+│   └── Dockerfile
+├── php
+│   └── Dockerfile
+├── README.md
+├── site.conf
+│   └── site.conf
+├── source
+│   ├── _static
+│   └── _templates
+├── startup.sh
+├── tree.txt
+└── webdir
+    ├── 400.php
+    ├── 403.php
+    ├── 404.php
+    ├── admin
+    │   ├── add_category.php
+    │   ├── admin.php
+    │   ├── changePassword.php
+    │   ├── get_json.php
+    │   ├── get_user_data.php
+    │   └── userDelete.php
+    ├── auth
+    │   ├── authSessTest.php
+    │   ├── login.html
+    │   ├── login.php
+    │   ├── logout.php
+    │   ├── register.html
+    │   └── register.php
+    ├── common.php
+    ├── create.php
+    ├── detail.php
+    ├── img
+    │   ├── backgrounds
+    │   │   ├── hintergrund.jpg
+    │   │   └── kuchenplatte.png
+    │   ├── favicon
+    │   │   ├── android-chrome-192x192.png
+    │   │   ├── android-chrome-512x512.png
+    │   │   ├── apple-touch-icon.png
+    │   │   ├── favicon-16x16.png
+    │   │   ├── favicon-32x32.png
+    │   │   ├── favicon.ico
+    │   │   └── site.webmanifest
+    │   ├── foods
+    │   │   ├── carbonara.png
+    │   │   ├── chilli.png
+    │   │   ├── currywurst.png
+    │   │   ├── hintirezi.png
+    │   │   ├── hkoch.png
+    │   │   ├── hschwarz.png
+    │   │   ├── padthai.png
+    │   │   ├── paella.png
+    │   │   ├── ratatouille-rezept-b3.png
+    │   │   ├── sushi.png
+    │   │   └── tacos.png
+    │   ├── icons
+    │   │   ├── empty_plate.jpg
+    │   │   ├── noscore.png
+    │   │   ├── nutriscore.png
+    │   │   ├── rezepti.png
+    │   │   ├── rezepti.webp
+    │   │   └── score.jpg
+    │   └── useruploads
+    │       ├── 24d5827496c81d6cec446a31ecff8f42-spaghetti-with-tomato-sauce.jpg
+    │       ├── 7dbf9fcf19b8d42a233b63c88672a158-Pizza-3007395.jpg
+    │       ├── aa29a06b23357e9bb6d94bf4f11e863a-522_2PV2_Miso_Onion_Ramen_4.jpg
+    │       ├── c3088096c996ba7286364497221155e5-1702189647_03d15f58b0_o.jpg
+    │       ├── d03cefacf5fb4aae95e32a33f9e786d1-spaghetti-with-tomato-sauce.jpg
+    │       └── d71bd869f724bd9bedb65b2490e1e1ee-mehr-muell-durch-corona-sel.jpg
+    ├── index.php
+    ├── konto.php
+        ├── package.json
+    ├── package-lock.json
+    ├── php.ini
+    ├── profile.php
+    ├── scripts.js
+    ├── search.php
+    ├── styles.css
+    ├── templates
+    │   ├── featured-recipies.php
+    │   ├── footer.php
+    │   ├── header.php
+    │   ├── head.php
+    │   └── hero.php
+    ├── test
+    │   ├── bootstrap.php
+    │   ├── db.php
+    │   ├── index.php
+    │   ├── jquery.js
+    │   ├── jquery.php
+    │   ├── phpinfo.php
+    │   └── re.php
+    └── upload.php
+
+73 directories, 263 files

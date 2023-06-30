@@ -1,15 +1,11 @@
 | Title                                        | Status |
 |----------------------------------------------|--------|
 | Documentation                                | [X]    |
-| Merge because stupid                         | [X]    |
-| Frontend domme                               | [X]    |
-| Frontend                                     | [X]    |
 | fix konto page                               | [X]    |
 | input validation in create page              | [X]    |
 | Usercontent                                  | [X]    |
 | Frontend                                     | [X]    |
 | checkboxes                                   | [X]    |
-| Merge main                                   | [X]    |
 | creation works now                           | [X]    |
 | Merge main into frontend                     | [X]    |
 | J query                                      | [X]    |
