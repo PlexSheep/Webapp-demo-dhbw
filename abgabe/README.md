@@ -29,4 +29,5 @@ Und viele mehr
 # Documentation
 The full Documentation for our project has been compiled into 
 [Documentation.pdf](Documentation.pdf).
+
 If you want to look at the full project, we have released it [here](https://github.com/PlexSheep/Webapp-demo-dhbw)
