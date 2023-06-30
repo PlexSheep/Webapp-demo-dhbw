@@ -7,6 +7,7 @@
 \usepackage[section]{placeins}
 \usepackage{amsmath}
 \usepackage{ragged2e}
+\usepackage{dirtree}
 \justifying
 
 \title{Rezepti}
@@ -211,15 +212,15 @@ Dieses kann unter folgendem Link gefunden werden:
             \end{itemize}
         \item Dynamische laden/nachladen mit Hilfe von AJAX
             \begin{itemize}
-                \item Realisiert in admin.php (siehe oben)
+                \item Realisiert in \verb|admin.php| (siehe oben)
             \end{itemize}
         \item Meldungsfenster und Userbestätigungen mit jQuery und jQuery UI
             \begin{itemize}
-                \item Realisiert in admin.php (siehe oben)
+                \item Realisiert in \verb|admin.php| (siehe oben)
             \end{itemize}
         \item Datenexport via JSON
             \begin{itemize}
-                \item Realisiert in get\_user\_data.php
+                \item Realisiert in \verb|get_user_data.php|
             \end{itemize}
         \item Dynamische Menüstruktur mit responsive Webdesign
             \begin{itemize}
@@ -231,14 +232,43 @@ Dieses kann unter folgendem Link gefunden werden:
 
 \pagebreak
 \section{Verzeichnisstruktur}
-Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontainer relevant sind. Diese sind die nginx, php, site.conf und dev Verzeichnisse. Der tatsächliche code der Webapp befindet sich im Verzeichnis webdir. In diesem Verzeichnis werden die haupt customer-facing Seiten gespeichert. In den in webdir enthaltenen Unterordnern admin, auth, und templates werden jeweils die Dateien für die Administarorenseiten, Authentifizierung und Templates gespeichert.
+Das Projekt hat mehrere Verzeichnisse, die nur für das Setup der Dockercontainer relevant sind. 
+Diese sind die \verb|nginx|, \verb|php|, \verb|site|.conf und \verb|dev| Verzeichnisse. 
+Die Verzeichnisse \verb|abgabe| und \verb|Documentation| sind nur Dokumentation.
+Der tatsächliche code der Webapp befindet sich im Verzeichnis webdir. 
+In diesem Verzeichnis werden die haupt customer-facing Seiten gespeichert. 
+In den in webdir enthaltenen Unterordnern admin, auth, und templates werden jeweils die 
+Dateien für die Administarorenseiten, Authentifizierung und Templates gespeichert.
+\\
+\\
+\dirtree{%
+.1 \text{.}.
+.2 abgabe.
+.2 documentation.
+.2 dev.
+.3 docker\_mysql\_init.
+.2 nginx.
+.2 php.
+.2 site.conf.
+.2 webdir.
+.3 admin.
+.3 auth.
+.3 img.
+.4 backgrounds.
+.4 favicon.
+.4 foods.
+.4 icons.
+.4 useruploads.
+.3 templates.
+.3 test.
+}
 
-\begin{figure}[!hbt]
-    \centering
-    \includegraphics[scale=0.75, width=\textwidth]{Pictures/Dirs1.png}
-    \caption{Directories}
-    \label{fig:sfig1}
-\end{figure}
+%\begin{figure}[!hbt]
+%    \centering
+%    \includegraphics[scale=0.75, width=\textwidth]{Pictures/Dirs1.png}
+%    \caption{Directories}
+%    \label{fig:sfig1}
+%\end{figure}
 
 
 \pagebreak
